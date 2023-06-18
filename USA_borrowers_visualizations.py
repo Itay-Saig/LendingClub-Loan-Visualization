@@ -249,33 +249,26 @@ render_usa()
 
 
 ##################################### Second Graph #####################################
-# Data for the horizontal lollipop graph
-data = [
-    ("Category 1", 15),
-    ("Category 2", 25),
-    ("Category 3", 10),
-    ("Category 4", 30),
-    ("Category 5", 20)
-]
+# Create a dataframe
+df = pd.DataFrame({'group': list(map(chr, range(65, 85))), 'values': np.random.uniform(size=20)})
 
-# Separate the categories and values
-categories = [item[0] for item in data]
-values = [item[1] for item in data]
+# Reorder it based on the values
+ordered_df = df.sort_values(by='values')
+my_range = range(1, len(df.index) + 1)
 
 # Create a horizontal bar trace
 trace = go.Bar(
-    x=values,
-    y=categories,
+    x=ordered_df['values'],
+    y=my_range,
     orientation='h',
-    marker=dict(color='rgba(50, 171, 96, 0.6)', line=dict(color='rgba(50, 171, 96, 1.0)', width=1))
+    marker=dict(color='skyblue')
 )
 
 # Create the layout
 layout = go.Layout(
-    title="Horizontal Lollipop Graph",
-    xaxis=dict(title="Values"),
-    yaxis=dict(title="Categories"),
-    margin=dict(l=150)  # Adjust left margin to accommodate longer category labels
+    title="Interactive Horizontal Lollipop Graph",
+    xaxis=dict(title="Value of the variable"),
+    yaxis=dict(title="Group")
 )
 
 # Create the figure
