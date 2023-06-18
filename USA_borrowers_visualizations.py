@@ -76,12 +76,12 @@ else:
     }
   
 ##################################### Pre-Process ###################################### 
-df = pd.read_csv('mxmh_survey_results.csv') # read csv
-df = df.sort_values('Fav genre')
-df = df.rename(columns={"Fav genre": "Favorite Genre"})
+df = pd.read_csv('lending_club_loan_two.csv') # read csv
+# df = df.sort_values('Fav genre')
+# df = df.rename(columns={"Fav genre": "Favorite Genre"})
 
-genres_to_remove = ['Jazz', 'Lofi', 'Gospel', 'Latin','Rap','Country','K pop'] # remove genres with num of records < 30
-df = df[~df['Favorite Genre'].isin(genres_to_remove)]
+# genres_to_remove = ['Jazz', 'Lofi', 'Gospel', 'Latin','Rap','Country','K pop'] # remove genres with num of records < 30
+# df = df[~df['Favorite Genre'].isin(genres_to_remove)]
 
 
 genres_to_keep = ['Rock','Pop','Metal','Classical','Video game music','EDM','R&B','Hip hop','Folk']  # remove people that are not listening to thier fav genre (112 records removed)
