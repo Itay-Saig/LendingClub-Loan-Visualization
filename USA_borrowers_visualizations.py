@@ -2,6 +2,7 @@
 """Visualization Final Project.ipynb
 """
 ####################################### Imports #######################################
+
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -17,6 +18,7 @@ from streamlit_echarts import JsCode
 from streamlit_echarts import st_echarts
 
 ####################################### Intro #######################################
+
 st.set_page_config(page_title="Streamlit Project",
                    page_icon=":bar_chart:",
                   layout="wide")
@@ -76,9 +78,10 @@ else:
         "Insomnia": px.colors.qualitative.Bold[4],  # Yellow
         "OCD": px.colors.qualitative.Bold[5]  # Green
     }
-  
-#################################### Preprocessing ####################################
-################################ General Preprocessing ################################
+
+################################### Preprocessing ###################################
+############################### General Preprocessing ###############################
+
 data = pd.read_csv('lending_club_loan_two.csv') # read csv
 
 # Replace 'RN' with 'Registered Nurse'
@@ -106,7 +109,7 @@ for year in unique_years:
   year_dataframes[year] = data[data['issue_year'] == year]
  
 
-####################################### OUR GRAPHS ####################################### 
+#################################### OUR GRAPHS ##################################### 
 
 
 ###################################### Graph 1 ######################################
@@ -333,11 +336,14 @@ def render_stacked_vertical_bar():
 render_stacked_vertical_bar()
 
 
+option = st.selectbox(
+        "How would you like to be contacted?",
+        ('2012', '2013', '2014', '2015', '2016'),
+        label_visibility=st.session_state.visibility,
+        disabled=st.session_state.disabled,
+    )
 
-
-
-
-
+df = year_dataframes[option]
 
 
 
