@@ -304,6 +304,15 @@ loan_status_values = ["Fully Paid", "Charged Off"]
 
 
 ################################### Visualization ###################################
+with st.container():
+    col1, col2, col3 = st.columns([0.25, 0.5, 0.25])
+    with col1:
+      option = st.selectbox(
+        "How would you like to be contacted?",
+        ('2012', '2013', '2014', '2015', '2016')
+    )
+
+df = year_dataframes[option]
 
 def render_stacked_vertical_bar():
     options = {
@@ -344,15 +353,6 @@ st.markdown("---")
 
 
 
-with st.container():
-    col1, col2, col3 = st.columns([0.25, 0.5, 0.25])
-    with col1:
-      option = st.selectbox(
-        "How would you like to be contacted?",
-        ('2012', '2013', '2014', '2015', '2016')
-    )
-
-df = year_dataframes[option]
 
 
 
