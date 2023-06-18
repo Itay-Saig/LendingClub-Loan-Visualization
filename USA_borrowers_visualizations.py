@@ -423,7 +423,7 @@ with st.container():
                         "stack": "total",
                         "label": {"show": True},
                         "emphasis": {"focus": "series"},
-                        "data": fully_paid_list,
+                        "data": [53, 1024, 1828, 1375, 862, 759, 280],
                     },
                     {
                         "name": "Charged Off",
@@ -431,7 +431,7 @@ with st.container():
                         "stack": "total",
                         "label": {"show": True},
                         "emphasis": {"focus": "series"},
-                        "data": charged_off_list,
+                        "data": [11, 211, 409, 286, 144, 100, 22],
                     },
                 ],
             }
