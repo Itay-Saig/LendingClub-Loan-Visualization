@@ -394,7 +394,7 @@ def render_stacked_vertical_bar():
     }
     st_echarts(options=options, height="500px")
 
-render_stacked_horizontal_bar()
+render_stacked_vertical_bar()
 
 
 
