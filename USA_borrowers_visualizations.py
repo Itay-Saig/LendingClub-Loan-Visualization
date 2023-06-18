@@ -289,7 +289,6 @@ st.markdown("---")
 # st.plotly_chart(fig)
 
 st.markdown("---")  
-st.markdown("---")  
 
 
 ###################################### Graph 3 ######################################
@@ -305,7 +304,7 @@ loan_status_values = ["Fully Paid", "Charged Off"]
 
 ################################### Visualization ###################################
 with st.container():
-    col1, col2 = st.columns([0.15, 0.85])
+    col1, col2 = st.columns([0.2, 0.8])
     with col1:
       option = st.selectbox(
         "How would you like to be contacted?",
@@ -314,38 +313,39 @@ with st.container():
 
 df = year_dataframes[option]
 
-def render_stacked_vertical_bar():
-    options = {
-        "tooltip": {"trigger": "axis", "axisPointer": {"type": "shadow"}},
-        "legend": {
-            "data": loan_status_values
-        },
-        "grid": {"left": "3%", "right": "4%", "bottom": "3%", "containLabel": True},
-        "xAxis": {
-            "type": "category",
-            "data": income_labels,
-        },
-        "yAxis": {"type": "value"},
-        "series": [
-            {
-                "name": "Fully Paid",
-                "type": "bar",
-                "stack": "total",
-                "label": {"show": True},
-                "emphasis": {"focus": "series"},
-                "data": [21, 302, 320, 302, 320, 302, 94],
-            },
-            {
-                "name": "Charged Off",
-                "type": "bar",
-                "stack": "total",
-                "label": {"show": True},
-                "emphasis": {"focus": "series"},
-                "data": [320, 11, 320, 22, 320, 456, 300],
-            },
-        ],
-    }
-    st_echarts(options=options, height="500px")
+    with col2:
+      def render_stacked_vertical_bar():
+          options = {
+              "tooltip": {"trigger": "axis", "axisPointer": {"type": "shadow"}},
+              "legend": {
+                  "data": loan_status_values
+              },
+              "grid": {"left": "3%", "right": "4%", "bottom": "3%", "containLabel": True},
+              "xAxis": {
+                  "type": "category",
+                  "data": income_labels,
+              },
+              "yAxis": {"type": "value"},
+              "series": [
+                  {
+                      "name": "Fully Paid",
+                      "type": "bar",
+                      "stack": "total",
+                      "label": {"show": True},
+                      "emphasis": {"focus": "series"},
+                      "data": [21, 302, 320, 302, 320, 302, 94],
+                  },
+                  {
+                      "name": "Charged Off",
+                      "type": "bar",
+                      "stack": "total",
+                      "label": {"show": True},
+                      "emphasis": {"focus": "series"},
+                      "data": [320, 11, 320, 22, 320, 456, 300],
+                  },
+              ],
+          }
+          st_echarts(options=options, height="500px")
 
 render_stacked_vertical_bar()
 st.markdown("---")  
