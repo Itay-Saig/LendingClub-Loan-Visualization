@@ -305,7 +305,7 @@ loan_status_values = ["Fully Paid", "Charged Off"]
 
 ################################### Visualization ###################################
 with st.container():
-    col1, col2, col3 = st.columns([0.25, 0.5, 0.25])
+    col1, col2 = st.columns([0.15, 0.85])
     with col1:
       option = st.selectbox(
         "How would you like to be contacted?",
