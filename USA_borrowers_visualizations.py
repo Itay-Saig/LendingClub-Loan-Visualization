@@ -78,14 +78,20 @@ else:
         "Insomnia": px.colors.qualitative.Bold[4],  # Yellow
         "OCD": px.colors.qualitative.Bold[5]  # Green
     }
+  st.markdown("---")  
+
+  
 
 ################################### Preprocessing ###################################
 ############################### General Preprocessing ###############################
 
 data = pd.read_csv('lending_club_loan_two.csv') # read csv
 
-# Replace 'RN' with 'Registered Nurse'
+# Replace 'RN' with 'Registered Nurse' in 'emp_title' column
 data['emp_title'] = data['emp_title'].replace('RN', 'Registered Nurse')
+
+# Replace 'manager' with 'Manager' in 'emp_title' column
+data['emp_title'] = data['emp_title'].replace('manager', 'Manager')
 
 # Create 'id' coulmn in the DataFrame
 data['id'] = range(1, len(data) + 1)  # Create 'id' column for each borrower to use in aggregation operations
@@ -120,7 +126,7 @@ for year in unique_years:
   year_dataframes[year] = data[data['issue_year'] == year]
 
 
-#################################### OUR GRAPHS ##################################### 
+#################################### OUR GRAPHS #####################################
 
 
 ###################################### Graph 1 ######################################
@@ -268,7 +274,7 @@ st.markdown("---")
 
 
 ###################################### Graph 2 ######################################
-################################### Preprocessing ################################### 
+################################### Preprocessing ###################################
 
 # Create a dataframe
 # df = pd.DataFrame({'group': list(map(chr, range(65, 85))), 'values': np.random.uniform(size=20)})
@@ -302,7 +308,7 @@ st.markdown("---")
 
 
 ###################################### Graph 3 ######################################
-################################### Preprocessing ################################### 
+################################### Preprocessing ###################################
 
 loan_status_values = ["Fully Paid", "Charged Off"]
 
@@ -333,6 +339,7 @@ with st.container():
       else:
         loan_status_dict['charged_off'] = borrowers_per_income_range_df['num_of_borrowers'].tolist()
 
+        
     ################################### Visualization ###################################
 
     with col2:
@@ -368,18 +375,87 @@ with st.container():
                 ],
             }
             st_echarts(options=options, height="500px")
-
             
-#         render_stacked_vertical_bar(loan_status_dict['fully_paid'], loan_status_dict['charged_off'])
         fully_paid_list, charged_off_list = loan_status_dict['fully_paid'], loan_status_dict['charged_off']
         render_stacked_vertical_bar(fully_paid_list, charged_off_list)
-          
-
-st.markdown("---")  
 st.markdown("---")  
 
 
+###################################### Graph 4 ######################################
+################################### Preprocessing ###################################
 
+# Extract the 10 most frequent job titles in the data
+top_10_job_titles = data['emp_title'].value_counts().head(10).index.tolist()
+sorted_top_10_job_titles = sorted(top_10_job_titles)  # Sorted alphabetically
+
+# Create separate DataFrames for each of the top 10 job titles
+job_dataframes = {}
+for jot_title in top_10_job_titles:
+  job_dataframes[jot_title] = data[data['emp_title'] == jot_title]
+
+# Create Selectbox for filtering by job titles
+with st.container():
+    col1, col2 = st.columns([0.2, 0.8])
+    
+    with col1:
+        option = st.selectbox(
+            "Which job title fascinates you the most?",
+            sorted_top_10_job_titles
+        )
+
+    # Create separate DataFrame for each loan status
+    user_title_choice_df = job_dataframes[option]  # The DataFrame with records of the job title selected by the user
+    fully_paid_title_df = user_title_choice_df[user_title_choice_df['loan_status'] == 'Fully Paid']
+    charged_off_title_df = user_title_choice_df[user_title_choice_df['loan_status'] == 'Charged Off']
+
+    # Calculate num of borrowers per each employment length and loan status
+    loan_status_title_dict = {}
+    i = 0
+    for df in [fully_paid_title_df, charged_off_title_df]:
+      borrowers_per_emp_length_df = df.groupby(['emp_length'])['id'].count().reset_index()  # Group the records with the selected job title to Employment length
+      borrowers_per_emp_length_df.rename(columns={'id': 'num_of_borrowers'}, inplace=True)  # Change the 'id' column name to 'num_of_borrowers'
+      if i == 0:
+        loan_status_title_dict['fully_paid'] = borrowers_per_emp_length_df['num_of_borrowers'].tolist()
+        i += 1
+      else:
+        loan_status_title_dict['charged_off'] = borrowers_per_emp_length_df['num_of_borrowers'].tolist()
+      
+      
+################################### Visualization ###################################
+    with col2:
+      emp_length_years = ['< 1 year', '1 year', '2 years', '3 years', '4 years', '5 years', '6 years', '7 years', '8 years', '9 years', '10+ years']
+
+      fig = go.Figure()
+      fig.add_trace(go.Bar(x=emp_length_years,
+                      y=loan_status_title_dict['fully_paid'],
+                      name='Fully Paid',
+                      marker_color='rgb(55, 83, 109)'
+                      ))
+      fig.add_trace(go.Bar(x=emp_length_years,
+                      y=loan_status_title_dict['charged_off'],
+                      name='Charged Off',
+                      marker_color='rgb(26, 118, 255)'
+                      ))
+
+      fig.update_layout(
+          title='Loan Repayment by Job Titles: Top 10 Loan Requested Job Titles',
+          xaxis_tickfont_size=14,
+          yaxis=dict(
+              title='Number of Borrowers',
+              titlefont_size=16,
+              tickfont_size=14,
+          ),
+          legend=dict(
+              x=0,
+              y=1.0,
+              bgcolor='rgba(255, 255, 255, 0)',
+              bordercolor='rgba(255, 255, 255, 0)'
+          ),
+          barmode='group',
+          bargap=0.15, # gap between bars of adjacent location coordinates.
+          bargroupgap=0.1 # gap between bars of the same location coordinate.
+      )
+      fig.show()
 
 
 
