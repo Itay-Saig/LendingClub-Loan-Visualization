@@ -457,48 +457,10 @@ with st.container():
                 bargroupgap=0.1  # gap between bars of the same location coordinate.
             )
 #             fig.show()
-            st.plotly_chart(fig, use_container_width=False)
+            st.plotly_chart(fig, use_container_width=True)
   
         fully_paid_title_list, charged_off_title_list = loan_status_title_dict['fully_paid'], loan_status_title_dict['charged_off']
-        render_vertical_bar_by_title(fully_paid_title_list, charged_off_title_list)
-
-
-#     with col2:
-#       def render_vertical_bar_by_title(fully_paid_title_list, charged_off_title_list):
-#         emp_length_years = ['< 1 year', '1 year', '2 years', '3 years', '4 years', '5 years', '6 years', '7 years', '8 years', '9 years', '10+ years']
-
-#         fig = go.Figure()
-#         fig.add_trace(go.Bar(x=emp_length_years,
-#                             y=fully_paid_title_list,
-#                             name='Fully Paid',
-#                             marker_color='rgb(55, 83, 109)'
-#                             ))
-#         fig.add_trace(go.Bar(x=emp_length_years,
-#                             y=charged_off_title_list,
-#                             name='Charged Off',
-#                             marker_color='rgb(26, 118, 255)'
-#                             ))
-
-#         fig.update_layout(
-#                 title='Loan Repayment by Job Titles: Top 10 Loan Requested Job Titles',
-#                 xaxis_tickfont_size=14,
-#                 yaxis=dict(
-#                     title='Number of Borrowers',
-#                     titlefont_size=16,
-#                     tickfont_size=14,
-#                 ),
-#                 legend=dict(
-#                     x=0,
-#                     y=1.0,
-#                     bgcolor='rgba(255, 255, 255, 0)',
-#                     bordercolor='rgba(255, 255, 255, 0)'
-#                 ),
-#                 barmode='group',
-#                 bargap=0.15, # gap between bars of adjacent location coordinates.
-#                 bargroupgap=0.1 # gap between bars of the same location coordinate.
-#             )
-#         fig.show()
-        
+        render_vertical_bar_by_title(fully_paid_title_list, charged_off_title_list)        
       
 st.markdown("---")  
 
