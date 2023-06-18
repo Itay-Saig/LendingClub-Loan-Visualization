@@ -404,7 +404,7 @@ with st.container():
     ################################### Visualization ###################################
 
     with col2:
-        def render_stacked_vertical_bar(fully_paid_list, charged_off_list):
+        def render_stacked_vertical_bar():
             options = {
                 "tooltip": {"trigger": "axis", "axisPointer": {"type": "shadow"}},
                 "legend": {
@@ -437,7 +437,9 @@ with st.container():
             }
             st_echarts(options=options, height="500px")
 
-        render_stacked_vertical_bar(loan_status_dict['fully_paid'], loan_status_dict['charged_off'])
+#         render_stacked_vertical_bar(loan_status_dict['fully_paid'], loan_status_dict['charged_off'])
+        render_stacked_vertical_bar()
+
 
 
 
