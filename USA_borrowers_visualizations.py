@@ -9,13 +9,12 @@ import re
 from datetime import datetime
 import matplotlib.pyplot as plt
 import plotly.express as px
-# import plotly.graph_objects as go
+import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import json
 from streamlit_echarts import Map
 from streamlit_echarts import JsCode
 from streamlit_echarts import st_echarts
-import plotly.graph_objs as go
 
 ####################################### Intro #######################################
 st.set_page_config(page_title="Streamlit Project",
@@ -251,32 +250,129 @@ render_usa()
 
 ##################################### Second Graph #####################################
 # Create a dataframe
-df = pd.DataFrame({'group': list(map(chr, range(65, 85))), 'values': np.random.uniform(size=20)})
+# df = pd.DataFrame({'group': list(map(chr, range(65, 85))), 'values': np.random.uniform(size=20)})
 
-# Reorder it based on the values
-ordered_df = df.sort_values(by='values')
-my_range = range(1, len(df.index) + 1)
+# # Reorder it based on the values
+# ordered_df = df.sort_values(by='values')
+# my_range = range(1, len(df.index) + 1)
 
-# Create a horizontal bar trace
-trace = go.Bar(
-    x=ordered_df['values'],
-    y=my_range,
-    orientation='h',
-    marker=dict(color='skyblue')
-)
+# # Create a horizontal bar trace
+# trace = go.Bar(
+#     x=ordered_df['values'],
+#     y=my_range,
+#     orientation='h',
+#     marker=dict(color='skyblue')
+# )
 
-# Create the layout
-layout = go.Layout(
-    title="Interactive Horizontal Lollipop Graph",
-    xaxis=dict(title="Value of the variable"),
-    yaxis=dict(title="Group")
-)
+# # Create the layout
+# layout = go.Layout(
+#     title="Interactive Horizontal Lollipop Graph",
+#     xaxis=dict(title="Value of the variable"),
+#     yaxis=dict(title="Group")
+# )
 
-# Create the figure
-fig = go.Figure(data=[trace], layout=layout)
+# # Create the figure
+# fig = go.Figure(data=[trace], layout=layout)
 
-# Render the figure using Streamlit
-st.plotly_chart(fig)
+# # Render the figure using Streamlit
+# st.plotly_chart(fig)
+
+
+##################################### Third Graph #####################################
+def render_stacked_horizontal_bar():
+    options = {
+        "tooltip": {"trigger": "axis", "axisPointer": {"type": "shadow"}},
+        "legend": {
+            "data": ["Direct", "Mail Ad", "Affiliate Ad", "Video Ad", "Search Engine"]
+        },
+        "grid": {"left": "3%", "right": "4%", "bottom": "3%", "containLabel": True},
+        "xAxis": {"type": "value"},
+        "yAxis": {
+            "type": "category",
+            "data": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+        },
+        "series": [
+            {
+                "name": "Direct",
+                "type": "bar",
+                "stack": "total",
+                "label": {"show": True},
+                "emphasis": {"focus": "series"},
+                "data": [320, 302, 301, 334, 390, 330, 320],
+            },
+            {
+                "name": "Mail Ad",
+                "type": "bar",
+                "stack": "total",
+                "label": {"show": True},
+                "emphasis": {"focus": "series"},
+                "data": [120, 132, 101, 134, 90, 230, 210],
+            },
+            {
+                "name": "Affiliate Ad",
+                "type": "bar",
+                "stack": "total",
+                "label": {"show": True},
+                "emphasis": {"focus": "series"},
+                "data": [220, 182, 191, 234, 290, 330, 310],
+            },
+            {
+                "name": "Video Ad",
+                "type": "bar",
+                "stack": "total",
+                "label": {"show": True},
+                "emphasis": {"focus": "series"},
+                "data": [150, 212, 201, 154, 190, 330, 410],
+            },
+            {
+                "name": "Search Engine",
+                "type": "bar",
+                "stack": "total",
+                "label": {"show": True},
+                "emphasis": {"focus": "series"},
+                "data": [820, 832, 901, 934, 1290, 1330, 1320],
+            },
+        ],
+    }
+    st_echarts(options=options, height="500px")
+
+
+ST_BAR_DEMOS = {
+    "Bar: Basic bar": (
+        render_basic_bar,
+        "https://echarts.apache.org/examples/en/editor.html?c=bar-simple",
+    ),
+    "Bar: Set Style Of Single Bar": (
+        render_set_style_of_single_bar,
+        "https://echarts.apache.org/examples/en/editor.html?c=bar-data-color",
+    ),
+    "Bar: Waterfall Chart": (
+        render_waterfall_chart,
+        "https://echarts.apache.org/examples/en/editor.html?c=bar-waterfall2",
+    ),
+    "Bar: Stacked Horizontal Bar": (
+        render_stacked_horizontal_bar,
+        "https://echarts.apache.org/examples/en/editor.html?c=bar-y-category-stack",
+    ),
+}
+
+render_stacked_horizontal_bar()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
