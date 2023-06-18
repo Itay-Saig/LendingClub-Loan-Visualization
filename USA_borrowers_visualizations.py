@@ -122,6 +122,7 @@ data['income_range'] = pd.cut(data['annual_inc'], bins=income_ranges, labels=inc
 
 # Create separate DataFrames for each year
 unique_years = data['issue_year'].unique().tolist()
+sorted_unique_years = sorted(unique_years)
 year_dataframes = {}
 for year in unique_years:
   year_dataframes[year] = data[data['issue_year'] == year]
@@ -475,8 +476,8 @@ with st.container():
     
     with col1:
         option = st.selectbox(
-            "Which year are you interested in?",
-            ('2012', '2013', '2014', '2015', '2016')
+            "Which year are you interested in???",
+            sorted_unique_years
         )
     
     # Create separate DataFrames for each home ownership
