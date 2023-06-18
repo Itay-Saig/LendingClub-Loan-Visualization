@@ -456,7 +456,9 @@ with st.container():
                 bargap=0.15,  # gap between bars of adjacent location coordinates.
                 bargroupgap=0.1  # gap between bars of the same location coordinate.
             )
-            fig.show()
+#             fig.show()
+            st.plotly_chart(fig, use_container_width=False)
+  
         fully_paid_title_list, charged_off_title_list = loan_status_title_dict['fully_paid'], loan_status_title_dict['charged_off']
         render_vertical_bar_by_title(fully_paid_title_list, charged_off_title_list)
 
