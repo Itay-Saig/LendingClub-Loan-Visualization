@@ -239,12 +239,12 @@ def render_usa():
     st_echarts(options, map=map)
 
 
-ST_MAP_DEMOS = {
-    "Map: USA Population estimates": (
-        render_usa,
-        "https://echarts.apache.org/examples/en/editor.html?c=map-usa",
-    ),
-}
+# ST_MAP_DEMOS = {
+#     "Map: USA Population estimates": (
+#         render_usa,
+#         "https://echarts.apache.org/examples/en/editor.html?c=map-usa",
+#     ),
+# }
 render_usa()
 
 
@@ -337,24 +337,24 @@ def render_stacked_horizontal_bar():
     st_echarts(options=options, height="500px")
 
 
-ST_BAR_DEMOS = {
-    "Bar: Basic bar": (
-        render_basic_bar,
-        "https://echarts.apache.org/examples/en/editor.html?c=bar-simple",
-    ),
-    "Bar: Set Style Of Single Bar": (
-        render_set_style_of_single_bar,
-        "https://echarts.apache.org/examples/en/editor.html?c=bar-data-color",
-    ),
-    "Bar: Waterfall Chart": (
-        render_waterfall_chart,
-        "https://echarts.apache.org/examples/en/editor.html?c=bar-waterfall2",
-    ),
-    "Bar: Stacked Horizontal Bar": (
-        render_stacked_horizontal_bar,
-        "https://echarts.apache.org/examples/en/editor.html?c=bar-y-category-stack",
-    ),
-}
+# ST_BAR_DEMOS = {
+#     "Bar: Basic bar": (
+#         render_basic_bar,
+#         "https://echarts.apache.org/examples/en/editor.html?c=bar-simple",
+#     ),
+#     "Bar: Set Style Of Single Bar": (
+#         render_set_style_of_single_bar,
+#         "https://echarts.apache.org/examples/en/editor.html?c=bar-data-color",
+#     ),
+#     "Bar: Waterfall Chart": (
+#         render_waterfall_chart,
+#         "https://echarts.apache.org/examples/en/editor.html?c=bar-waterfall2",
+#     ),
+#     "Bar: Stacked Horizontal Bar": (
+#         render_stacked_horizontal_bar,
+#         "https://echarts.apache.org/examples/en/editor.html?c=bar-y-category-stack",
+#     ),
+# }
 
 render_stacked_horizontal_bar()
 
