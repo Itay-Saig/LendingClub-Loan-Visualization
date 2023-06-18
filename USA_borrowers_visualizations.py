@@ -101,7 +101,7 @@ data['borrower_state'] = states  # Create a new column with extracted states
 data['borrower_state'] = data['borrower_state'].map(states_acro_dict)  # Replaces any acronyms with the full name of the state
 data['id'] = range(1, len(data) + 1)  # Create 'id' column for each borrower to use in aggregation operations
 borrowers_per_state_df = data.groupby(['borrower_state'])['id'].count().reset_index()
-borrowers_per_state_df.rename(columns={'id': 'num of borrowers'}, inplace=True)  # Change the 'id' column name to 'num of borrowers'
+borrowers_per_state_df.rename(columns={'id': 'num_of_borrowers'}, inplace=True)  # Change the 'id' column name to 'num_of_borrowers'
 
 ####################################### OUR GRAPHS ####################################### 
 
@@ -128,7 +128,7 @@ def render_usa():
         )
     options = {
         "title": {
-            "text": "USA Population Estimates (2012)",
+            "text": "Percentage of Borrowers by State in the United States",
             "subtext": "Data from www.census.gov",
             "sublink": "http://www.census.gov/popest/data/datasets.html",
             "left": "right",
@@ -145,17 +145,17 @@ def render_usa():
             "max": 38000000,
             "inRange": {
                 "color": [
-                    "#313695",
-                    "#4575b4",
-                    "#74add1",
-                    "#abd9e9",
-                    "#e0f3f8",
-                    "#ffffbf",
-                    "#fee090",
-                    "#fdae61",
-                    "#f46d43",
-                    "#d73027",
-                    "#a50026",
+                    "#E6F5FF",
+                    "#B3E6FF",
+                    "#80D4FF",
+                    "#4DC3FF",
+                    "#1AB1FF",
+                    "#008FFF",
+                    "#0077CC",
+                    "#0055AA",
+                    "#003377",
+                    "#001155",
+                    "#000033",
                 ]
             },
             "text": ["High", "Low"],
@@ -173,7 +173,7 @@ def render_usa():
         },
         "series": [
             {
-                "name": "USA PopEstimates",
+                "name": "Percentage of Borrowers in the State",
                 "type": "map",
                 "roam": True,
                 "map": "USA",
