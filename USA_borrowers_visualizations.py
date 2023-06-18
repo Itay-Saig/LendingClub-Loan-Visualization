@@ -16,6 +16,7 @@ import json
 from streamlit_echarts import Map
 from streamlit_echarts import JsCode
 from streamlit_echarts import st_echarts
+import plotly.figure_factory as ff
 
 ####################################### Intro #######################################
 
@@ -422,6 +423,7 @@ with st.container():
       
       
 ################################### Visualization ###################################
+
     with col2:
         def render_vertical_bar_by_title(fully_paid_title_list, charged_off_title_list):
             emp_length_years = ['< 1 year', '1 year', '2 years', '3 years', '4 years', '5 years', '6 years', '7 years', '8 years', '9 years', '10+ years']
@@ -456,13 +458,46 @@ with st.container():
                 bargap=0.15,  # gap between bars of adjacent location coordinates.
                 bargroupgap=0.1  # gap between bars of the same location coordinate.
             )
-#             fig.show()
             st.plotly_chart(fig, use_container_width=True)
   
         fully_paid_title_list, charged_off_title_list = loan_status_title_dict['fully_paid'], loan_status_title_dict['charged_off']
         render_vertical_bar_by_title(fully_paid_title_list, charged_off_title_list)        
       
-st.markdown("---")  
+st.markdown("---")
+
+
+###################################### Graph 5 ######################################
+################################### Preprocessing ###################################
+
+# Create separate DataFrames for each home ownership
+unique_ownerships = data['home_ownership'].unique().tolist()
+ownership_dataframes = {}
+for ownership in unique_ownerships:
+  if len(data[data['home_ownership'] == ownership]) > 500:  # Only home ownership with more than 500 records is relevant
+    ownership_dataframes[ownership] = data[data['home_ownership'] == ownership]
+
+# Create home ownership and its list of interest rates dict
+ownership_int_rate_dict = {}
+for ownership in ownership_dataframes:
+  ownership_int_rate_dict[ownership] = ownership_dataframes[ownership]['int_rate'].tolist()
+
+# Create List of interest rate values (X-axis) and home ownership values (Y-axis)
+hist_int_rates = []
+hist_home_ownerships = []
+colors = ['#333F44', '#37AA9C', '#94F3E4']
+for ownership in ownership_int_rate_dict:
+  hist_int_rates.append(ownership_int_rate_dict[ownership])  # List of interest rate values (X-axis) per each home ownerships
+  hist_home_ownerships.append(ownership)  # List of home ownership values (Y-axis)
+  
+################################### Visualization ###################################
+
+def render_kernel_density_estimate():
+  fig = ff.create_distplot(hist_int_rates, hist_home_ownerships, show_hist=False, colors=colors)  # Create distplot
+  fig.update_layout(title_text='Loan Interest Rate Distribution by Financial Stability and Home Ownership')  # Add title
+  st.plotly_chart(fig, use_container_width=True)
+
+render_kernel_density_estimate()        
+
 
 
 
