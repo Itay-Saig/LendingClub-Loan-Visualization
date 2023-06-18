@@ -279,18 +279,76 @@ render_usa()
 
 
 ##################################### Third Graph #####################################
-def render_stacked_horizontal_bar():
+# def render_stacked_horizontal_bar():
+#     options = {
+#         "tooltip": {"trigger": "axis", "axisPointer": {"type": "shadow"}},
+#         "legend": {
+#             "data": ["Fully Paid", "Charged Off"]
+#         },
+#         "grid": {"left": "3%", "right": "4%", "bottom": "3%", "containLabel": True},
+#         "xAxis": {"type": "value"},
+#         "yAxis": {
+#             "type": "category",
+#             "data": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+#         },
+#         "series": [
+#             {
+#                 "name": "Direct",
+#                 "type": "bar",
+#                 "stack": "total",
+#                 "label": {"show": True},
+#                 "emphasis": {"focus": "series"},
+#                 "data": [320, 302, 301, 334, 390, 330, 320],
+#             },
+#             {
+#                 "name": "Mail Ad",
+#                 "type": "bar",
+#                 "stack": "total",
+#                 "label": {"show": True},
+#                 "emphasis": {"focus": "series"},
+#                 "data": [120, 132, 101, 134, 90, 230, 210],
+#             },
+#             {
+#                 "name": "Affiliate Ad",
+#                 "type": "bar",
+#                 "stack": "total",
+#                 "label": {"show": True},
+#                 "emphasis": {"focus": "series"},
+#                 "data": [220, 182, 191, 234, 290, 330, 310],
+#             },
+#             {
+#                 "name": "Video Ad",
+#                 "type": "bar",
+#                 "stack": "total",
+#                 "label": {"show": True},
+#                 "emphasis": {"focus": "series"},
+#                 "data": [150, 212, 201, 154, 190, 330, 410],
+#             },
+#             {
+#                 "name": "Search Engine",
+#                 "type": "bar",
+#                 "stack": "total",
+#                 "label": {"show": True},
+#                 "emphasis": {"focus": "series"},
+#                 "data": [820, 832, 901, 934, 1290, 1330, 1320],
+#             },
+#         ],
+#     }
+#     st_echarts(options=options, height="500px")
+
+
+def render_stacked_vertical_bar():
     options = {
         "tooltip": {"trigger": "axis", "axisPointer": {"type": "shadow"}},
         "legend": {
-            "data": ["Direct", "Mail Ad", "Affiliate Ad", "Video Ad", "Search Engine"]
+            "data": ["Fully Paid", "Charged Off"]
         },
         "grid": {"left": "3%", "right": "4%", "bottom": "3%", "containLabel": True},
-        "xAxis": {"type": "value"},
-        "yAxis": {
+        "xAxis": {
             "type": "category",
-            "data": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            "data": ['< $20,000', '$20,000 - $40,000', '$40,000 - $60,000', '$60,000 - $80,000', '$80,000 - $100,000', '$100,000 - $150,000', '> $150,000'],
         },
+        "yAxis": {"type": "value"},
         "series": [
             {
                 "name": "Direct",
@@ -335,26 +393,6 @@ def render_stacked_horizontal_bar():
         ],
     }
     st_echarts(options=options, height="500px")
-
-
-# ST_BAR_DEMOS = {
-#     "Bar: Basic bar": (
-#         render_basic_bar,
-#         "https://echarts.apache.org/examples/en/editor.html?c=bar-simple",
-#     ),
-#     "Bar: Set Style Of Single Bar": (
-#         render_set_style_of_single_bar,
-#         "https://echarts.apache.org/examples/en/editor.html?c=bar-data-color",
-#     ),
-#     "Bar: Waterfall Chart": (
-#         render_waterfall_chart,
-#         "https://echarts.apache.org/examples/en/editor.html?c=bar-waterfall2",
-#     ),
-#     "Bar: Stacked Horizontal Bar": (
-#         render_stacked_horizontal_bar,
-#         "https://echarts.apache.org/examples/en/editor.html?c=bar-y-category-stack",
-#     ),
-# }
 
 render_stacked_horizontal_bar()
 
