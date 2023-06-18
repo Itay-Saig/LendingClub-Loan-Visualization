@@ -469,34 +469,47 @@ st.markdown("---")
 ###################################### Graph 5 ######################################
 ################################### Preprocessing ###################################
 
-# Create separate DataFrames for each home ownership
-unique_ownerships = data['home_ownership'].unique().tolist()
-ownership_dataframes = {}
-for ownership in unique_ownerships:
-  if len(data[data['home_ownership'] == ownership]) > 500:  # Only home ownership with more than 500 records is relevant
-    ownership_dataframes[ownership] = data[data['home_ownership'] == ownership]
+# Create Selectbox for filtering by years
+with st.container():
+    col1, col2 = st.columns([0.2, 0.8])
+    
+    with col1:
+        option = st.selectbox(
+            "Which year are you interested in?",
+            ('2012', '2013', '2014', '2015', '2016')
+        )
+    
+    # Create separate DataFrames for each home ownership
+    user_choice_ownership_df = year_dataframes[option]  # The DataFrame with records of the year selected by the user
+    unique_ownerships = data['home_ownership'].unique().tolist()
+    ownership_dataframes = {}
+    for ownership in unique_ownerships:
+      if len(user_choice_ownership_df[user_choice_ownership_df['home_ownership'] == ownership]) > 500:  # Only home ownership with more than 500 records is relevant
+        ownership_dataframes[ownership] = user_choice_ownership_df[user_choice_ownership_df['home_ownership'] == ownership]
 
-# Create home ownership and its list of interest rates dict
-ownership_int_rate_dict = {}
-for ownership in ownership_dataframes:
-  ownership_int_rate_dict[ownership] = ownership_dataframes[ownership]['int_rate'].tolist()
+    # Create home ownership and its list of interest rates dict
+    ownership_int_rate_dict = {}
+    for ownership in ownership_dataframes:
+      ownership_int_rate_dict[ownership] = ownership_dataframes[ownership]['int_rate'].tolist()
 
-# Create List of interest rate values (X-axis) and home ownership values (Y-axis)
-hist_int_rates = []
-hist_home_ownerships = []
-colors = ['#333F44', '#37AA9C', '#94F3E4']
-for ownership in ownership_int_rate_dict:
-  hist_int_rates.append(ownership_int_rate_dict[ownership])  # List of interest rate values (X-axis) per each home ownerships
-  hist_home_ownerships.append(ownership)  # List of home ownership values (Y-axis)
-  
-################################### Visualization ###################################
+    # Create List of interest rate values (X-axis) and home ownership values (Y-axis)
+    hist_int_rates = []
+    hist_home_ownerships = []
+    colors = ['#333F44', '#37AA9C', '#94F3E4']
+    for ownership in ownership_int_rate_dict:
+      hist_int_rates.append(ownership_int_rate_dict[ownership])  # List of interest rate values (X-axis) per each home ownerships
+      hist_home_ownerships.append(ownership)  # List of home ownership values (Y-axis)
 
-def render_kernel_density_estimate():
-  fig = ff.create_distplot(hist_int_rates, hist_home_ownerships, show_hist=False, colors=colors)  # Create distplot
-  fig.update_layout(title_text='Loan Interest Rate Distribution by Financial Stability and Home Ownership')  # Add title
-  st.plotly_chart(fig, use_container_width=True)
+        
+    ################################### Visualization ###################################
 
-render_kernel_density_estimate()        
+    with col2:
+      def render_kernel_density_estimate():
+        fig = ff.create_distplot(hist_int_rates, hist_home_ownerships, show_hist=False, colors=colors)  # Create distplot
+        fig.update_layout(title_text='Loan Interest Rate Distribution by Financial Stability and Home Ownership')  # Add title
+        st.plotly_chart(fig, use_container_width=True)
+
+      render_kernel_density_estimate()        
 
 
 
