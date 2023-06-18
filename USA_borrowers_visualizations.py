@@ -6,7 +6,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import re
-from states import States
+from datetime import datetime
 import matplotlib.pyplot as plt
 import plotly.express as px
 import plotly.graph_objects as go
@@ -28,10 +28,10 @@ with st.container():
     col2.header('Itay Saig - 206961609')
     
 st.header("Intro")
-st.subheader("""The subject of our visualization is the relationship between music consumption habits and preferences and their self reported mental health state.""")
-st.subheader("""Mental health is an issue that affects millions of people around the world, with no signs of improvement and becoming increasingly alarming. According to the World Health Organization, mental health disorders have become the leading cause of disability, affecting a staggering 450 million people.""")
+st.subheader("""The subject of our simulation is to examine the change in characteristics of borrowers in the United States over the years in various aspects.""")
+st.subheader("""Our visualization theme focuses on the ‘Lending Club Loan’ dataset from Kaggle which contains data from LendingClub company. LendingClub is a financial services company headquartered in San Francisco, California. The data available on Kaggle is a comprehensive dataset of loan information from LendingClub from 2007 to 2018.""")
 st.subheader("""Music, often revered as a universal language, has been used for centuries to convey emotions and thoughts. Music is valued, among other things, for its therapeutic potential, especially in the treatment of mental health problems in situations such as depression, anxiety, post-traumatic stress disorder (PTSD) and more. However, the mechanisms underlying music's apparent positive effects on mental health remain elusive and unclear to this day.""")
-st.subheader("""The main question we chose is whether there is a connection between the nature of a certain person's music consumption and his mental health? We want to allow through visualization a critical observation of the connections between the consumption characteristics and the personal characteristics of the listeners and their mental health.""")
+st.subheader("""The main question we would like to investigate is: In what and how the characteristics of borrowers in the US change over the years?""")
 st.markdown("---")  
 color_blind = st.radio("This Project is Color-blind friendly, Are you color blind?",['No','Yes'],key=51) # Did you know that 9% of men are color blind?
 if color_blind == 'Yes': 
@@ -77,26 +77,29 @@ else:
 data = pd.read_csv('lending_club_loan_two.csv') # read csv
 
 # Create population dict for each state in USA
-states_pop_dict = {}
-states = States()
-states_pop_dict['Alabama'] = states.get_state_info('Alabama')['population']
-states_pop_dict['Alaska'] = states.get_state_info('Alaska')['population']
-states_pop_dict['Arizona'] = states.get_state_info('Arizona')['population']
-states_pop_dict['Arkansas'] = states.get_state_info('Arkansas')['population']
-states_pop_dict['California'] = states.get_state_info('California')['population']
-states_pop_dict['Colorado'] = states.get_state_info('Colorado')['population']
-states_pop_dict['Connecticut'] = states.get_state_info('Connecticut')['population']
-states_pop_dict['Delaware'] = states.get_state_info('Delaware')['population']
-states_pop_dict['Florida'] = states.get_state_info('Florida')['population']
-states_pop_dict['Georgia'] = states.get_state_info('Georgia')['population']
+states_pop_dict = {'Alabama': 4903185, 'Alaska': 710249, 'Arizona': 7278717, 'Arkansas': 3017804, 'California': 39368078, 'Colorado': 5758736, 'Connecticut': 3565287, 'Delaware': 973764, 'Florida': 21733312, 'Georgia': 10617423, 'Hawaii': 1415872, 'Idaho': 1787065, 'Illinois': 12671821, 'Indiana': 6732219, 'Iowa': 3155070, 'Kansas': 2913314, 'Kentucky': 4467673, 'Louisiana': 4648794, 'Maine': 1344212, 'Maryland': 6045680, 'Massachusetts': 6892503, 'Michigan': 9883635,
+                   'Minnesota': 5639632, 'Mississippi': 2976149, 'Missouri': 6137428, 'Montana': 1068778, 'Nebraska': 1934408, 'Nevada': 3080156, 'New Hampshire': 1359711, 'New Jersey': 8882190, 'New Mexico': 2096829, 'New York': 19336776, 'North Carolina': 10488084, 'North Dakota': 762062, 'Ohio': 11689100, 'Oklahoma': 3980783, 'Oregon': 4217737, 'Pennsylvania': 12801989, 'Rhode Island': 1059361, 'South Carolina': 5148714, 'South Dakota': 884659, 'Tennessee': 6829174,
+                   'Texas': 29360759, 'Utah': 3205958, 'Vermont': 623989, 'Virginia': 8535519, 'Washington': 7614893, 'West Virginia': 1792147, 'Wisconsin': 5822434, 'Wyoming': 578759}
+
+# Create states dict for each state in USA, each key is acronyms and each value is the full state name
+states_acro_dict = {'AL': 'Alabama', 'AK': 'Alaska', 'AZ': 'Arizona', 'AR': 'Arkansas', 'CA': 'California', 'CO': 'Colorado', 'CT': 'Connecticut', 'DE': 'Delaware', 'FL': 'Florida', 'GA': 'Georgia', 'HI': 'Hawaii', 'ID': 'Idaho', 'IL': 'Illinois', 'IN': 'Indiana', 'IA': 'Iowa', 'KS': 'Kansas', 'KL': 'Kentucky', 'LA': 'Louisiana', 'ME': 'Maine', 'MD': 'Maryland', 'MA': 'Massachusetts', 'MI': 'Michigan', 'MN': 'Minnesota', 'MS': 'Mississippi', 'MO': 'Missouri', 'MT': 'Montana',
+ 'NE': 'Nebraska', 'NV': 'Nevada', 'NH': 'New Hampshire', 'NJ': 'New Jersey', 'NM': 'New Mexico', 'NY': 'New York', 'NC': 'North Carolina', 'ND': 'North Dakota', 'OH': 'Ohio', 'OK': 'Oklahoma', 'OR': 'Oregon', 'PA': 'Pennsylvania', 'RI': 'Rhode Island', 'SC': 'South Carolina', 'SD': 'South Dakota', 'TN': 'Tennessee', 'TX': 'Texas', 'UT': 'Utah', 'VT': 'Vermont', 'VA': 'Virginia', 'WA': 'Washington', 'WV': 'West Virginia', 'WI': 'Wisconsin', 'WY': 'Wyoming'}
+
+# Create 'issue_year' coulmn in the DataFrame
+data['issue_d'] = pd.to_datetime(data['issue_d'], format='%m/%d/%Y')  # Convert 'issue_d' column to datetime format
+data['issue_year'] = data['issue_d'].apply(lambda x: datetime.strftime(x, '%Y'))  # Extract the year and create a new column 'issue_year'
+
+# Create 'borrower_state' coulmn in the DataFrame
+# Extract states acronyms
+pattern = r'\b([A-Z]{2})\b'  # Regex pattern to extract states (assuming a two-letter state code)
+states = [re.search(pattern, address).group(1) if re.search(pattern, address) else None for address in data['address']]  # Extract states from addresses
+data['borrower_state'] = states  # Create a new column with extracted states
+data['borrower_state'] = data['borrower_state'].map(states_acro_dict)  # Replaces any acronyms with the full name of the state
+data['id'] = range(1, len(data) + 1)  # Create 'id' column for each borrower to use in aggregation operations
+borrowers_per_state_df = data.groupby(['borrower_state'])['id'].count().reset_index()
+borrowers_per_state_df.rename(columns={'id': 'num of borrowers'}, inplace=True)  # Change the 'id' column name to 'num of borrowers'
 
 
-
-# df = df.sort_values('Fav genre')
-# df = df.rename(columns={"Fav genre": "Favorite Genre"})
-
-# genres_to_remove = ['Jazz', 'Lofi', 'Gospel', 'Latin','Rap','Country','K pop'] # remove genres with num of records < 30
-# df = df[~df['Favorite Genre'].isin(genres_to_remove)]
 
 
 genres_to_keep = ['Rock','Pop','Metal','Classical','Video game music','EDM','R&B','Hip hop','Folk']  # remove people that are not listening to thier fav genre (112 records removed)
