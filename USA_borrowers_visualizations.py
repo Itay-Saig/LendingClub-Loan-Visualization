@@ -253,6 +253,8 @@ def render_usa():
 #     ),
 # }
 render_usa()
+st.markdown("---")  
+st.markdown("---")  
 
 
 ###################################### Graph 2 ######################################
@@ -285,6 +287,9 @@ render_usa()
 
 # # Render the figure using Streamlit
 # st.plotly_chart(fig)
+
+st.markdown("---")  
+st.markdown("---")  
 
 
 ###################################### Graph 3 ######################################
@@ -334,6 +339,8 @@ def render_stacked_vertical_bar():
     st_echarts(options=options, height="500px")
 
 render_stacked_vertical_bar()
+st.markdown("---")  
+st.markdown("---")  
 
 
 
