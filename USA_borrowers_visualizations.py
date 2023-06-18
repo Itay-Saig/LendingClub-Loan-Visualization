@@ -476,8 +476,8 @@ with st.container():
     
     with col1:
         option = st.selectbox(
-            "Which year are you interested in???",
-            sorted_unique_years
+            "Which year are you interested in?",
+            ('2012', '2013', '2014', '2015', '2016')
         )
     
     # Create separate DataFrames for each home ownership
