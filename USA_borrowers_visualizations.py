@@ -447,7 +447,7 @@ with st.container():
                     tickfont_size=14,
                 ),
                 legend=dict(
-                    x=0,
+                    x=1.0,
                     y=1.0,
                     bgcolor='rgba(255, 255, 255, 0)',
                     bordercolor='rgba(255, 255, 255, 0)'
