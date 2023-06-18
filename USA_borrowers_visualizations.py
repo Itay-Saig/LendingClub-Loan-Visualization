@@ -107,8 +107,8 @@ data['borrower_state'] = data['borrower_state'].map(states_acro_dict)  # Replace
 
 # Create 'income_range' coulmn in the DF
 incomes_df = pd.DataFrame()
-income_ranges = [0, 20000, 40000, 60000, 80000, 100000, 150000, float('inf')]  # Define income ranges
-income_labels = ['< $20,000', '$20,000 - $40,000', '$40,000 - $60,000', '$60,000 - $80,000', '$80,000 - $100,000', '$100,000 - $150,000', '> $150,000']
+income_ranges = [0, 25000, 50000, 75000, 100000, 150000, float('inf')]  # Define income ranges
+income_labels = ['< $25,000', '$25,000 - $50,000', '$50,000 - $75,000', '$75,000 - $100,000', '$100,000 - $150,000', '> $150,000']
 data['income_range'] = pd.cut(data['annual_inc'], bins=income_ranges, labels=income_labels, right=False)  # Categorize the values into income ranges
 
 # Create separate DataFrames for each year
