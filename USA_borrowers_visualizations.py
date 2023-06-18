@@ -356,7 +356,7 @@ def render_stacked_vertical_bar():
                 "stack": "total",
                 "label": {"show": True},
                 "emphasis": {"focus": "series"},
-                "data": [320, 302],
+                "data": [21, 302, 320, 302, 320, 302, 94],
             },
             {
                 "name": "Charged Off",
@@ -364,7 +364,7 @@ def render_stacked_vertical_bar():
                 "stack": "total",
                 "label": {"show": True},
                 "emphasis": {"focus": "series"},
-                "data": [120, 132],
+                "data": [320, 11, 320, 22, 320, 456, 300],
             },
         ],
     }
