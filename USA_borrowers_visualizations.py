@@ -302,11 +302,6 @@ st.markdown("---")
 ###################################### Graph 3 ######################################
 ################################### Preprocessing ################################### 
 
-# Create annual income ranges
-incomes_df = pd.DataFrame()
-income_ranges = [0, 20000, 40000, 60000, 80000, 100000, 150000, float('inf')]  # Define income ranges
-income_labels = ['< $20,000', '$20,000 - $40,000', '$40,000 - $60,000', '$60,000 - $80,000', '$80,000 - $100,000', '$100,000 - $150,000', '> $150,000']
-incomes_df['income_range'] = pd.cut(data['annual_inc'], bins=income_ranges, labels=income_labels, right=False)  # Categorize the values into income ranges
 loan_status_values = ["Fully Paid", "Charged Off"]
 
 # Create Selectbox for filtering by years
