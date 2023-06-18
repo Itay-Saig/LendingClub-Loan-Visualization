@@ -391,13 +391,13 @@ with st.container():
     loan_status_dict = {}
     i = 0
     for df in [fully_paid_df, charged_off_df]:
-        borrowers_per_income_range_df = df.groupby(['income_range'])['id'].count().reset_index()  # Group the records with the selected year to income ranges
-        borrowers_per_income_range_df.rename(columns={'id': 'num_of_borrowers'}, inplace=True)  # Change the 'id' column name to 'num_of_borrowers'
-        if i == 0:
-            loan_status_dict['fully_paid'] = borrowers_per_income_range_df['num_of_borrowers'].tolist()
-            i += 1
-        else:
-            loan_status_dict['charged_off'] = borrowers_per_income_range_df['num_of_borrowers'].tolist()
+      borrowers_per_income_range_df = df.groupby(['income_range'])['id'].count().reset_index()  # Group the records with the selected year to income ranges
+      borrowers_per_income_range_df.rename(columns={'id': 'num_of_borrowers'}, inplace=True)  # Change the 'id' column name to 'num_of_borrowers'
+      if i == 0:
+        loan_status_dict['fully_paid'] = borrowers_per_income_range_df['num_of_borrowers'].tolist()
+        i += 1
+      else:
+        loan_status_dict['charged_off'] = borrowers_per_income_range_df['num_of_borrowers'].tolist()
 
     ################################### Visualization ###################################
 
