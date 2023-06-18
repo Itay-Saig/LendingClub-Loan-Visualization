@@ -87,6 +87,9 @@ data = pd.read_csv('lending_club_loan_two.csv') # read csv
 # Replace 'RN' with 'Registered Nurse'
 data['emp_title'] = data['emp_title'].replace('RN', 'Registered Nurse')
 
+# Create 'id' coulmn in the DataFrame
+data['id'] = range(1, len(data) + 1)  # Create 'id' column for each borrower to use in aggregation operations
+
 # Create 'issue_year' coulmn in the DataFrame
 data['issue_d'] = pd.to_datetime(data['issue_d'], format='%m/%d/%Y')  # Convert 'issue_d' column to datetime format
 data['issue_year'] = data['issue_d'].apply(lambda x: datetime.strftime(x, '%Y'))  # Extract the year and create a new column 'issue_year'
@@ -127,7 +130,6 @@ for year in unique_years:
 #                    'Texas': 29360759, 'Utah': 3205958, 'Vermont': 623989, 'Virginia': 8535519, 'Washington': 7614893, 'West Virginia': 1792147, 'Wisconsin': 5822434, 'Wyoming': 578759}
 
 # Calculate num of borrowers per state
-data['id'] = range(1, len(data) + 1)  # Create 'id' column for each borrower to use in aggregation operations
 borrowers_per_state_df = data.groupby(['borrower_state'])['id'].count().reset_index()
 borrowers_per_state_df.rename(columns={'id': 'num_of_borrowers'}, inplace=True)  # Change the 'id' column name to 'num_of_borrowers'
 
