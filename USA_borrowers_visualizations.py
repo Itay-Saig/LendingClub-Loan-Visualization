@@ -245,7 +245,7 @@ ST_MAP_DEMOS = {
         "https://echarts.apache.org/examples/en/editor.html?c=map-usa",
     ),
 }
-
+render_usa()
 
 
 
