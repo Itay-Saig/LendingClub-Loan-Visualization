@@ -248,6 +248,45 @@ ST_MAP_DEMOS = {
 render_usa()
 
 
+##################################### Second Graph #####################################
+# Data for the horizontal lollipop graph
+data = [
+    ("Category 1", 15),
+    ("Category 2", 25),
+    ("Category 3", 10),
+    ("Category 4", 30),
+    ("Category 5", 20)
+]
+
+# Separate the categories and values
+categories = [item[0] for item in data]
+values = [item[1] for item in data]
+
+# Create a horizontal bar trace
+trace = go.Bar(
+    x=values,
+    y=categories,
+    orientation='h',
+    marker=dict(color='rgba(50, 171, 96, 0.6)', line=dict(color='rgba(50, 171, 96, 1.0)', width=1))
+)
+
+# Create the layout
+layout = go.Layout(
+    title="Horizontal Lollipop Graph",
+    xaxis=dict(title="Values"),
+    yaxis=dict(title="Categories"),
+    margin=dict(l=150)  # Adjust left margin to accommodate longer category labels
+)
+
+# Create the figure
+fig = go.Figure(data=[trace], layout=layout)
+
+# Render the figure using Streamlit
+st.plotly_chart(fig)
+
+
+
+
 
 
 genres_to_keep = ['Rock','Pop','Metal','Classical','Video game music','EDM','R&B','Hip hop','Folk']  # remove people that are not listening to thier fav genre (112 records removed)
