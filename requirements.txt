@@ -6,4 +6,4 @@ matplotlib==3.4.3
 seaborn==0.10.1
 scipy==1.7.0
 numpy==1.21.0
-States==0.0.1.7
+states==0.1.7
