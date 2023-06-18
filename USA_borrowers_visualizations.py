@@ -335,39 +335,39 @@ for df in [fully_paid_df, charged_off_df]:
 
 
 ################################### Visualization ###################################
-  with col2:
-    def render_stacked_vertical_bar(fully_paid_list, charged_off_list):
-    options = {
-        "tooltip": {"trigger": "axis", "axisPointer": {"type": "shadow"}},
-        "legend": {
-            "data": loan_status_values
-        },
-        "grid": {"left": "3%", "right": "4%", "bottom": "3%", "containLabel": True},
-        "xAxis": {
-            "type": "category",
-            "data": income_labels,
-        },
-        "yAxis": {"type": "value"},
-        "series": [
-            {
-                "name": "Fully Paid",
-                "type": "bar",
-                "stack": "total",
-                "label": {"show": True},
-                "emphasis": {"focus": "series"},
-                "data": fully_paid_list,
-            },
-            {
-                "name": "Charged Off",
-                "type": "bar",
-                "stack": "total",
-                "label": {"show": True},
-                "emphasis": {"focus": "series"},
-                "data": charged_off_list,
-            },
-        ],
-    }
-    st_echarts(options=options, height="500px")
+    with col2:
+      def render_stacked_vertical_bar(fully_paid_list, charged_off_list):
+      options = {
+          "tooltip": {"trigger": "axis", "axisPointer": {"type": "shadow"}},
+          "legend": {
+              "data": loan_status_values
+          },
+          "grid": {"left": "3%", "right": "4%", "bottom": "3%", "containLabel": True},
+          "xAxis": {
+              "type": "category",
+              "data": income_labels,
+          },
+          "yAxis": {"type": "value"},
+          "series": [
+              {
+                  "name": "Fully Paid",
+                  "type": "bar",
+                  "stack": "total",
+                  "label": {"show": True},
+                  "emphasis": {"focus": "series"},
+                  "data": fully_paid_list,
+              },
+              {
+                  "name": "Charged Off",
+                  "type": "bar",
+                  "stack": "total",
+                  "label": {"show": True},
+                  "emphasis": {"focus": "series"},
+                  "data": charged_off_list,
+              },
+          ],
+      }
+      st_echarts(options=options, height="500px")
 
     
     
