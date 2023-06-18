@@ -5,31 +5,29 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import re
+from states import States
 import matplotlib.pyplot as plt
 import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
 ####################################### Intro #######################################
-
-
-
 st.set_page_config(page_title="Streamlit Project",
                    page_icon=":bar_chart:",
                   layout="wide")
 
-
 with st.container():
     col1, col2, col3 = st.columns([0.25, 0.5, 0.25])
-    col2.title('Visualization Final Project')
+    col2.title('Information Visualization - Final Project')
 with st.container():
     col1, col2, col3 = st.columns([0.30, 0.5, 0.20])
-    col2.header('Beni Ifland - 208906255')
+    col2.header('Ido Pascaro - 206589749')
 with st.container():
     col1, col2, col3 = st.columns([0.32, 0.5, 0.20])
-    col2.header(' Bar Dolev - 318419512')
+    col2.header('Itay Saig - 206961609')
+    
 st.header("Intro")
-
 st.subheader("""The subject of our visualization is the relationship between music consumption habits and preferences and their self reported mental health state.""")
 st.subheader("""Mental health is an issue that affects millions of people around the world, with no signs of improvement and becoming increasingly alarming. According to the World Health Organization, mental health disorders have become the leading cause of disability, affecting a staggering 450 million people.""")
 st.subheader("""Music, often revered as a universal language, has been used for centuries to convey emotions and thoughts. Music is valued, among other things, for its therapeutic potential, especially in the treatment of mental health problems in situations such as depression, anxiety, post-traumatic stress disorder (PTSD) and more. However, the mechanisms underlying music's apparent positive effects on mental health remain elusive and unclear to this day.""")
@@ -75,8 +73,25 @@ else:
         "OCD": px.colors.qualitative.Bold[5]  # Green
     }
   
-##################################### Pre-Process ###################################### 
-df = pd.read_csv('lending_club_loan_two.csv') # read csv
+##################################### Preprocess ###################################### 
+data = pd.read_csv('lending_club_loan_two.csv') # read csv
+
+# Create population dict for each state in USA
+states_pop_dict = {}
+states = States()
+states_pop_dict['Alabama'] = states.get_state_info('Alabama')['population']
+states_pop_dict['Alaska'] = states.get_state_info('Alaska')['population']
+states_pop_dict['Arizona'] = states.get_state_info('Arizona')['population']
+states_pop_dict['Arkansas'] = states.get_state_info('Arkansas')['population']
+states_pop_dict['California'] = states.get_state_info('California')['population']
+states_pop_dict['Colorado'] = states.get_state_info('Colorado')['population']
+states_pop_dict['Connecticut'] = states.get_state_info('Connecticut')['population']
+states_pop_dict['Delaware'] = states.get_state_info('Delaware')['population']
+states_pop_dict['Florida'] = states.get_state_info('Florida')['population']
+states_pop_dict['Georgia'] = states.get_state_info('Georgia')['population']
+
+
+
 # df = df.sort_values('Fav genre')
 # df = df.rename(columns={"Fav genre": "Favorite Genre"})
 
