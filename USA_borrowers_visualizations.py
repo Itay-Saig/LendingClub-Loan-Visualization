@@ -116,7 +116,7 @@ def render_usa():
         + "return params.seriesName + '<br/>' + params.name + ': ' + value;}"
     ).js_code
 
-    with open("./data/USA.json", "r") as f:
+    with open("./USA.json", "r") as f:
         map = Map(
             "USA",
             json.loads(f.read()),
