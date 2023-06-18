@@ -102,12 +102,18 @@ states = [re.search(pattern, address).group(1) if re.search(pattern, address) el
 data['borrower_state'] = states  # Create a new column with extracted states
 data['borrower_state'] = data['borrower_state'].map(states_acro_dict)  # Replaces any acronyms with the full name of the state
 
+# Create 'income_range' coulmn in the DF
+incomes_df = pd.DataFrame()
+income_ranges = [0, 20000, 40000, 60000, 80000, 100000, 150000, float('inf')]  # Define income ranges
+income_labels = ['< $20,000', '$20,000 - $40,000', '$40,000 - $60,000', '$60,000 - $80,000', '$80,000 - $100,000', '$100,000 - $150,000', '> $150,000']
+data['income_range'] = pd.cut(data['annual_inc'], bins=income_ranges, labels=income_labels, right=False)  # Categorize the values into income ranges
+
 # Create separate DataFrames for each year
 unique_years = data['issue_year'].unique().tolist()
 year_dataframes = {}
 for year in unique_years:
   year_dataframes[year] = data[data['issue_year'] == year]
- 
+
 
 #################################### OUR GRAPHS ##################################### 
 
@@ -301,21 +307,37 @@ income_labels = ['< $20,000', '$20,000 - $40,000', '$40,000 - $60,000', '$60,000
 incomes_df['income_range'] = pd.cut(data['annual_inc'], bins=income_ranges, labels=income_labels, right=False)  # Categorize the values into income ranges
 loan_status_values = ["Fully Paid", "Charged Off"]
 
-
-################################### Visualization ###################################
+# Create Selectbox for filtering by years
 with st.container():
     col1, col2 = st.columns([0.2, 0.8])
     with col1:
       option = st.selectbox(
-        "How would you like to be contacted?",
+        "Which year are you interested in?",
         ('2012', '2013', '2014', '2015', '2016')
     )
 
-df = year_dataframes[option]
+# Create seperate DataFrame for each loan status
+user_choice_df = year_dataframes[option]  # The DataFrame with records of the year selected by the user
+fully_paid_df = user_choice_df[user_choice_df['loan_status'] == 'Fully Paid']
+charged_off_df = user_choice_df[user_choice_df['loan_status'] == 'Charged Off']
 
-    with col2:
-      def render_stacked_vertical_bar():
-          options = {
+# Calculate num of borrowers per each year and loan status
+loan_status_dict = {}
+i = 0
+for df in [fully_paid_df, charged_off_df]:
+  borrowers_per_income_range_df = df.groupby(['income_range'])['id'].count().reset_index()  # Group the records with the selected year to income ranges
+  borrowers_per_income_range_df.rename(columns={'id': 'num_of_borrowers'}, inplace=True)  # Change the 'id' column name to 'num_of_borrowers'
+  if i == 0:
+    loan_status_dict['fully_paid'] = borrowers_per_income_range_df['num_of_borrowers'].tolist()
+    i += 1
+  else:
+    loan_status_dict['charged_off'] = borrowers_per_income_range_df['num_of_borrowers'].tolist()
+
+
+################################### Visualization ###################################
+  with col2:
+    def render_stacked_vertical_bar(fully_paid_list, charged_off_list):
+      options = {
               "tooltip": {"trigger": "axis", "axisPointer": {"type": "shadow"}},
               "legend": {
                   "data": loan_status_values
@@ -333,7 +355,7 @@ df = year_dataframes[option]
                       "stack": "total",
                       "label": {"show": True},
                       "emphasis": {"focus": "series"},
-                      "data": [21, 302, 320, 302, 320, 302, 94],
+                      "data": fully_paid_list,
                   },
                   {
                       "name": "Charged Off",
@@ -341,13 +363,15 @@ df = year_dataframes[option]
                       "stack": "total",
                       "label": {"show": True},
                       "emphasis": {"focus": "series"},
-                      "data": [320, 11, 320, 22, 320, 456, 300],
+                      "data": charged_off_list,
                   },
               ],
           }
           st_echarts(options=options, height="500px")
+          
 
-render_stacked_vertical_bar()
+fully_paid_list, charged_off_list = loan_status_dict['fully_paid'], loan_status_dict['charged_off']
+render_stacked_vertical_bar(fully_paid_list, charged_off_list)
 st.markdown("---")  
 st.markdown("---")  
 
