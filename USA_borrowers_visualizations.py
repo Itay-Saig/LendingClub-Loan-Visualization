@@ -77,21 +77,20 @@ else:
         "OCD": px.colors.qualitative.Bold[5]  # Green
     }
   
-##################################### Preprocess ###################################### 
+#################################### Preprocessing ####################################
+################################ General Preprocessing ################################
 data = pd.read_csv('lending_club_loan_two.csv') # read csv
 
-# Create population dict for each state in USA
-states_pop_dict = {'Alabama': 4903185, 'Alaska': 710249, 'Arizona': 7278717, 'Arkansas': 3017804, 'California': 39368078, 'Colorado': 5758736, 'Connecticut': 3565287, 'Delaware': 973764, 'Florida': 21733312, 'Georgia': 10617423, 'Hawaii': 1415872, 'Idaho': 1787065, 'Illinois': 12671821, 'Indiana': 6732219, 'Iowa': 3155070, 'Kansas': 2913314, 'Kentucky': 4467673, 'Louisiana': 4648794, 'Maine': 1344212, 'Maryland': 6045680, 'Massachusetts': 6892503, 'Michigan': 9883635,
-                   'Minnesota': 5639632, 'Mississippi': 2976149, 'Missouri': 6137428, 'Montana': 1068778, 'Nebraska': 1934408, 'Nevada': 3080156, 'New Hampshire': 1359711, 'New Jersey': 8882190, 'New Mexico': 2096829, 'New York': 19336776, 'North Carolina': 10488084, 'North Dakota': 762062, 'Ohio': 11689100, 'Oklahoma': 3980783, 'Oregon': 4217737, 'Pennsylvania': 12801989, 'Rhode Island': 1059361, 'South Carolina': 5148714, 'South Dakota': 884659, 'Tennessee': 6829174,
-                   'Texas': 29360759, 'Utah': 3205958, 'Vermont': 623989, 'Virginia': 8535519, 'Washington': 7614893, 'West Virginia': 1792147, 'Wisconsin': 5822434, 'Wyoming': 578759}
-
-# Create states dict for each state in USA, each key is acronyms and each value is the full state name
-states_acro_dict = {'AL': 'Alabama', 'AK': 'Alaska', 'AZ': 'Arizona', 'AR': 'Arkansas', 'CA': 'California', 'CO': 'Colorado', 'CT': 'Connecticut', 'DE': 'Delaware', 'FL': 'Florida', 'GA': 'Georgia', 'HI': 'Hawaii', 'ID': 'Idaho', 'IL': 'Illinois', 'IN': 'Indiana', 'IA': 'Iowa', 'KS': 'Kansas', 'KL': 'Kentucky', 'LA': 'Louisiana', 'ME': 'Maine', 'MD': 'Maryland', 'MA': 'Massachusetts', 'MI': 'Michigan', 'MN': 'Minnesota', 'MS': 'Mississippi', 'MO': 'Missouri', 'MT': 'Montana',
- 'NE': 'Nebraska', 'NV': 'Nevada', 'NH': 'New Hampshire', 'NJ': 'New Jersey', 'NM': 'New Mexico', 'NY': 'New York', 'NC': 'North Carolina', 'ND': 'North Dakota', 'OH': 'Ohio', 'OK': 'Oklahoma', 'OR': 'Oregon', 'PA': 'Pennsylvania', 'RI': 'Rhode Island', 'SC': 'South Carolina', 'SD': 'South Dakota', 'TN': 'Tennessee', 'TX': 'Texas', 'UT': 'Utah', 'VT': 'Vermont', 'VA': 'Virginia', 'WA': 'Washington', 'WV': 'West Virginia', 'WI': 'Wisconsin', 'WY': 'Wyoming'}
+# Replace 'RN' with 'Registered Nurse'
+data['emp_title'] = data['emp_title'].replace('RN', 'Registered Nurse')
 
 # Create 'issue_year' coulmn in the DataFrame
 data['issue_d'] = pd.to_datetime(data['issue_d'], format='%m/%d/%Y')  # Convert 'issue_d' column to datetime format
 data['issue_year'] = data['issue_d'].apply(lambda x: datetime.strftime(x, '%Y'))  # Extract the year and create a new column 'issue_year'
+
+# Create states acronyms dict for each state in USA, each key is acronyms and each value is the full state name
+states_acro_dict = {'AL': 'Alabama', 'AK': 'Alaska', 'AZ': 'Arizona', 'AR': 'Arkansas', 'CA': 'California', 'CO': 'Colorado', 'CT': 'Connecticut', 'DE': 'Delaware', 'FL': 'Florida', 'GA': 'Georgia', 'HI': 'Hawaii', 'ID': 'Idaho', 'IL': 'Illinois', 'IN': 'Indiana', 'IA': 'Iowa', 'KS': 'Kansas', 'KL': 'Kentucky', 'LA': 'Louisiana', 'ME': 'Maine', 'MD': 'Maryland', 'MA': 'Massachusetts', 'MI': 'Michigan', 'MN': 'Minnesota', 'MS': 'Mississippi', 'MO': 'Missouri', 'MT': 'Montana',
+'NE': 'Nebraska', 'NV': 'Nevada', 'NH': 'New Hampshire', 'NJ': 'New Jersey', 'NM': 'New Mexico', 'NY': 'New York', 'NC': 'North Carolina', 'ND': 'North Dakota', 'OH': 'Ohio', 'OK': 'Oklahoma', 'OR': 'Oregon', 'PA': 'Pennsylvania', 'RI': 'Rhode Island', 'SC': 'South Carolina', 'SD': 'South Dakota', 'TN': 'Tennessee', 'TX': 'Texas', 'UT': 'Utah', 'VT': 'Vermont', 'VA': 'Virginia', 'WA': 'Washington', 'WV': 'West Virginia', 'WI': 'Wisconsin', 'WY': 'Wyoming'}
 
 # Create 'borrower_state' coulmn in the DataFrame
 # Extract states acronyms
@@ -99,14 +98,32 @@ pattern = r'\b([A-Z]{2})\b'  # Regex pattern to extract states (assuming a two-l
 states = [re.search(pattern, address).group(1) if re.search(pattern, address) else None for address in data['address']]  # Extract states from addresses
 data['borrower_state'] = states  # Create a new column with extracted states
 data['borrower_state'] = data['borrower_state'].map(states_acro_dict)  # Replaces any acronyms with the full name of the state
-data['id'] = range(1, len(data) + 1)  # Create 'id' column for each borrower to use in aggregation operations
-borrowers_per_state_df = data.groupby(['borrower_state'])['id'].count().reset_index()
-borrowers_per_state_df.rename(columns={'id': 'num_of_borrowers'}, inplace=True)  # Change the 'id' column name to 'num_of_borrowers'
+
+# Create separate DataFrames for each year
+unique_years = data['issue_year'].unique().tolist()
+year_dataframes = {}
+for year in unique_years:
+  year_dataframes[year] = data[data['issue_year'] == year]
+ 
 
 ####################################### OUR GRAPHS ####################################### 
 
 
-##################################### First Graph #####################################
+###################################### Graph 1 ######################################
+################################### Preprocessing ###################################
+
+# # Create population dict for each state in USA
+# states_pop_dict = {'Alabama': 4903185, 'Alaska': 710249, 'Arizona': 7278717, 'Arkansas': 3017804, 'California': 39368078, 'Colorado': 5758736, 'Connecticut': 3565287, 'Delaware': 973764, 'Florida': 21733312, 'Georgia': 10617423, 'Hawaii': 1415872, 'Idaho': 1787065, 'Illinois': 12671821, 'Indiana': 6732219, 'Iowa': 3155070, 'Kansas': 2913314, 'Kentucky': 4467673, 'Louisiana': 4648794, 'Maine': 1344212, 'Maryland': 6045680, 'Massachusetts': 6892503, 'Michigan': 9883635,
+#                    'Minnesota': 5639632, 'Mississippi': 2976149, 'Missouri': 6137428, 'Montana': 1068778, 'Nebraska': 1934408, 'Nevada': 3080156, 'New Hampshire': 1359711, 'New Jersey': 8882190, 'New Mexico': 2096829, 'New York': 19336776, 'North Carolina': 10488084, 'North Dakota': 762062, 'Ohio': 11689100, 'Oklahoma': 3980783, 'Oregon': 4217737, 'Pennsylvania': 12801989, 'Rhode Island': 1059361, 'South Carolina': 5148714, 'South Dakota': 884659, 'Tennessee': 6829174,
+#                    'Texas': 29360759, 'Utah': 3205958, 'Vermont': 623989, 'Virginia': 8535519, 'Washington': 7614893, 'West Virginia': 1792147, 'Wisconsin': 5822434, 'Wyoming': 578759}
+
+# Calculate num of borrowers per state
+data['id'] = range(1, len(data) + 1)  # Create 'id' column for each borrower to use in aggregation operations
+borrowers_per_state_df = data.groupby(['borrower_state'])['id'].count().reset_index()
+borrowers_per_state_df.rename(columns={'id': 'num_of_borrowers'}, inplace=True)  # Change the 'id' column name to 'num_of_borrowers'
+
+
+################################### Visualization ###################################
 
 def render_usa():
     formatter = JsCode(
@@ -144,20 +161,7 @@ def render_usa():
             "min": 500000,
             "max": 38000000,
             "inRange": {
-                "color": [
-                    "#E6F5FF",
-                    "#B3E6FF",
-                    "#80D4FF",
-                    "#4DC3FF",
-                    "#1AB1FF",
-                    "#008FFF",
-                    "#0077CC",
-                    "#0055AA",
-                    "#003377",
-                    "#001155",
-                    "#000033",
-                ]
-            },
+                "color": ["#E6F5FF", "#B3E6FF", "#80D4FF", "#4DC3FF", "#1AB1FF", "#008FFF", "#0077CC", "#0055AA", "#003377", "#001155", "#000033",] },
             "text": ["High", "Low"],
             "calculable": True,
         },
@@ -248,7 +252,9 @@ def render_usa():
 render_usa()
 
 
-##################################### Second Graph #####################################
+###################################### Graph 2 ######################################
+################################### Preprocessing ################################### 
+
 # Create a dataframe
 # df = pd.DataFrame({'group': list(map(chr, range(65, 85))), 'values': np.random.uniform(size=20)})
 
@@ -278,75 +284,29 @@ render_usa()
 # st.plotly_chart(fig)
 
 
-##################################### Third Graph #####################################
-# def render_stacked_horizontal_bar():
-#     options = {
-#         "tooltip": {"trigger": "axis", "axisPointer": {"type": "shadow"}},
-#         "legend": {
-#             "data": ["Fully Paid", "Charged Off"]
-#         },
-#         "grid": {"left": "3%", "right": "4%", "bottom": "3%", "containLabel": True},
-#         "xAxis": {"type": "value"},
-#         "yAxis": {
-#             "type": "category",
-#             "data": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-#         },
-#         "series": [
-#             {
-#                 "name": "Direct",
-#                 "type": "bar",
-#                 "stack": "total",
-#                 "label": {"show": True},
-#                 "emphasis": {"focus": "series"},
-#                 "data": [320, 302, 301, 334, 390, 330, 320],
-#             },
-#             {
-#                 "name": "Mail Ad",
-#                 "type": "bar",
-#                 "stack": "total",
-#                 "label": {"show": True},
-#                 "emphasis": {"focus": "series"},
-#                 "data": [120, 132, 101, 134, 90, 230, 210],
-#             },
-#             {
-#                 "name": "Affiliate Ad",
-#                 "type": "bar",
-#                 "stack": "total",
-#                 "label": {"show": True},
-#                 "emphasis": {"focus": "series"},
-#                 "data": [220, 182, 191, 234, 290, 330, 310],
-#             },
-#             {
-#                 "name": "Video Ad",
-#                 "type": "bar",
-#                 "stack": "total",
-#                 "label": {"show": True},
-#                 "emphasis": {"focus": "series"},
-#                 "data": [150, 212, 201, 154, 190, 330, 410],
-#             },
-#             {
-#                 "name": "Search Engine",
-#                 "type": "bar",
-#                 "stack": "total",
-#                 "label": {"show": True},
-#                 "emphasis": {"focus": "series"},
-#                 "data": [820, 832, 901, 934, 1290, 1330, 1320],
-#             },
-#         ],
-#     }
-#     st_echarts(options=options, height="500px")
+###################################### Graph 3 ######################################
+################################### Preprocessing ################################### 
 
+# Create annual income ranges
+incomes_df = pd.DataFrame()
+income_ranges = [0, 20000, 40000, 60000, 80000, 100000, 150000, float('inf')]  # Define income ranges
+income_labels = ['< $20,000', '$20,000 - $40,000', '$40,000 - $60,000', '$60,000 - $80,000', '$80,000 - $100,000', '$100,000 - $150,000', '> $150,000']
+incomes_df['income_range'] = pd.cut(data['annual_inc'], bins=income_ranges, labels=income_labels, right=False)  # Categorize the values into income ranges
+loan_status_values = ["Fully Paid", "Charged Off"]
+
+
+################################### Visualization ###################################
 
 def render_stacked_vertical_bar():
     options = {
         "tooltip": {"trigger": "axis", "axisPointer": {"type": "shadow"}},
         "legend": {
-            "data": ["Fully Paid", "Charged Off"]
+            "data": loan_status_values
         },
         "grid": {"left": "3%", "right": "4%", "bottom": "3%", "containLabel": True},
         "xAxis": {
             "type": "category",
-            "data": ['< $20,000', '$20,000 - $40,000', '$40,000 - $60,000', '$60,000 - $80,000', '$80,000 - $100,000', '$100,000 - $150,000', '> $150,000'],
+            "data": income_labels,
         },
         "yAxis": {"type": "value"},
         "series": [
@@ -383,21 +343,6 @@ render_stacked_vertical_bar()
 
 
 
-
-
-
-
-
-
-
-
-
-
-genres_to_keep = ['Rock','Pop','Metal','Classical','Video game music','EDM','R&B','Hip hop','Folk']  # remove people that are not listening to thier fav genre (112 records removed)
-for idx, row in df.iterrows():
-    fav = row['Favorite Genre']
-    if row[f'Frequency [{fav}]'] not in ['Sometimes','Very frequently']:
-      df = df.drop(idx)
 
 def apply_bins_hours(time): # divide to hour bins for graph number 4
   if time <= 2:
