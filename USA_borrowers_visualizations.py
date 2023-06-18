@@ -475,13 +475,13 @@ with st.container():
     col1, col2 = st.columns([0.2, 0.8])
     
     with col1:
-        option2 = st.selectbox(
-            "Which year are you interested in?",
+        option = st.selectbox(
+            "Which year's distributions would you like to see?",
             ('2012', '2013', '2014', '2015', '2016')
         )
     
     # Create separate DataFrames for each home ownership
-    user_choice_ownership_df = year_dataframes[option2]  # The DataFrame with records of the year selected by the user
+    user_choice_ownership_df = year_dataframes[option]  # The DataFrame with records of the year selected by the user
     unique_ownerships = data['home_ownership'].unique().tolist()
     ownership_dataframes = {}
     for ownership in unique_ownerships:
