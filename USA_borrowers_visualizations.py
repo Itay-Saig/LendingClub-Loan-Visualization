@@ -458,7 +458,7 @@ with st.container():
             )
         fig.show()
       fully_paid_title_list, charged_off_title_list = loan_status_title_dict['fully_paid'], loan_status_title_dict['charged_off']
-      render_stacked_vertical_bar(fully_paid_title_list, charged_off_title_list)
+      render_vertical_bar_by_title(fully_paid_title_list, charged_off_title_list)
       
 st.markdown("---")  
 
