@@ -336,12 +336,26 @@ def render_stacked_vertical_bar():
 render_stacked_vertical_bar()
 
 
-option = st.selectbox(
+
+with st.container():
+    col1, col2, col3 = st.columns([0.25, 0.5, 0.25])
+    option = col1.st.selectbox(
         "How would you like to be contacted?",
         ('2012', '2013', '2014', '2015', '2016')
     )
 
 df = year_dataframes[option]
+
+
+
+
+
+
+
+
+
+
+
 
 
 
