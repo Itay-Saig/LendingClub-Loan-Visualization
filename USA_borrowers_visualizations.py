@@ -168,8 +168,8 @@ def render_usa():
         "title": {
             "text": "Percentage of Borrowers by State: United States Heat Map",
             "subtext": "Data from www.census.gov",
-            "left": "left",  # Align the title to the left
-            "top": "3%",  # Move the title further up
+            "left": "center",  # Align the title to the center
+            "top": "-2%",  # Move the title further up
         },
         "tooltip": {
             "trigger": "item",
