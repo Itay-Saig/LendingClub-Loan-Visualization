@@ -571,7 +571,7 @@ option = {
     "legend": {
         "text": "Grades",
         "left": "center",
-        "top": "0%",
+        "top": "5%",
     },
     "tooltip": {
         "trigger": "axis",
