@@ -554,6 +554,72 @@ for year_df in year_dataframes.values():
 
 ################################### Visualization ###################################
       
+# option = {
+#     "legend": {},
+#     "tooltip": {"trigger": "axis", "showContent": False},
+#     "dataset": {
+#         "source": [
+#             ["product", "2012", "2013", "2014", "2015", "2016"],
+#             ["A", 1401, 2838, 3381, 2901, 792],
+#             ["B", 2664, 7179, 5724, 4857, 1537],
+#             ["C", 1719, 5422, 6071, 5740, 1628],
+#             ["D", 1016, 3012, 3843, 3419, 929],
+#             ["E", 390, 1221, 1916, 2099, 481],
+#             ["F", 152, 543, 638, 687, 214],
+#             ["G", 22, 100, 179, 196, 60],
+#         ]
+#     },
+#     "xAxis": {"type": "category"},
+#     "yAxis": {"gridIndex": 0},
+#     "grid": {"top": "55%"},
+#     "series": [
+#         {
+#             "type": "line",
+#             "smooth": True,
+#             "seriesLayoutBy": "row",
+#             "emphasis": {"focus": "series"},
+#         },
+#         {
+#             "type": "line",
+#             "smooth": True,
+#             "seriesLayoutBy": "row",
+#             "emphasis": {"focus": "series"},
+#         },
+#         {
+#             "type": "line",
+#             "smooth": True,
+#             "seriesLayoutBy": "row",
+#             "emphasis": {"focus": "series"},
+#         },
+#         {
+#             "type": "line",
+#             "smooth": True,
+#             "seriesLayoutBy": "row",
+#             "emphasis": {"focus": "series"},
+#         },
+#         {
+#             "type": "line",
+#             "smooth": True,
+#             "seriesLayoutBy": "row",
+#             "emphasis": {"focus": "series"},
+#         },
+#         {
+#             "type": "line",
+#             "smooth": True,
+#             "seriesLayoutBy": "row",
+#             "emphasis": {"focus": "series"},
+#         },
+#         {
+#             "type": "line",
+#             "smooth": True,
+#             "seriesLayoutBy": "row",
+#             "emphasis": {"focus": "series"},
+#         },
+#     ],
+# }
+# st_echarts(option, height="500px", key="echarts")
+
+
 option = {
     "legend": {},
     "tooltip": {"trigger": "axis", "showContent": False},
@@ -571,54 +637,19 @@ option = {
     },
     "xAxis": {"type": "category"},
     "yAxis": {"gridIndex": 0},
-    "grid": {"top": "55%"},
+    "grid": {"top": "80%"},  # Adjust the top value to reduce the spacing
     "series": [
-        {
-            "type": "line",
-            "smooth": True,
-            "seriesLayoutBy": "row",
-            "emphasis": {"focus": "series"},
-        },
-        {
-            "type": "line",
-            "smooth": True,
-            "seriesLayoutBy": "row",
-            "emphasis": {"focus": "series"},
-        },
-        {
-            "type": "line",
-            "smooth": True,
-            "seriesLayoutBy": "row",
-            "emphasis": {"focus": "series"},
-        },
-        {
-            "type": "line",
-            "smooth": True,
-            "seriesLayoutBy": "row",
-            "emphasis": {"focus": "series"},
-        },
-        {
-            "type": "line",
-            "smooth": True,
-            "seriesLayoutBy": "row",
-            "emphasis": {"focus": "series"},
-        },
-        {
-            "type": "line",
-            "smooth": True,
-            "seriesLayoutBy": "row",
-            "emphasis": {"focus": "series"},
-        },
-        {
-            "type": "line",
-            "smooth": True,
-            "seriesLayoutBy": "row",
-            "emphasis": {"focus": "series"},
-        },
+        {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
+        {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
+        {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
+        {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
+        {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
+        {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
+        {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
     ],
 }
-st_echarts(option, height="500px", key="echarts")
 
+st_echarts(option, height="500px", key="echarts")
 
 
 
