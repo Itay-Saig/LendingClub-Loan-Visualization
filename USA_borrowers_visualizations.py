@@ -668,7 +668,7 @@ for i in range(1, len(source[0])):
         "formatter": "{{b}}: ({})".format(", ".join(["{}, {}".format(year, value) for year, value in line_data]))
     }
 
-st_echarts(option, height="500px", key="echarts")
+# st_echarts(option, height="500px", key="echarts")
 
 
 
