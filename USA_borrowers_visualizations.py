@@ -722,7 +722,7 @@ option = {
         "padding": 20,
         "textStyle": {"fontWeight": "bold"}
     },
-    "legend": {"right": "10%", "top": "10%"},  # Move legend to the top-right corner
+    "legend": {"right": "2%", "top": "10%"},  # Move legend to the top-right corner
     "tooltip": {
         "trigger": "axis",
         "axisPointer": {"type": "shadow"},
