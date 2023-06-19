@@ -624,6 +624,12 @@ option = {
     ],
 }
 
+# Update the tooltip formatter to access the correct data
+option["tooltip"]["formatter"] = "({b}, {c})".format(
+    b=option["dataset"]["source"][0][0],
+    c=option["dataset"]["source"][1][1],
+)
+
 st_echarts(option, height="500px", key="echarts")
 
 
