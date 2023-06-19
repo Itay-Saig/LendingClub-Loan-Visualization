@@ -590,20 +590,46 @@ for year_df in year_dataframes.values():
 # st_echarts(option, height="500px", key="echarts")
 
 
+
+# # Update the tooltip formatter to access the correct data
+# option["tooltip"]["formatter"] = "({b}, {c})".format(
+#     b=option["dataset"]["source"][0][0],
+#     c=option["dataset"]["source"][1][1],
+# )
+
+# source = option["dataset"]["source"]  # Get the source data
+
+# # Iterate over each column (excluding the first column)
+# for i in range(1, len(source[0])):
+#     year = source[0][i]  # Get the year value from the first row
+#     line_data = []  # List to store tuples of (year, value) for each line
+
+#     # Iterate over each line (excluding the first line)
+#     for j in range(1, len(source)):
+#         product = source[j][0]  # Get the product value from the first column
+#         value = source[j][i]  # Get the corresponding value from the current column
+#         line_data.append((year, value))  # Append the (year, value) tuple to the line_data list
+
+#     print(line_data)  # Do something with the line_data, such as displaying or processing it
+
+    
+# st_echarts(option, height="500px", key="echarts")
+
+
 option = {
     "legend": {"top": "90%"},
     "tooltip": {
         "trigger": "axis",
         "axisPointer": {"type": "shadow"},
-        "formatter":
+        "showContent": True,
+        "formatter": """
             function(params) {
-                var yearIndex = params[0].dataIndex + 1; 
+                var yearIndex = params[0].dataIndex + 1;  // Add 1 to skip the "product" column
                 var year = option.dataset.source[0][yearIndex];
                 var value = params[0].value;
-                return params[0].name + ': (' + year + ', ' + value + ')';
+                return '(' + year + ', ' + value + ')';
             }
-        ,
-        "showContent": True,
+        """,
     },
     "dataset": {
         "source": [
@@ -630,7 +656,6 @@ option = {
         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
     ],
 }
-
 st_echarts(option, height="500px", key="echarts")
 
 
