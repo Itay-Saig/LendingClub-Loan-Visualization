@@ -357,7 +357,6 @@ with st.container():
                     "data": income_labels,
                 "axisLabel": {
                     "show": True,
-                    "rotate": 45,
                     "formatter": "{value}",
                     "textStyle": {
                         "fontSize": 12
