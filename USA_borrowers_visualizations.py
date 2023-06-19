@@ -443,7 +443,10 @@ with st.container():
 
             fig.update_layout(
                 title='Loan Repayment by Job Titles: Top 10 Loan Requested Job Titles',
-                xaxis_tickfont_size=14,
+                xaxis=dict(
+                    title='Employment Length',
+                    tickfont_size=14
+                ),
                 yaxis=dict(
                     title='Number of Borrowers',
                     titlefont_size=16,
@@ -466,7 +469,16 @@ with st.container():
       
 st.markdown("---")
 
-
+fig.update_layout(
+        title_text='Loan Interest Rate Distribution by Financial Stability and Home Ownership',  # Add title
+        xaxis=dict(
+            title='Interest Rate'  # Add x-axis title
+        ),
+        yaxis=dict(
+            title='Density of Borrowers'  # Add y-axis title
+        )
+    )
+        st.plotly_chart(fig, use_container_width=True)
 ###################################### Graph 5 ######################################
 ################################### Preprocessing ###################################
 
