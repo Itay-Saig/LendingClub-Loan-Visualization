@@ -311,7 +311,7 @@ with st.container():
               "legend": {
                   "data": ["Number of Borrowers"]
               },
-              "grid": {"left": "3%", "right": "4%", "bottom": "10%", "top": "10%", "containLabel": True},
+              "grid": {"left": "3%", "right": "4%", "bottom": "10%", "top": "20%", "containLabel": True},
               "xAxis": {
                   "type": "value",
               },
