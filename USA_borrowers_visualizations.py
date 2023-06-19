@@ -469,16 +469,7 @@ with st.container():
       
 st.markdown("---")
 
-fig.update_layout(
-        title_text='Loan Interest Rate Distribution by Financial Stability and Home Ownership',  # Add title
-        xaxis=dict(
-            title='Interest Rate'  # Add x-axis title
-        ),
-        yaxis=dict(
-            title='Density of Borrowers'  # Add y-axis title
-        )
-    )
-        st.plotly_chart(fig, use_container_width=True)
+
 ###################################### Graph 5 ######################################
 ################################### Preprocessing ###################################
 
