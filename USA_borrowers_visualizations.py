@@ -202,7 +202,7 @@ def render_usa():
                 "roam": True,
                 "map": "USA",
                 "top": "20%",
-                "left": "10%",
+                "left": "-5%",
                 "emphasis": {"label": {"show": True}},
                 "textFixed": {"Alaska": [20, -20]},
                 "data": [
