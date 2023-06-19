@@ -535,6 +535,8 @@ with st.container():
         
       render_kernel_density_estimate()        
 
+st.markdown("---")
+
 
 ###################################### Graph 6 ######################################
 ################################### Preprocessing ###################################
@@ -621,7 +623,7 @@ for year_df in year_dataframes.values():
 
 
 option = {
-    "legend": {"top": "90%"},  # Adjust the top value to reduce the spacing
+    "legend": {"top": "90%"},
     "tooltip": {"trigger": "axis", "showContent": False},
     "dataset": {
         "source": [
@@ -637,7 +639,7 @@ option = {
     },
     "xAxis": {"type": "category"},
     "yAxis": {"gridIndex": 0},
-    "grid": {"top": "55%"},
+    "grid": {"top": "0%"},  # Adjust the top value to remove the space above the graph
     "series": [
         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
@@ -650,6 +652,7 @@ option = {
 }
 
 st_echarts(option, height="500px", key="echarts")
+
 
 
 
