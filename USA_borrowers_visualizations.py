@@ -669,7 +669,7 @@ for year_df in year_dataframes.values():
 #     }
 
 option = {
-    "legend": {"right": "10%", "top": "90%"},  # Move legend to the right side
+    "legend": {"right": "10%", "top": "5%"},  # Move legend to the right side
     "tooltip": {
         "trigger": "axis",
         "axisPointer": {"type": "shadow"},
