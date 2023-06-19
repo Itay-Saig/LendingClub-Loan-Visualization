@@ -309,6 +309,7 @@ with st.container():
                 },
               "tooltip": {"trigger": "axis", "axisPointer": {"type": "shadow"}},
               "legend": {
+                  "top": "7%",
                   "data": ["Number of Borrowers"]
               },
               "grid": {"left": "3%", "right": "4%", "bottom": "10%", "top": "20%", "containLabel": True},
@@ -386,7 +387,7 @@ with st.container():
                     "top": "7%",
                     "data": loan_status_values
                 },
-                "grid": {"left": "3%", "right": "4%", "bottom": "20%", "top": "20%", "containLabel": True},
+                "grid": {"left": "3%", "right": "4%", "bottom": "10%", "top": "20%", "containLabel": True},
                 "xAxis": {
                     "type": "category",
                     "data": income_labels,
