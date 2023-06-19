@@ -750,9 +750,9 @@ option = {
         "gridIndex": 0,
         "name": "The Percentage of Borrowers",
         "nameLocation": "middle",
-        "nameGap": 30,
+        "nameGap": 40,
     },
-    "grid": {"top": "0%"},
+    "grid": {"top": "5%"},
     "series": [
         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
@@ -764,7 +764,7 @@ option = {
     ],
 }
 
-st_echarts(option, height="500px", key="echarts")
+st_echarts(option, height="600px", key="echarts")
 
 
 
