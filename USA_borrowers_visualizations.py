@@ -351,7 +351,7 @@ with st.container():
                 "legend": {
                     "data": loan_status_values
                 },
-                "grid": {"left": "3%", "right": "4%", "bottom": "3%", "containLabel": True},
+                "grid": {"left": "3%", "right": "4%", "bottom": "30%", "containLabel": True},
                 "xAxis": {
                     "type": "category",
                     "data": income_labels,
