@@ -343,13 +343,13 @@ with st.container():
                 "title": {
                     "text": "Loan Repayment by Borrower's Annual Income: Analysis of Loan Closings and Income Trends",
                     "left": "center",
-                    "top": "0%",
+                    "top": "-3%",
                     "padding": 20,
                     "textStyle": {"fontWeight": "bold"}
                 },
                 "tooltip": {"trigger": "axis", "axisPointer": {"type": "shadow"}},
                 "legend": {
-                    "top": "5%",
+                    "top": "7%",
                     "data": loan_status_values
                 },
                 "grid": {"left": "3%", "right": "4%", "bottom": "30%", "top": "20%", "containLabel": True},
