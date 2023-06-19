@@ -124,7 +124,7 @@ data['income_range'] = pd.cut(data['annual_inc'], bins=income_ranges, labels=inc
 unique_years = data['issue_year'].unique().tolist()
 sorted_unique_years = sorted(unique_years)
 year_dataframes = {}
-for year in unique_years:
+for year in sorted_unique_years:
   year_dataframes[year] = data[data['issue_year'] == year]
 
 
@@ -341,7 +341,7 @@ with st.container():
         loan_status_dict['charged_off'] = borrowers_per_income_range_df['num_of_borrowers'].tolist()
 
         
-    ################################### Visualization ###################################
+################################### Visualization ###################################
 
     with col2:
         def render_stacked_vertical_bar(fully_paid_list, charged_off_list):
@@ -517,7 +517,7 @@ with st.container():
       hist_home_ownerships.append(ownership)  # List of home ownership values (Y-axis)
 
         
-    ################################### Visualization ###################################
+################################### Visualization ###################################
 
     with col2:
       def render_kernel_density_estimate():
@@ -528,7 +528,7 @@ with st.container():
             title='Interest Rate'  # Add x-axis title
         ),
         yaxis=dict(
-            title='Density of Borrowers'  # Add y-axis title
+            title='The Rate of Borrowers'  # Add y-axis title
         )
     )
         st.plotly_chart(fig, use_container_width=True)
@@ -536,8 +536,88 @@ with st.container():
       render_kernel_density_estimate()        
 
 
+###################################### Graph 6 ######################################
+################################### Preprocessing ###################################
 
+# Create dictionary of grade and num of borrowers for each year 
+grade_per_year_dict = {}
+for year_df in year_dataframes.values():
+  borrowers_per_year_grade_df = year_df.groupby(['grade'])['id'].count().reset_index()  # Group the records by grade for each year
+  borrowers_per_year_grade_df.rename(columns={'id': 'num_of_borrowers'}, inplace=True)  # Change the 'id' column name to 'num_of_borrowers'
+  grades_list = borrowers_per_year_grade_df['grade'].tolist()  # List of all the existed grades
+  for grade in grades_list:  # Create a dict where the keys are the grades and the values are list of num of borrowers for each year
+    if grade not in grade_per_year_dict:
+      grade_per_year_dict[grade] = [borrowers_per_year_grade_df.loc[borrowers_per_year_grade_df['grade'] == grade, 'num_of_borrowers'].values[0]]
+    else:
+      grade_per_year_dict[grade].append(borrowers_per_year_grade_df.loc[borrowers_per_year_grade_df['grade'] == grade, 'num_of_borrowers'].values[0])
+ 
 
+################################### Visualization ###################################
+      
+option = {
+    "legend": {},
+    "tooltip": {"trigger": "axis", "showContent": False},
+    "dataset": {
+        "source": [
+            ["product", sorted_unique_years],
+            ["A", 1401, 2838, 3381, 2901, 792],
+            ["B", 2664, 7179, 5724, 4857, 1537],
+            ["C", 1719, 5422, 6071, 5740, 1628],
+            ["D", 1016, 3012, 3843, 3419, 929],
+            ["E", 390, 1221, 1916, 2099, 481],
+            ["F", 152, 543, 638, 687, 214],
+            ["G", 22, 100, 179, 196, 60],
+        ]
+    },
+    "xAxis": {"type": "category"},
+    "yAxis": {"gridIndex": 0},
+    "grid": {"top": "55%"},
+    "series": [
+        {
+            "type": "line",
+            "smooth": True,
+            "seriesLayoutBy": "row",
+            "emphasis": {"focus": "series"},
+        },
+        {
+            "type": "line",
+            "smooth": True,
+            "seriesLayoutBy": "row",
+            "emphasis": {"focus": "series"},
+        },
+        {
+            "type": "line",
+            "smooth": True,
+            "seriesLayoutBy": "row",
+            "emphasis": {"focus": "series"},
+        },
+        {
+            "type": "line",
+            "smooth": True,
+            "seriesLayoutBy": "row",
+            "emphasis": {"focus": "series"},
+        },
+        {
+            "type": "line",
+            "smooth": True,
+            "seriesLayoutBy": "row",
+            "emphasis": {"focus": "series"},
+        },
+        {
+            "type": "line",
+            "smooth": True,
+            "seriesLayoutBy": "row",
+            "emphasis": {"focus": "series"},
+        },
+        {
+            "type": "line",
+            "smooth": True,
+            "seriesLayoutBy": "row",
+            "emphasis": {"focus": "series"},
+        },
+    ],
+}
+st_echarts(option, height="500px", key="echarts")
 
 
 
