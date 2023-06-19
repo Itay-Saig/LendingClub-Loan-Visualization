@@ -287,7 +287,64 @@ with st.container():
     
 if option == 'Overall':
     with col2:
-      render_usa()
+      options = {
+          "tooltip": {"trigger": "axis", "axisPointer": {"type": "shadow"}},
+          "legend": {
+              "data": sorted_unique_years
+          },
+          "grid": {"left": "3%", "right": "4%", "bottom": "3%", "containLabel": True},
+          "xAxis": {"type": "value"},
+          "yAxis": {
+              "type": "category",
+              "data": sorted_top_7_purposes,
+          },
+          "series": [
+              {
+                  "name": "2012",
+                  "type": "bar",
+                  "stack": "total",
+                  "label": {"show": True},
+                  "emphasis": {"focus": "series"},
+                  "data": [320, 302, 301, 334, 390, 330, 320],
+              },
+              {
+                  "name": "2013",
+                  "type": "bar",
+                  "stack": "total",
+                  "label": {"show": True},
+                  "emphasis": {"focus": "series"},
+                  "data": [120, 132, 101, 134, 90, 230, 210],
+              },
+              {
+                  "name": "2014",
+                  "type": "bar",
+                  "stack": "total",
+                  "label": {"show": True},
+                  "emphasis": {"focus": "series"},
+                  "data": [220, 182, 191, 234, 290, 330, 310],
+              },
+              {
+                  "name": "2015",
+                  "type": "bar",
+                  "stack": "total",
+                  "label": {"show": True},
+                  "emphasis": {"focus": "series"},
+                  "data": [150, 212, 201, 154, 190, 330, 410],
+              },
+              {
+                  "name": "2016",
+                  "type": "bar",
+                  "stack": "total",
+                  "label": {"show": True},
+                  "emphasis": {"focus": "series"},
+                  "data": [820, 832, 901, 934, 1290, 1330, 1320],
+              },
+          ],
+      }
+      st_echarts(options=options, height="500px")
+
+
+
 else:
     
     
