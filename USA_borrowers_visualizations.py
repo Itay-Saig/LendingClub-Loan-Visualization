@@ -303,17 +303,19 @@ with st.container():
           options = {
               "tooltip": {"trigger": "axis", "axisPointer": {"type": "shadow"}},
               "legend": {
-                  "data": ["Direct"]
+                  "data": ["Number of Borrowers"]
               },
               "grid": {"left": "3%", "right": "4%", "bottom": "3%", "containLabel": True},
-              "xAxis": {"type": "value"},
+              "xAxis": {
+                  "type": "value",
+              },
               "yAxis": {
                   "type": "category",
                   "data": sorted_top_7_purposes,
               },
               "series": [
                   {
-                      "name": "Direct",
+                      "name": "Number of Borrowers",
                       "type": "bar",
                       "stack": "total",
                       "label": {"show": True},
