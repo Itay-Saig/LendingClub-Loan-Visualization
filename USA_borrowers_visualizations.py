@@ -621,7 +621,7 @@ for year_df in year_dataframes.values():
 
 
 option = {
-    "legend": {},
+    "legend": {"top": "90%"},  # Adjust the top value to reduce the spacing
     "tooltip": {"trigger": "axis", "showContent": False},
     "dataset": {
         "source": [
@@ -637,7 +637,7 @@ option = {
     },
     "xAxis": {"type": "category"},
     "yAxis": {"gridIndex": 0},
-    "grid": {"top": "80%"},  # Adjust the top value to reduce the spacing
+    "grid": {"top": "55%"},
     "series": [
         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
