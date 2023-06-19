@@ -622,14 +622,6 @@ option = {
         "trigger": "axis",
         "axisPointer": {"type": "shadow"},
         "showContent": True,
-        "formatter": """
-            function(params) {
-                var yearIndex = params[0].dataIndex + 1;  // Add 1 to skip the "product" column
-                var year = option.dataset.source[0][yearIndex];
-                var value = params[0].value;
-                return '(' + year + ', ' + value + ')';
-            }
-        """,
     },
     "dataset": {
         "source": [
@@ -656,6 +648,26 @@ option = {
         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
     ],
 }
+st_echarts(option, height="500px", key="echarts")
+
+source = option["dataset"]["source"]  # Get the source data
+
+# Iterate over each column (excluding the first column)
+for i in range(1, len(source[0])):
+    year = source[0][i]  # Get the year value from the first row
+    line_data = []  # List to store tuples of (year, value) for each line
+
+    # Iterate over each line (excluding the first line)
+    for j in range(1, len(source)):
+        product = source[j][0]  # Get the product value from the first column
+        value = source[j][i]  # Get the corresponding value from the current column
+        line_data.append((year, value))  # Append the (year, value) tuple to the line_data list
+
+    # Update the formatter function for the corresponding series
+    option["series"][i-1]["label"] = {
+        "formatter": "{{b}}: ({})".format(", ".join(["{}, {}".format(year, value) for year, value in line_data]))
+    }
+
 st_echarts(option, height="500px", key="echarts")
 
 
