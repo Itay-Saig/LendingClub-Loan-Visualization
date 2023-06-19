@@ -750,7 +750,7 @@ option = {
         "gridIndex": 0,
         "name": "The Percentage of Borrowers",
         "nameLocation": "middle",
-        "nameGap": 35,
+        "nameGap": 30,
     },
     "grid": {"top": "0%"},
     "series": [
