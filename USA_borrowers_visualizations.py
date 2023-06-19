@@ -299,7 +299,7 @@ st.markdown("---")
 # # Render the figure using Streamlit
 # st.plotly_chart(fig)
 
-st.markdown("---")  
+# st.markdown("---")
 
 
 ###################################### Graph 3 ######################################
@@ -340,6 +340,13 @@ with st.container():
     with col2:
         def render_stacked_vertical_bar(fully_paid_list, charged_off_list):
             options = {
+                "title": {
+                    "text": "Loan Repayment by Borrower's Annual Income: Analysis of Loan Closings and Income Trends",
+                    "left": "center",
+                    "top": "top",
+                    "padding": 20,
+                    "textStyle": {"fontWeight": "bold"}
+                },
                 "tooltip": {"trigger": "axis", "axisPointer": {"type": "shadow"}},
                 "legend": {
                     "data": loan_status_values
