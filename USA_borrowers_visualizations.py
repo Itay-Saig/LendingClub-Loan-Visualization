@@ -718,7 +718,7 @@ option = {
     "title": {
         "text": "Loan Grade Trends: Percentage of Borrowers by Year",
         "left": "center",
-        "top": "1%",  # Increase the value to move the title further up
+        "top": "0%",  # Increase the value to move the title further up
         "padding": 20,
         "textStyle": {"fontWeight": "bold"}
     },
