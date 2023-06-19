@@ -283,7 +283,7 @@ with st.container():
     
     # Extract the 7 most frequent loan purposes in the data
     top_7_purposes = data['purpose'].value_counts().head(7).index.tolist()
-    sorted_top_7_purposes = sorted(top_7_purposes)  # Sorted alphabetically
+    sorted_top_7_purposes = sorted(top_7_purposes, reverse=True)  # Sorted in descending alphabetical order
     sorted_top_7_purposes = [s.replace('_', ' ').title() for s in sorted_top_7_purposes]  # Corrected list, replacing underscore with a space and putting a capital letter at the beginning of each word
     
     # Calculate num of borrowers per each year and loan purpose
@@ -292,8 +292,8 @@ with st.container():
     grade_per_year_dict = {}
     borrowers_per_year_purpose_df = user_purpose_choice_df.groupby(['purpose'])['id'].count().reset_index()  # Group the records by purpose for each year
     borrowers_per_year_purpose_df.rename(columns={'id': 'num_of_borrowers'}, inplace=True)  # Change the 'id' column name to 'num_of_borrowers'
-    borrowers_per_year_purpose_df = borrowers_per_year_purpose_df.sort_values('purpose')  # Sort the DataFrame by the 'purpose' column in alphabetical order
-    borrowers_per_year_purpose_list = borrowers_per_year_purpose_df['num_of_borrowers'].tolist()  # Create a list of 'num_of_borrowers' values in alphabetical order of 'purpose'
+    borrowers_per_year_purpose_df = borrowers_per_year_purpose_df.sort_values('purpose', ascending=False)  # Sort the DataFrame by the 'purpose' column in descending alphabetical order
+    borrowers_per_year_purpose_list = borrowers_per_year_purpose_df['num_of_borrowers'].tolist()  # Create a list of 'num_of_borrowers' values in descending alphabetical order of 'purpose'
 
         
 ################################### Visualization ###################################
