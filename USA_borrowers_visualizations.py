@@ -541,89 +541,25 @@ st.markdown("---")
 ###################################### Graph 6 ######################################
 ################################### Preprocessing ###################################
 
-# Create dictionary of grade and num of borrowers for each year 
+# Create a dictionary of the percentage of borrowers from each grade by each year
 grade_per_year_dict = {}
 for year_df in year_dataframes.values():
   borrowers_per_year_grade_df = year_df.groupby(['grade'])['id'].count().reset_index()  # Group the records by grade for each year
   borrowers_per_year_grade_df.rename(columns={'id': 'num_of_borrowers'}, inplace=True)  # Change the 'id' column name to 'num_of_borrowers'
+  year_borrowers = borrowers_per_year_grade_df['num_of_borrowers'].sum()  # The number of borrowers in the current year
   grades_list = borrowers_per_year_grade_df['grade'].tolist()  # List of all the existed grades
-  for grade in grades_list:  # Create a dict where the keys are the grades and the values are list of num of borrowers for each year
+  for grade in grades_list:  # Create a dict where the keys are the grades and the values are list of percentage of borrowers for each year
+    borrowers_percentage = (borrowers_per_year_grade_df.loc[borrowers_per_year_grade_df['grade'] == grade, 'num_of_borrowers'].values[0])/year_borrowers
     if grade not in grade_per_year_dict:
-      grade_per_year_dict[grade] = [borrowers_per_year_grade_df.loc[borrowers_per_year_grade_df['grade'] == grade, 'num_of_borrowers'].values[0]]
+      grade_per_year_dict[grade] = [borrowers_percentage]
     else:
-      grade_per_year_dict[grade].append(borrowers_per_year_grade_df.loc[borrowers_per_year_grade_df['grade'] == grade, 'num_of_borrowers'].values[0])
+      grade_per_year_dict[grade].append(borrowers_percentage)
  
 
 ################################### Visualization ###################################
-      
-# option = {
-#     "legend": {},
-#     "tooltip": {"trigger": "axis", "showContent": False},
-#     "dataset": {
-#         "source": [
-#             ["product", "2012", "2013", "2014", "2015", "2016"],
-#             ["A", 1401, 2838, 3381, 2901, 792],
-#             ["B", 2664, 7179, 5724, 4857, 1537],
-#             ["C", 1719, 5422, 6071, 5740, 1628],
-#             ["D", 1016, 3012, 3843, 3419, 929],
-#             ["E", 390, 1221, 1916, 2099, 481],
-#             ["F", 152, 543, 638, 687, 214],
-#             ["G", 22, 100, 179, 196, 60],
-#         ]
-#     },
-#     "xAxis": {"type": "category"},
-#     "yAxis": {"gridIndex": 0},
-#     "grid": {"top": "55%"},
-#     "series": [
-#         {
-#             "type": "line",
-#             "smooth": True,
-#             "seriesLayoutBy": "row",
-#             "emphasis": {"focus": "series"},
-#         },
-#         {
-#             "type": "line",
-#             "smooth": True,
-#             "seriesLayoutBy": "row",
-#             "emphasis": {"focus": "series"},
-#         },
-#         {
-#             "type": "line",
-#             "smooth": True,
-#             "seriesLayoutBy": "row",
-#             "emphasis": {"focus": "series"},
-#         },
-#         {
-#             "type": "line",
-#             "smooth": True,
-#             "seriesLayoutBy": "row",
-#             "emphasis": {"focus": "series"},
-#         },
-#         {
-#             "type": "line",
-#             "smooth": True,
-#             "seriesLayoutBy": "row",
-#             "emphasis": {"focus": "series"},
-#         },
-#         {
-#             "type": "line",
-#             "smooth": True,
-#             "seriesLayoutBy": "row",
-#             "emphasis": {"focus": "series"},
-#         },
-#         {
-#             "type": "line",
-#             "smooth": True,
-#             "seriesLayoutBy": "row",
-#             "emphasis": {"focus": "series"},
-#         },
-#     ],
-# }
-# st_echarts(option, height="500px", key="echarts")
-
 
 option = {
-    "legend": {"top": "90%"},
+    "legend": {"top": "90%", "data": ["Grade"]},
     "tooltip": {"trigger": "axis", "showContent": False},
     "dataset": {
         "source": [
@@ -639,7 +575,7 @@ option = {
     },
     "xAxis": {"type": "category"},
     "yAxis": {"gridIndex": 0},
-    "grid": {"top": "0%"},  # Adjust the top value to remove the space above the graph
+    "grid": {"top": "0%"},
     "series": [
         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
