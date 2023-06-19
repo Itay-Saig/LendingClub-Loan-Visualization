@@ -595,7 +595,7 @@ option = {
     "tooltip": {
         "trigger": "axis",
         "axisPointer": {"type": "shadow"},
-        "formatter": "({b}, {c})",
+        "formatter": "function(params) { return params[0].name + ': (' + params[0].axisValue + ', ' + params[0].value + ')'; }",
         "showContent": True,
     },
     "dataset": {
@@ -624,11 +624,15 @@ option = {
     ],
 }
 
-# Update the tooltip formatter to access the correct data
-option["tooltip"]["formatter"] = "({b}, {c})".format(
-    b=option["dataset"]["source"][0][0],
-    c=option["dataset"]["source"][1][1],
-)
+# Update the tooltip formatter function dynamically
+option["tooltip"]["formatter"] = """
+    function(params) {
+        var yearIndex = params[0].dataIndex + 1;  // Add 1 to skip the "product" column
+        var year = option.dataset.source[0][yearIndex];
+        var value = params[0].value;
+        return params[0].name + ': (' + year + ', ' + value + ')';
+    }
+"""
 
 st_echarts(option, height="500px", key="echarts")
 
