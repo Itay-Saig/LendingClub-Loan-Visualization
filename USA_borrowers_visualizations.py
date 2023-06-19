@@ -355,8 +355,20 @@ with st.container():
                 "xAxis": {
                     "type": "category",
                     "data": income_labels,
+                "axisLabel": {
+                    "show": True,
+                    "rotate": 45,
+                    "formatter": "{value}",
+                    "textStyle": {
+                        "fontSize": 12
+                    }
                 },
-                "yAxis": {"type": "value"},
+                "name": "Annual Income"
+                },
+                "yAxis": {
+                    "type": "value",
+                    "name": "Number of Borrowers"
+                },
                 "series": [
                     {
                         "name": "Fully Paid",
