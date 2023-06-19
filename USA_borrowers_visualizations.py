@@ -625,14 +625,13 @@ option = {
 }
 
 # Update the tooltip formatter function dynamically
-option["tooltip"]["formatter"] = """
+option["tooltip"]["formatter"] =
     function(params) {
         var yearIndex = params[0].dataIndex + 1;  // Add 1 to skip the "product" column
         var year = option.dataset.source[0][yearIndex];
         var value = params[0].value;
         return params[0].name + ': (' + year + ', ' + value + ')';
     }
-"""
 
 st_echarts(option, height="500px", key="echarts")
 
