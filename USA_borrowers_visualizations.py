@@ -352,7 +352,7 @@ with st.container():
                     "top": "7%",
                     "data": loan_status_values
                 },
-                "grid": {"left": "3%", "right": "4%", "bottom": "30%", "top": "20%", "containLabel": True},
+                "grid": {"left": "3%", "right": "4%", "bottom": "20%", "top": "20%", "containLabel": True},
                 "xAxis": {
                     "type": "category",
                     "data": income_labels,
@@ -390,7 +390,7 @@ with st.container():
                     },
                 ],
             }
-            st_echarts(options=options, height="500px")
+            st_echarts(options=options, height="600px")
             
         fully_paid_list, charged_off_list = loan_status_dict['fully_paid'], loan_status_dict['charged_off']
         render_stacked_vertical_bar(fully_paid_list, charged_off_list)
