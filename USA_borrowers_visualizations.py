@@ -722,7 +722,12 @@ option = {
         "padding": 20,
         "textStyle": {"fontWeight": "bold"}
     },
-    "legend": {"right": "-2%", "top": "10%"},  # Move legend to the top-right corner
+    "legend": {
+        "right": "-2%",
+        "top": "15%",
+        "data": ["A", "B", "C", "D", "E", "F", "G"],  # Add the legend data labels
+        "title": {"text": "Grade"},  # Add the legend title
+    },
     "tooltip": {
         "trigger": "axis",
         "axisPointer": {"type": "shadow"},
