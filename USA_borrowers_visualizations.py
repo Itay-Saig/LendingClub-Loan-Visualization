@@ -753,7 +753,8 @@ option = {
         "nameGap": 40,
         "interval": 5  # Set the interval to 5 to make the spacing smaller
     },
-    "grid": {"top": "10%"},
+    "grid": {"top": "10%", "bottom": "5%",
+    },
     "series": [
         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
