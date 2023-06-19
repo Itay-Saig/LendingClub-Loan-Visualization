@@ -595,7 +595,7 @@ option = {
     "tooltip": {
         "trigger": "axis",
         "axisPointer": {"type": "shadow"},
-        "formatter": "{b}: {c}",  # Display both the category (x-axis) and value (y-axis)
+        "formatter": "({b}, {c})",  # Display the year (category) and value as a tuple
         "showContent": True,
     },
     "dataset": {
