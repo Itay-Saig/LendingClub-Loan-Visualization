@@ -558,9 +558,46 @@ for year_df in year_dataframes.values():
 
 ################################### Visualization ###################################
 
+# option = {
+#     "legend": {"top": "90%"},
+#     "tooltip": {"trigger": "axis", "showContent": False},
+#     "dataset": {
+#         "source": [
+#             ["product", "2012", "2013", "2014", "2015", "2016"],
+#             ["A", 19.024986420423684, 13.969972926409058, 15.543398308201544, 14.57862204130861, 14.040063818471902],
+#             ["B", 36.17599130907116, 35.33841988678317, 26.314821625597645, 24.408261721694558, 27.24694203155469],
+#             ["C", 23.343291689299296, 26.689638198375587, 27.91007723427731, 28.845670636715415, 28.860131182414467],
+#             ["D", 13.796849538294406, 14.826482894412996, 17.667340934166972, 17.181767928036585, 16.46871122141464],
+#             ["E", 5.296034763715372, 6.010337189269014, 8.808385435821993, 10.548268757223981, 8.526856940258819],
+#             ["F", 2.0640956002172732, 2.6729017967019444, 2.933063626333211, 3.452434795718378, 3.793653607516398],
+#             ["G", 0.29875067897881585, 0.49224710804824023, 0.822912835601324, 0.9849741193024776, 1.0636411983690834],
+#         ]
+#     },
+#     "xAxis": {"type": "category"},
+#     "yAxis": {"gridIndex": 0},
+#     "grid": {"top": "0%"},  # Adjust the top value to remove the space above the graph
+#     "series": [
+#         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
+#         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
+#         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
+#         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
+#         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
+#         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
+#         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
+#     ],
+# }
+
+# st_echarts(option, height="500px", key="echarts")
+
+
 option = {
     "legend": {"top": "90%"},
-    "tooltip": {"trigger": "axis", "showContent": False},
+    "tooltip": {
+        "trigger": "axis",
+        "axisPointer": {"type": "shadow"},
+        "formatter": "{b}: {c}",  # Display both the category (x-axis) and value (y-axis)
+        "showContent": True,
+    },
     "dataset": {
         "source": [
             ["product", "2012", "2013", "2014", "2015", "2016"],
@@ -588,8 +625,6 @@ option = {
 }
 
 st_echarts(option, height="500px", key="echarts")
-
-
 
 
 
