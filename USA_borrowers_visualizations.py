@@ -595,14 +595,14 @@ option = {
     "tooltip": {
         "trigger": "axis",
         "axisPointer": {"type": "shadow"},
-        "formatter": """
+        "formatter":
             function(params) {
                 var yearIndex = params[0].dataIndex + 1; 
                 var year = option.dataset.source[0][yearIndex];
                 var value = params[0].value;
                 return params[0].name + ': (' + year + ', ' + value + ')';
             }
-        """,
+        ,
         "showContent": True,
     },
     "dataset": {
