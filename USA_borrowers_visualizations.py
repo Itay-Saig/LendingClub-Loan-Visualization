@@ -751,9 +751,9 @@ option = {
         "name": "The Percentage of Borrowers",
         "nameLocation": "middle",
         "nameGap": 40,
-        "interval": 5  # Set the interval to 5 to make the spacing smaller
     },
-    "grid": {"top": "10%", "bottom": "5%",
+    "grid": {"top": "10%",
+             "bottom": "20%",
     },
     "series": [
         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
