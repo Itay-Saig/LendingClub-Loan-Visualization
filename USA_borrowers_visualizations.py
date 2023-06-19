@@ -559,117 +559,17 @@ for year_df in year_dataframes.values():
 ################################### Visualization ###################################
 
 # option = {
-#     "legend": {"top": "90%"},
-#     "tooltip": {"trigger": "axis", "showContent": False},
-#     "dataset": {
-#         "source": [
-#             ["product", "2012", "2013", "2014", "2015", "2016"],
-#             ["A", 19.024986420423684, 13.969972926409058, 15.543398308201544, 14.57862204130861, 14.040063818471902],
-#             ["B", 36.17599130907116, 35.33841988678317, 26.314821625597645, 24.408261721694558, 27.24694203155469],
-#             ["C", 23.343291689299296, 26.689638198375587, 27.91007723427731, 28.845670636715415, 28.860131182414467],
-#             ["D", 13.796849538294406, 14.826482894412996, 17.667340934166972, 17.181767928036585, 16.46871122141464],
-#             ["E", 5.296034763715372, 6.010337189269014, 8.808385435821993, 10.548268757223981, 8.526856940258819],
-#             ["F", 2.0640956002172732, 2.6729017967019444, 2.933063626333211, 3.452434795718378, 3.793653607516398],
-#             ["G", 0.29875067897881585, 0.49224710804824023, 0.822912835601324, 0.9849741193024776, 1.0636411983690834],
-#         ]
+#     "title": {
+#         "text": "Loan Grade Trends: Percentage of Borrowers by Year",
+#         "left": "center",
+#         "top": "-3%",  # Move the title further up
+#         "padding": 20,
+#         "textStyle": {"fontWeight": "bold"}
 #     },
-#     "xAxis": {"type": "category"},
-#     "yAxis": {"gridIndex": 0},
-#     "grid": {"top": "0%"},  # Adjust the top value to remove the space above the graph
-#     "series": [
-#         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
-#         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
-#         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
-#         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
-#         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
-#         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
-#         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
-#     ],
-# }
-
-# st_echarts(option, height="500px", key="echarts")
-
-
-
-# # Update the tooltip formatter to access the correct data
-# option["tooltip"]["formatter"] = "({b}, {c})".format(
-#     b=option["dataset"]["source"][0][0],
-#     c=option["dataset"]["source"][1][1],
-# )
-
-# source = option["dataset"]["source"]  # Get the source data
-
-# # Iterate over each column (excluding the first column)
-# for i in range(1, len(source[0])):
-#     year = source[0][i]  # Get the year value from the first row
-#     line_data = []  # List to store tuples of (year, value) for each line
-
-#     # Iterate over each line (excluding the first line)
-#     for j in range(1, len(source)):
-#         product = source[j][0]  # Get the product value from the first column
-#         value = source[j][i]  # Get the corresponding value from the current column
-#         line_data.append((year, value))  # Append the (year, value) tuple to the line_data list
-
-#     print(line_data)  # Do something with the line_data, such as displaying or processing it
-
-    
-# st_echarts(option, height="500px", key="echarts")
-
-
-# option = {
-#     "legend": {"top": "90%"},
-#     "tooltip": {
-#         "trigger": "axis",
-#         "axisPointer": {"type": "shadow"},
-#         "showContent": True,
+#     "legend": {
+#         "right": "-2%",
+#         "top": "15%",
 #     },
-#     "dataset": {
-#         "source": [
-#             ["product", "2012", "2013", "2014", "2015", "2016"],
-#             ["A", 19.024986420423684, 13.969972926409058, 15.543398308201544, 14.57862204130861, 14.040063818471902],
-#             ["B", 36.17599130907116, 35.33841988678317, 26.314821625597645, 24.408261721694558, 27.24694203155469],
-#             ["C", 23.343291689299296, 26.689638198375587, 27.91007723427731, 28.845670636715415, 28.860131182414467],
-#             ["D", 13.796849538294406, 14.826482894412996, 17.667340934166972, 17.181767928036585, 16.46871122141464],
-#             ["E", 5.296034763715372, 6.010337189269014, 8.808385435821993, 10.548268757223981, 8.526856940258819],
-#             ["F", 2.0640956002172732, 2.6729017967019444, 2.933063626333211, 3.452434795718378, 3.793653607516398],
-#             ["G", 0.29875067897881585, 0.49224710804824023, 0.822912835601324, 0.9849741193024776, 1.0636411983690834],
-#         ]
-#     },
-#     "xAxis": {"type": "category"},
-#     "yAxis": {"gridIndex": 0},
-#     "grid": {"top": "0%"},
-#     "series": [
-#         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
-#         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
-#         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
-#         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
-#         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
-#         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
-#         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
-#     ],
-# }
-# st_echarts(option, height="500px", key="echarts")
-
-# source = option["dataset"]["source"]  # Get the source data
-
-# # Iterate over each column (excluding the first column)
-# for i in range(1, len(source[0])):
-#     year = source[0][i]  # Get the year value from the first row
-#     line_data = []  # List to store tuples of (year, value) for each line
-
-#     # Iterate over each line (excluding the first line)
-#     for j in range(1, len(source)):
-#         product = source[j][0]  # Get the product value from the first column
-#         value = source[j][i]  # Get the corresponding value from the current column
-#         line_data.append((year, value))  # Append the (year, value) tuple to the line_data list
-
-#     # Update the formatter function for the corresponding series
-#     option["series"][i-1]["label"] = {
-#         "formatter": "{{b}}: ({})".format(", ".join(["{}, {}".format(year, value) for year, value in line_data]))
-#     }
-
-# option = {
-#     "legend": {"right": "10%", "top": "5%"},  # Move legend to the right side
 #     "tooltip": {
 #         "trigger": "axis",
 #         "axisPointer": {"type": "shadow"},
@@ -699,7 +599,9 @@ for year_df in year_dataframes.values():
 #         "nameLocation": "middle",
 #         "nameGap": 40,
 #     },
-#     "grid": {"top": "0%"},
+#     "grid": {"top": "10%",
+#              "bottom": "30%",
+#     },
 #     "series": [
 #         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
 #         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
@@ -711,8 +613,7 @@ for year_df in year_dataframes.values():
 #     ],
 # }
 
-# st_echarts(option, height="500px", key="echarts")
-
+# st_echarts(option, height="600px", key="echarts")
 
 option = {
     "title": {
@@ -722,12 +623,7 @@ option = {
         "padding": 20,
         "textStyle": {"fontWeight": "bold"}
     },
-    "legend": {
-        "right": "-2%",
-        "top": "15%",
-        "data": ["A", "B", "C", "D", "E", "F", "G"],  # Add the legend data labels
-        "title": {"text": "Grade"},  # Add the legend title
-    },
+    "legend": {"right": "-2%", "top": "10%"},  # Move legend to the top-right corner
     "tooltip": {
         "trigger": "axis",
         "axisPointer": {"type": "shadow"},
@@ -757,9 +653,7 @@ option = {
         "nameLocation": "middle",
         "nameGap": 40,
     },
-    "grid": {"top": "10%",
-             "bottom": "30%",
-    },
+    "grid": {"top": "10%", "bottom": "30%"},
     "series": [
         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
@@ -769,10 +663,27 @@ option = {
         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
     ],
+    "toolbox": {
+        "show": True,
+        "feature": {
+            "myLegend": {
+                "show": True,
+                "icon": "image://iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA40lEQVQ4T2NkoBAwUqifABWCADZiQfIzwZaikgg2ajKwsgYB5h5KwKQCqTI6hAkAqcBE7gWYOHIhUoAYww8gPzHAEwjD0DiFs3A7gn5TQOYg4MHlgK8QimCBcoBzCzkA9gSPhnECMxHWHJoQkQS4CbQSohwcEQCw8GfQQj4Rgx6fQK6pLmXwYZMMD6fBMAHQG2AyKARBGhiIlQzECwSLBAQAQIMeABv/MoBEA6gA6gF8KwBzAIgC1Dz/M+DeAgFADJTK0e3QbLwAAAABJRU5ErkJggg==",  # Custom legend icon (optional)
+                "title": "Grade",  # Legend title
+                "orient": "vertical",
+                "left": "right",
+                "top": "center",
+                "itemGap": 10,
+                "textStyle": {"fontWeight": "bold"}
+            },
+            "dataView": {"readOnly": False},
+            "saveAsImage": {},
+            "restore": {}
+        }
+    }
 }
 
 st_echarts(option, height="600px", key="echarts")
-
 
 
 
