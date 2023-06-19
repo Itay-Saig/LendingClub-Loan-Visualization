@@ -595,7 +595,7 @@ option = {
     "tooltip": {
         "trigger": "axis",
         "axisPointer": {"type": "shadow"},
-        "formatter": "({b}, {c})",  # Display the year (category) and value as a tuple
+        "formatter": "({b}, {c})",
         "showContent": True,
     },
     "dataset": {
@@ -612,7 +612,7 @@ option = {
     },
     "xAxis": {"type": "category"},
     "yAxis": {"gridIndex": 0},
-    "grid": {"top": "0%"},  # Adjust the top value to remove the space above the graph
+    "grid": {"top": "0%"},
     "series": [
         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
