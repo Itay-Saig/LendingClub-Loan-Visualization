@@ -166,10 +166,10 @@ def render_usa():
         )
     options = {
         "title": {
-            "text": "Percentage of Borrowers by State in the United States",
+            "text": "Percentage of Borrowers by State: United States Heat Map",
             "subtext": "Data from www.census.gov",
-            "sublink": "http://www.census.gov/popest/data/datasets.html",
-            "left": "right",
+            "left": "left",  # Align the title to the left
+            "top": "3%",  # Move the title further up
         },
         "tooltip": {
             "trigger": "item",
@@ -263,13 +263,6 @@ def render_usa():
     }
     st_echarts(options, map=map)
 
-
-# ST_MAP_DEMOS = {
-#     "Map: USA Population estimates": (
-#         render_usa,
-#         "https://echarts.apache.org/examples/en/editor.html?c=map-usa",
-#     ),
-# }
 render_usa()
 st.markdown("---")  
 
