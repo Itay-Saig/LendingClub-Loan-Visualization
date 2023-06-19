@@ -559,7 +559,7 @@ option = {
     "tooltip": {"trigger": "axis", "showContent": False},
     "dataset": {
         "source": [
-            ["product", sorted_unique_years],
+            ["product", "2012", "2013", "2014", "2015", "2016"],
             ["A", 1401, 2838, 3381, 2901, 792],
             ["B", 2664, 7179, 5724, 4857, 1537],
             ["C", 1719, 5422, 6071, 5740, 1628],
