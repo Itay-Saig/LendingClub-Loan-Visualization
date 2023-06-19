@@ -168,7 +168,7 @@ def render_usa():
         "title": {
             "text": "Percentage of Borrowers by State: United States Heat Map",
             "left": "center",  # Align the title to the center
-            "top": "-2%",  # Move the title further up
+            "top": "0%",  # Move the title further up
         },
         "tooltip": {
             "trigger": "item",
@@ -201,7 +201,8 @@ def render_usa():
                 "type": "map",
                 "roam": True,
                 "map": "USA",
-                "top": "10%",
+                "top": "20%",
+                "left": "10%",
                 "emphasis": {"label": {"show": True}},
                 "textFixed": {"Alaska": [20, -20]},
                 "data": [
