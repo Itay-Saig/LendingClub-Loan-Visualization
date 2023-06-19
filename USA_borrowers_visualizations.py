@@ -277,13 +277,19 @@ with st.container():
     with col1:
         option = st.selectbox(
             "Which year would you like to examine?",
-            ('2012', '2013', '2014', '2015', '2016')
+            ('2012', '2013', '2014', '2015', '2016', 'Overall')
         )
     
     # Extract the 7 most frequent loan purposes in the data
     top_7_purposes = data['purpose'].value_counts().head(7).index.tolist()
     sorted_top_7_purposes = sorted(top_7_purposes, reverse=True)  # Sorted in descending alphabetical order
     sorted_top_7_purposes = [s.replace('_', ' ').title() for s in sorted_top_7_purposes]  # Corrected list, replacing underscore with a space and putting a capital letter at the beginning of each word
+    
+if option == 'Overall':
+    with col2:
+      render_usa()
+    
+    
     
     # Calculate num of borrowers per each year and loan purpose
     user_purpose_choice_df = year_dataframes[option]  # The DataFrame with records of the year selected by the user
