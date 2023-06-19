@@ -271,35 +271,65 @@ st.markdown("---")
 ###################################### Graph 2 ######################################
 ################################### Preprocessing ###################################
 
-# Create a dataframe
-# df = pd.DataFrame({'group': list(map(chr, range(65, 85))), 'values': np.random.uniform(size=20)})
+# Create Selectbox for filtering by years
+with st.container():
+    col1, col2 = st.columns([0.2, 0.8])
+    
+    with col1:
+        option = st.selectbox(
+            "Which year would you like to examine?",
+            ('2012', '2013', '2014', '2015', '2016')
+        )
+    
+    # Extract the 7 most frequent loan purposes in the data
+    top_7_purposes = data['purpose'].value_counts().head(7).index.tolist()
+    sorted_top_7_purposes = sorted(top_7_purposes)  # Sorted alphabetically
+    sorted_top_7_purposes = [s.replace('_', ' ').title() for s in sorted_top_7_purposes]  # Corrected list, replacing underscore with a space and putting a capital letter at the beginning of each word
+    
+    # Calculate num of borrowers per each year and loan purpose
+    user_purpose_choice_df = year_dataframes[option]  # The DataFrame with records of the year selected by the user
+    user_purpose_choice_df = user_purpose_choice_df[user_purpose_choice_df['purpose'].isin(top_7_purposes)]  # Filter the DataFrame to get only records with purpose of the top 7
+    grade_per_year_dict = {}
+    borrowers_per_year_purpose_df = user_purpose_choice_df.groupby(['purpose'])['id'].count().reset_index()  # Group the records by purpose for each year
+    borrowers_per_year_purpose_df.rename(columns={'id': 'num_of_borrowers'}, inplace=True)  # Change the 'id' column name to 'num_of_borrowers'
+    borrowers_per_year_purpose_df = borrowers_per_year_purpose_df.sort_values('purpose')  # Sort the DataFrame by the 'purpose' column in alphabetical order
+    borrowers_per_year_purpose_list = borrowers_per_year_purpose_df['num_of_borrowers'].tolist()  # Create a list of 'num_of_borrowers' values in alphabetical order of 'purpose'
 
-# # Reorder it based on the values
-# ordered_df = df.sort_values(by='values')
-# my_range = range(1, len(df.index) + 1)
+        
+################################### Visualization ###################################
 
-# # Create a horizontal bar trace
-# trace = go.Bar(
-#     x=ordered_df['values'],
-#     y=my_range,
-#     orientation='h',
-#     marker=dict(color='skyblue')
-# )
+    with col2:
+        def render_horizontal_bar_by_purpose(sorted_top_7_purposes, borrowers_per_year_purpose_list):
+          options = {
+              "tooltip": {"trigger": "axis", "axisPointer": {"type": "shadow"}},
+              "legend": {
+                  "data": ["Direct"]
+              },
+              "grid": {"left": "3%", "right": "4%", "bottom": "3%", "containLabel": True},
+              "xAxis": {"type": "value"},
+              "yAxis": {
+                  "type": "category",
+                  "data": sorted_top_7_purposes,
+              },
+              "series": [
+                  {
+                      "name": "Direct",
+                      "type": "bar",
+                      "stack": "total",
+                      "label": {"show": True},
+                      "emphasis": {"focus": "series"},
+                      "data": borrowers_per_year_purpose_list,
+                  },
+              ],
+          }
+          st_echarts(options=options, height="500px")
 
-# # Create the layout
-# layout = go.Layout(
-#     title="Interactive Horizontal Lollipop Graph",
-#     xaxis=dict(title="Value of the variable"),
-#     yaxis=dict(title="Group")
-# )
+            
+        render_horizontal_bar_by_purpose(sorted_top_7_purposes, borrowers_per_year_purpose_list)
+st.markdown("---")  
 
-# # Create the figure
-# fig = go.Figure(data=[trace], layout=layout)
 
-# # Render the figure using Streamlit
-# st.plotly_chart(fig)
 
-# st.markdown("---")
 
 
 ###################################### Graph 3 ######################################
