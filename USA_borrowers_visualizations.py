@@ -167,7 +167,6 @@ def render_usa():
     options = {
         "title": {
             "text": "Percentage of Borrowers by State: United States Heat Map",
-            "subtext": "Data from www.census.gov",
             "left": "center",  # Align the title to the center
             "top": "-2%",  # Move the title further up
         },
@@ -202,6 +201,7 @@ def render_usa():
                 "type": "map",
                 "roam": True,
                 "map": "USA",
+                "top": "10%",
                 "emphasis": {"label": {"show": True}},
                 "textFixed": {"Alaska": [20, -20]},
                 "data": [
