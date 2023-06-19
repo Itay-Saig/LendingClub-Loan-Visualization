@@ -82,7 +82,6 @@ else:
   st.markdown("---")  
 
   
-
 ################################### Preprocessing ###################################
 ############################### General Preprocessing ###############################
 
@@ -301,6 +300,13 @@ with st.container():
     with col2:
         def render_horizontal_bar_by_purpose(sorted_top_7_purposes, borrowers_per_year_purpose_list):
           options = {
+              "title": {
+                  "text": "Loan Distribution by Purpose: Number of Borrowers by Loan Purpose",
+                  "left": "center",
+                  "top": "-3%",
+                  "padding": 20,
+                  "textStyle": {"fontWeight": "bold"}
+                },
               "tooltip": {"trigger": "axis", "axisPointer": {"type": "shadow"}},
               "legend": {
                   "data": ["Number of Borrowers"]
@@ -325,13 +331,9 @@ with st.container():
               ],
           }
           st_echarts(options=options, height="500px")
-
             
         render_horizontal_bar_by_purpose(sorted_top_7_purposes, borrowers_per_year_purpose_list)
 st.markdown("---")  
-
-
-
 
 
 ###################################### Graph 3 ######################################
