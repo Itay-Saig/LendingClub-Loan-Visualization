@@ -390,7 +390,7 @@ with st.container():
                     },
                 ],
             }
-            st_echarts(options=options, height="600px")
+            st_echarts(options=options, height="500px")
             
         fully_paid_list, charged_off_list = loan_status_dict['fully_paid'], loan_status_dict['charged_off']
         render_stacked_vertical_bar(fully_paid_list, charged_off_list)
