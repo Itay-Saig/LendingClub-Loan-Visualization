@@ -288,6 +288,7 @@ with st.container():
 if option == 'Overall':
     with col2:
       render_usa()
+else:
     
     
     
