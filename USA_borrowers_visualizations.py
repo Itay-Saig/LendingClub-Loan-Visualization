@@ -669,7 +669,7 @@ for year_df in year_dataframes.values():
 #     }
 
 option = {
-    "legend": {"top": "90%"},
+    "legend": {"right": "10%", "top": "90%"},  # Move legend to the right side
     "tooltip": {
         "trigger": "axis",
         "axisPointer": {"type": "shadow"},
@@ -689,15 +689,15 @@ option = {
     },
     "xAxis": {
         "type": "category",
-        "name": "Year",  # Add x-axis title
-        "nameLocation": "middle",  # Set the title position to the middle
-        "nameGap": 30,  # Adjust the gap between the title and axis
+        "name": "Year",
+        "nameLocation": "middle",
+        "nameGap": 30,
     },
     "yAxis": {
         "gridIndex": 0,
-        "name": "The Percentage of Borrowers",  # Add y-axis title
-        "nameLocation": "middle",  # Set the title position to the middle
-        "nameGap": 40,  # Adjust the gap between the title and axis
+        "name": "The Percentage of Borrowers",
+        "nameLocation": "middle",
+        "nameGap": 40,
     },
     "grid": {"top": "0%"},
     "series": [
