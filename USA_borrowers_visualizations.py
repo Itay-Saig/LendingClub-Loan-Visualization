@@ -549,7 +549,7 @@ for year_df in year_dataframes.values():
   year_borrowers = borrowers_per_year_grade_df['num_of_borrowers'].sum()  # The number of borrowers in the current year
   grades_list = borrowers_per_year_grade_df['grade'].tolist()  # List of all the existed grades
   for grade in grades_list:  # Create a dict where the keys are the grades and the values are list of percentage of borrowers for each year
-    borrowers_percentage = (borrowers_per_year_grade_df.loc[borrowers_per_year_grade_df['grade'] == grade, 'num_of_borrowers'].values[0])/year_borrowers
+    borrowers_percentage = 100 * ((borrowers_per_year_grade_df.loc[borrowers_per_year_grade_df['grade'] == grade, 'num_of_borrowers'].values[0])/year_borrowers)
     if grade not in grade_per_year_dict:
       grade_per_year_dict[grade] = [borrowers_percentage]
     else:
@@ -557,6 +557,36 @@ for year_df in year_dataframes.values():
  
 
 ################################### Visualization ###################################
+
+# option = {
+#     "tooltip": {"trigger": "axis", "showContent": False},
+#     "dataset": {
+#         "source": [
+#             ["product", "2012", "2013", "2014", "2015", "2016"],
+#             ["A", 19.024986420423684, 13.969972926409058, 15.543398308201544, 14.57862204130861, 14.040063818471902],
+#             ["B", 0.3617599130907116, 0.3533841988678317, 0.26314821625597645, 0.24408261721694557, 0.2724694203155469],
+#             ["C", 0.23343291689299295, 0.26689638198375587, 0.2791007723427731, 0.28845670636715415, 0.28860131182414467],
+#             ["D", 0.13796849538294406, 0.14826482894412996, 0.17667340934166972, 0.17181767928036584, 0.16468711221414642],
+#             ["E", 0.052960347637153724, 0.06010337189269013, 0.08808385435821993, 0.10548268757223982, 0.08526856940258819],
+#             ["F", 0.020640956002172733, 0.026729017967019444, 0.029330636263332106, 0.03452434795718378, 0.03793653607516398],
+#             ["G", 0.0029875067897881585, 0.004922471080482402, 0.00822912835601324, 0.009849741193024775, 0.010636411983690836],
+#         ]
+#     },
+#     "xAxis": {"type": "category"},
+#     "yAxis": {"gridIndex": 0},
+#     "grid": {"top": "10%"},
+#     "series": [
+#         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
+#         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
+#         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
+#         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
+#         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
+#         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
+#         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
+#     ],
+# }
+
+# st_echarts(option, height="500px", key="echarts")
 
 option = {
     "tooltip": {"trigger": "axis", "showContent": False},
@@ -575,18 +605,16 @@ option = {
     "xAxis": {"type": "category"},
     "yAxis": {"gridIndex": 0},
     "grid": {"top": "10%"},
+    "legend": {"data": ["A", "B", "C", "D", "E", "F", "G"], "title": {"text": "Grade"}},
     "series": [
-        {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
-        {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
-        {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
-        {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
-        {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
-        {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
-        {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
-    ],
-}
+        {"name": "A", "type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
+        {"name": "B", "type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
+        {"name": "C", "type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
+        {"name": "D", "type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
+        {"name": "E", "type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
+        {"name": "F", "type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
+        {"name": "G", "type": "line", "smooth":
 
-st_echarts(option, height="500px", key="echarts")
 
 
 
