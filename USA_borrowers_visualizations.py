@@ -752,7 +752,7 @@ option = {
         "nameLocation": "middle",
         "nameGap": 40,
     },
-    "grid": {"top": "2%"},
+    "grid": {"top": "10%"},
     "series": [
         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
         {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
