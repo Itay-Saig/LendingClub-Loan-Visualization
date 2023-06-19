@@ -362,7 +362,9 @@ with st.container():
                         "fontSize": 12
                     }
                 },
-                "name": "Annual Income"
+                "name": "Annual Income",
+                "nameLocation": "middle",
+                "nameGap": 30
                 },
                 "yAxis": {
                     "type": "value",
