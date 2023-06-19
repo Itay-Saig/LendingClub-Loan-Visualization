@@ -564,13 +564,14 @@ option = {
     "title": {
         "text": "Loan Grade Trends: Percentage of Borrowers by Year",
         "left": "center",
-        "top": "-3%",  # Move the title further up
+        "top": "-3%",
         "padding": 20,
         "textStyle": {"fontWeight": "bold"}
     },
     "legend": {
-        "right": "-2%",
-        "top": "15%",
+        "text": "Grades",
+        "left": "center",
+        "top": "0%",
     },
     "tooltip": {
         "trigger": "axis",
