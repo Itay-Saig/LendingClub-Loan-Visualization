@@ -312,7 +312,7 @@ if option == 'Overall':
               "top": "7%",
               "data": sorted_unique_years
           },
-          "grid": {"left": "3%", "right": "4%", "bottom": "3%", "containLabel": True},
+          "grid": {"left": "3%", "right": "4%", "bottom": "10%", "top": "20%", "containLabel": True},
           "xAxis": {
                 "type": "value",
                 "axisLabel": {
