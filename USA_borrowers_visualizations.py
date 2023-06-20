@@ -147,7 +147,7 @@ percentage_borrowers_per_state = {}
 for state in states_pop_dict:
   try:
     num_of_borrowers = 10000 * (borrowers_per_state_df.loc[borrowers_per_state_df['borrower_state'] == state, 'num_of_borrowers'].item())
-    percentage_borrowers_per_state[state] = (num_of_borrowers / states_pop_dict[state]) + 7
+    percentage_borrowers_per_state[state] = (num_of_borrowers / states_pop_dict[state]) + 6
   except:
     percentage_borrowers_per_state[state] = 0
 
@@ -214,7 +214,7 @@ def render_usa():
                 "emphasis": {"label": {"show": True}},
                 "textFixed": {"Alaska": [20, -20]},
                 "data": [
-                    {"name": "Alabama", "value": percentage_borrowers_per_state["Alabama"]},
+                    {"name": "Alabama", "value": float(percentage_borrowers_per_state["Alabama"])},
                     {"name": "Alaska", "value": percentage_borrowers_per_state["Alaska"]},
                     {"name": "Arizona", "value": percentage_borrowers_per_state["Arizona"]},
                     {"name": "Arkansas", "value": percentage_borrowers_per_state["Arkansas"]},
