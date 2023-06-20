@@ -90,7 +90,7 @@ st.markdown("---")
 #     }
 color_blind = st.radio("The visualizations are color blind friendly. Are you color blind?",['No','Yes'],key=51) # Did you know that 9% of men are color blind?
 # graph_1_colors = ["#E6F5FF", "#B3E6FF", "#80D4FF", "#4DC3FF", "#1AB1FF", "#008FFF", "#0077CC", "#0055AA", "#003377", "#001155", "#000033"]  # Shade of blue
-graph_1_colors = ["hsl(207, 100%, 95%)", "hsl(207, 90%, 85%)", "hsl(207, 80%, 75%)", "hsl(207, 70%, 65%)", "hsl(207, 60%, 55%)", "hsl(207, 50%, 45%)", "hsl(207, 40%, 35%)", "hsl(207, 30%, 25%)", "hsl(207, 20%, 15%)", "hsl(207, 10%, 5%)", "hsl(207, 0%, 0%)"]
+graph_1_colors = ["hsl(207, 100%, 98%)", "hsl(207, 95%, 90%)", "hsl(207, 90%, 82%)", "hsl(207, 85%, 74%)", "hsl(207, 80%, 66%)", "hsl(207, 75%, 58%)", "hsl(207, 70%, 50%)", "hsl(207, 65%, 42%)", "hsl(207, 60%, 34%)", "hsl(207, 55%, 26%)", "hsl(207, 50%, 18%)"]
 
 if color_blind == 'Yes':
   graph_3_color_1 = "#0072B2"  # Shade of blue
