@@ -36,10 +36,13 @@ with st.container():
     st.write("\n")
 
 st.header("Overview")
-st.subheader("<h3 style='font-size: 16px;'>The subject of our simulation is to examine the change in characteristics of borrowers in the United States over the years in various aspects.</h3>", unsafe_allow_html=True)
-st.subheader("""Our visualization theme focuses on the ‘Lending Club Loan’ dataset from Kaggle which contains data from LendingClub company. LendingClub is a financial services company headquartered in San Francisco, California. The data available on Kaggle is a comprehensive dataset of loan information from LendingClub from 2007 to 2018.""")
-# st.subheader("""Music, often revered as a universal language, has been used for centuries to convey emotions and thoughts. Music is valued, among other things, for its therapeutic potential, especially in the treatment of mental health problems in situations such as depression, anxiety, post-traumatic stress disorder (PTSD) and more. However, the mechanisms underlying music's apparent positive effects on mental health remain elusive and unclear to this day.""")
-st.subheader("""The main question we would like to investigate is: In what and how the characteristics of borrowers in the US change over the years?""")
+# st.subheader("<h3 style='font-size: 16px;'>The subject of our simulation is to examine the change in characteristics of borrowers in the United States over the years in various aspects.</h3>", unsafe_allow_html=True)
+# st.subheader("""Our visualization theme focuses on the ‘Lending Club Loan’ dataset from Kaggle which contains data from LendingClub company. LendingClub is a financial services company headquartered in San Francisco, California. The data available on Kaggle is a comprehensive dataset of loan information from LendingClub from 2007 to 2018.""")
+# # st.subheader("""Music, often revered as a universal language, has been used for centuries to convey emotions and thoughts. Music is valued, among other things, for its therapeutic potential, especially in the treatment of mental health problems in situations such as depression, anxiety, post-traumatic stress disorder (PTSD) and more. However, the mechanisms underlying music's apparent positive effects on mental health remain elusive and unclear to this day.""")
+# st.subheader("""The main question we would like to investigate is: In what and how the characteristics of borrowers in the US change over the years?""")
+st.markdown("<h3 style='font-size: 16px;'>The subject of our simulation is to examine the change in characteristics of borrowers in the United States over the years in various aspects.</h3>", unsafe_allow_html=True)
+st.markdown("<h3 style='font-size: 16px;'>Our visualization theme focuses on the ‘Lending Club Loan’ dataset from Kaggle which contains data from LendingClub company. LendingClub is a financial services company headquartered in San Francisco, California. The data available on Kaggle is a comprehensive dataset of loan information from LendingClub from 2007 to 2018.</h3>", unsafe_allow_html=True)
+st.markdown("<h3 style='font-size: 16px;'>The main question we would like to investigate is: In what and how the characteristics of borrowers in the US change over the years?</h3>", unsafe_allow_html=True)
 st.markdown("---")  
 # color_blind = st.radio("This Project is Color-blind friendly, Are you color blind?",['No','Yes'],key=51) # Did you know that 9% of men are color blind?
 # if color_blind == 'Yes': 
