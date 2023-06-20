@@ -92,6 +92,8 @@ if color_blind == 'Yes':
   # color6 =
   
 else:
+  graph_3_color_1 = 'blue'
+  graph_3_color_2 = 'green'
   graph_4_color_1 = 'rgb(0, 120, 200)'  # Blue
   graph_4_color_2 = 'rgb(230, 90, 0)'  # Orange
 
@@ -539,6 +541,7 @@ with st.container():
                         "label": {"show": True},
                         "emphasis": {"focus": "series"},
                         "data": fully_paid_list,
+                        "itemStyle": {"color": graph_3_color_1}
                     },
                     {
                         "name": "Charged Off",
@@ -547,6 +550,7 @@ with st.container():
                         "label": {"show": True},
                         "emphasis": {"focus": "series"},
                         "data": charged_off_list,
+                        "itemStyle": {"color": graph_3_color_2}
                     },
                 ],
             }
