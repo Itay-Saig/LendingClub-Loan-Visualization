@@ -306,7 +306,11 @@ if option == 'Overall':
               "padding": 20,
               "textStyle": {"fontWeight": "bold"}
           },
-          "tooltip": {"trigger": "axis", "axisPointer": {"type": "shadow"}},
+          "tooltip": {
+              "trigger": "axis",
+              "axisPointer": {"type": "shadow"},
+              "formatter": "function (params) { return params[0].name + '<br/>' + params[0].seriesName + ': ' + params[0].data[params[0].seriesIndex]; }"
+          },
           "legend": {
               "data": sorted_unique_years
           },
@@ -360,6 +364,70 @@ if option == 'Overall':
           ],
       }
       st_echarts(options=options, height="500px")
+
+
+#       options = {
+#           "title": {
+#               "text": "Loan Distribution by Purpose: Top 7 Requested Loan Purposes",
+#               "left": "center",
+#               "top": "-3%",
+#               "padding": 20,
+#               "textStyle": {"fontWeight": "bold"}
+#           },
+#           "tooltip": {"trigger": "axis", "axisPointer": {"type": "shadow"}},
+#           "legend": {
+#               "data": sorted_unique_years
+#           },
+#           "grid": {"left": "3%", "right": "4%", "bottom": "3%", "containLabel": True},
+#           "xAxis": {"type": "value"},
+#           "yAxis": {
+#               "type": "category",
+#               "data": sorted_top_7_purposes,
+#           },
+#           "series": [
+#               {
+#                   "name": "2012",
+#                   "type": "bar",
+#                   "stack": "total",
+#                   "label": {"show": False},
+#                   "emphasis": {"focus": "series"},
+#                   "data": borrowers_per_year_purpose_dict["2012"],
+#               },
+#               {
+#                   "name": "2013",
+#                   "type": "bar",
+#                   "stack": "total",
+#                   "label": {"show": False},
+#                   "emphasis": {"focus": "series"},
+#                   "data": borrowers_per_year_purpose_dict["2013"],
+#               },
+#               {
+#                   "name": "2014",
+#                   "type": "bar",
+#                   "stack": "total",
+#                   "label": {"show": False},
+#                   "emphasis": {"focus": "series"},
+#                   "data": borrowers_per_year_purpose_dict["2014"],
+#               },
+#               {
+#                   "name": "2015",
+#                   "type": "bar",
+#                   "stack": "total",
+#                   "label": {"show": False},
+#                   "emphasis": {"focus": "series"},
+#                   "data": borrowers_per_year_purpose_dict["2015"],
+#               },
+#               {
+#                   "name": "2016",
+#                   "type": "bar",
+#                   "stack": "total",
+#                   "label": {"show": False},
+#                   "emphasis": {"focus": "series"},
+#                   "data": borrowers_per_year_purpose_dict["2016"],
+#               },
+#           ],
+#       }
+#       st_echarts(options=options, height="500px")
 
 
 else:
