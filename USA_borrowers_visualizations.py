@@ -85,7 +85,7 @@ if color_blind == 'Yes':
   # graph_2_colors = 
   # color2 = 
   graph_3_color_1 = "#0072B2"  # Shade of blue
-  graph_3_color_2 = "#EEAD0E"  # Shade of orange
+  graph_3_color_2 = "#CD950C"  # Shade of orange
   graph_4_color_1 = 'rgb(0, 120, 200)'  # Blue
   graph_4_color_2 = 'rgb(255, 153, 18)'  # Orange
   # color5 = 
@@ -93,9 +93,10 @@ if color_blind == 'Yes':
   
 else:
   graph_3_color_1 = '#6495ED'
-  graph_3_color_2 = 'lightgreen'
+  graph_3_color_2 = "BF3EFF"
   graph_4_color_1 = 'rgb(55, 83, 109)'
   graph_4_color_2 = 'rgb(26, 118, 255)'
+  graph_5_colors = ['#333F44', '#37AA9C', '#94F3E4']
 
   st.markdown("---")  
 
@@ -677,7 +678,7 @@ with st.container():
     # Create List of interest rate values (X-axis) and home ownership values (Y-axis)
     hist_int_rates = []
     hist_home_ownerships = []
-    colors = ['#333F44', '#37AA9C', '#94F3E4']
+    # colors = ['#333F44', '#37AA9C', '#94F3E4']
     for ownership in ownership_int_rate_dict:
       hist_int_rates.append(ownership_int_rate_dict[ownership])  # List of interest rate values (X-axis) per each home ownerships
       hist_home_ownerships.append(ownership)  # List of home ownership values (Y-axis)
@@ -687,7 +688,7 @@ with st.container():
 
     with col2:
       def render_kernel_density_estimate():
-        fig = ff.create_distplot(hist_int_rates, hist_home_ownerships, show_hist=False, colors=colors)  # Create distplot
+        fig = ff.create_distplot(hist_int_rates, hist_home_ownerships, show_hist=False, colors=graph_5_colors)  # Create distplot
         fig.update_layout(
         title_text='Loan Interest Rate Distribution by Financial Stability and Home Ownership',  # Add title
         xaxis=dict(
