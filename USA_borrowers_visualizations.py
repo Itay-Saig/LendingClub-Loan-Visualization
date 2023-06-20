@@ -389,17 +389,16 @@ else:
               "grid": {"left": "3%", "right": "4%", "bottom": "10%", "top": "20%", "containLabel": True},
               "xAxis": {
                   "type": "value",
-                "axisLabel": {
-                    "show": True,
-                    "formatter": "{value}",
-                    "textStyle": {
-                        "fontSize": 12
+                  "axisLabel": {
+                  "show": True,
+                  "formatter": "{value}",
+                  "textStyle": {
+                  "fontSize": 12
                     }
                 },
                 "name": "Number of Borrowers",
                 "nameLocation": "middle",
                 "nameGap": 30
-                },
               },
               "yAxis": {
                   "type": "category",
