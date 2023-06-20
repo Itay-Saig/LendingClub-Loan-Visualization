@@ -85,14 +85,14 @@ if color_blind == 'Yes':
   # graph_2_colors = 
   # color2 = 
   graph_3_color_1 = "#0072B2"  # Shade of blue
-  graph_3_color_2 = "#FF7F00"  # Shade of orange
+  graph_3_color_2 = "##EEAD0E"  # Shade of orange
   graph_4_color_1 = 'rgb(0, 120, 200)'  # Blue
-  graph_4_color_2 = 'rgb(230, 90, 0)'  # Orange
+  graph_4_color_2 = 'rgb(255, 153, 18)'  # Orange
   # color5 = 
   # color6 =
   
 else:
-  graph_3_color_1 = 'lightblue'
+  graph_3_color_1 = '#6495ED'
   graph_3_color_2 = 'lightgreen'
   graph_4_color_1 = 'rgb(55, 83, 109)'
   graph_4_color_2 = 'rgb(26, 118, 255)'
