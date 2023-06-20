@@ -306,7 +306,11 @@ if option == 'Overall':
               "padding": 20,
               "textStyle": {"fontWeight": "bold"}
           },
-          "tooltip": {"trigger": "axis", "axisPointer": {"type": "shadow"}},
+          "tooltip": {
+        "trigger": "axis",
+        "axisPointer": {"type": "shadow"},
+        "showContent": True,
+    },
           "legend": {
               "data": sorted_unique_years
           },
