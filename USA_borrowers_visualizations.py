@@ -133,14 +133,24 @@ for year in sorted_unique_years:
 ###################################### Graph 1 ######################################
 ################################### Preprocessing ###################################
 
-# # Create population dict for each state in USA
-# states_pop_dict = {'Alabama': 4903185, 'Alaska': 710249, 'Arizona': 7278717, 'Arkansas': 3017804, 'California': 39368078, 'Colorado': 5758736, 'Connecticut': 3565287, 'Delaware': 973764, 'Florida': 21733312, 'Georgia': 10617423, 'Hawaii': 1415872, 'Idaho': 1787065, 'Illinois': 12671821, 'Indiana': 6732219, 'Iowa': 3155070, 'Kansas': 2913314, 'Kentucky': 4467673, 'Louisiana': 4648794, 'Maine': 1344212, 'Maryland': 6045680, 'Massachusetts': 6892503, 'Michigan': 9883635,
-#                    'Minnesota': 5639632, 'Mississippi': 2976149, 'Missouri': 6137428, 'Montana': 1068778, 'Nebraska': 1934408, 'Nevada': 3080156, 'New Hampshire': 1359711, 'New Jersey': 8882190, 'New Mexico': 2096829, 'New York': 19336776, 'North Carolina': 10488084, 'North Dakota': 762062, 'Ohio': 11689100, 'Oklahoma': 3980783, 'Oregon': 4217737, 'Pennsylvania': 12801989, 'Rhode Island': 1059361, 'South Carolina': 5148714, 'South Dakota': 884659, 'Tennessee': 6829174,
-#                    'Texas': 29360759, 'Utah': 3205958, 'Vermont': 623989, 'Virginia': 8535519, 'Washington': 7614893, 'West Virginia': 1792147, 'Wisconsin': 5822434, 'Wyoming': 578759}
+# Create population dict for each state in USA
+states_pop_dict = {'Alabama': 4903185, 'Alaska': 710249, 'Arizona': 7278717, 'Arkansas': 3017804, 'California': 39368078, 'Colorado': 5758736, 'Connecticut': 3565287, 'Delaware': 973764, 'Florida': 21733312, 'Georgia': 10617423, 'Hawaii': 1415872, 'Idaho': 1787065, 'Illinois': 12671821, 'Indiana': 6732219, 'Iowa': 3155070, 'Kansas': 2913314, 'Kentucky': 4467673, 'Louisiana': 4648794, 'Maine': 1344212, 'Maryland': 6045680, 'Massachusetts': 6892503, 'Michigan': 9883635,
+                   'Minnesota': 5639632, 'Mississippi': 2976149, 'Missouri': 6137428, 'Montana': 1068778, 'Nebraska': 1934408, 'Nevada': 3080156, 'New Hampshire': 1359711, 'New Jersey': 8882190, 'New Mexico': 2096829, 'New York': 19336776, 'North Carolina': 10488084, 'North Dakota': 762062, 'Ohio': 11689100, 'Oklahoma': 3980783, 'Oregon': 4217737, 'Pennsylvania': 12801989, 'Rhode Island': 1059361, 'South Carolina': 5148714, 'South Dakota': 884659, 'Tennessee': 6829174,
+                   'Texas': 29360759, 'Utah': 3205958, 'Vermont': 623989, 'Virginia': 8535519, 'Washington': 7614893, 'West Virginia': 1792147, 'Wisconsin': 5822434, 'Wyoming': 578759}
 
 # Calculate num of borrowers per state
 borrowers_per_state_df = data.groupby(['borrower_state'])['id'].count().reset_index()
 borrowers_per_state_df.rename(columns={'id': 'num_of_borrowers'}, inplace=True)  # Change the 'id' column name to 'num_of_borrowers'
+
+# Calculate the ratio between the amount of borrowers in a state and the size of its population
+percentage_borrowers_per_state = {}
+for state in states_pop_dict:
+  try:
+    num_of_borrowers = 10000 * (borrowers_per_state_df.loc[borrowers_per_state_df['borrower_state'] == state, 'num_of_borrowers'].item())
+    percentage_borrowers_per_state[state] = num_of_borrowers / states_pop_dict[state]
+  except:
+    percentage_borrowers_per_state[state] = 0
+percentage_borrowers_per_state
 
 
 ################################### Visualization ###################################
@@ -205,58 +215,58 @@ def render_usa():
                 "emphasis": {"label": {"show": True}},
                 "textFixed": {"Alaska": [20, -20]},
                 "data": [
-                    {"name": "Alabama", "value": 4822023},
-                    {"name": "Alaska", "value": 731449},
-                    {"name": "Arizona", "value": 6553255},
-                    {"name": "Arkansas", "value": 2949131},
-                    {"name": "California", "value": 38041430},
-                    {"name": "Colorado", "value": 5187582},
-                    {"name": "Connecticut", "value": 3590347},
-                    {"name": "Delaware", "value": 917092},
-                    {"name": "District of Columbia", "value": 632323},
-                    {"name": "Florida", "value": 19317568},
-                    {"name": "Georgia", "value": 9919945},
-                    {"name": "Hawaii", "value": 1392313},
-                    {"name": "Idaho", "value": 1595728},
-                    {"name": "Illinois", "value": 12875255},
-                    {"name": "Indiana", "value": 6537334},
-                    {"name": "Iowa", "value": 3074186},
-                    {"name": "Kansas", "value": 2885905},
-                    {"name": "Kentucky", "value": 4380415},
-                    {"name": "Louisiana", "value": 4601893},
-                    {"name": "Maine", "value": 1329192},
-                    {"name": "Maryland", "value": 5884563},
-                    {"name": "Massachusetts", "value": 6646144},
-                    {"name": "Michigan", "value": 9883360},
-                    {"name": "Minnesota", "value": 5379139},
-                    {"name": "Mississippi", "value": 2984926},
-                    {"name": "Missouri", "value": 6021988},
-                    {"name": "Montana", "value": 1005141},
-                    {"name": "Nebraska", "value": 1855525},
-                    {"name": "Nevada", "value": 2758931},
-                    {"name": "New Hampshire", "value": 1320718},
-                    {"name": "New Jersey", "value": 8864590},
-                    {"name": "New Mexico", "value": 2085538},
-                    {"name": "New York", "value": 19570261},
-                    {"name": "North Carolina", "value": 9752073},
-                    {"name": "North Dakota", "value": 699628},
-                    {"name": "Ohio", "value": 11544225},
-                    {"name": "Oklahoma", "value": 3814820},
-                    {"name": "Oregon", "value": 3899353},
-                    {"name": "Pennsylvania", "value": 12763536},
-                    {"name": "Rhode Island", "value": 1050292},
-                    {"name": "South Carolina", "value": 4723723},
-                    {"name": "South Dakota", "value": 833354},
-                    {"name": "Tennessee", "value": 6456243},
-                    {"name": "Texas", "value": 26059203},
-                    {"name": "Utah", "value": 2855287},
-                    {"name": "Vermont", "value": 626011},
-                    {"name": "Virginia", "value": 8185867},
-                    {"name": "Washington", "value": 6897012},
-                    {"name": "West Virginia", "value": 1855413},
-                    {"name": "Wisconsin", "value": 5726398},
-                    {"name": "Wyoming", "value": 576412},
-                    {"name": "Puerto Rico", "value": 3667084},
+                    {"name": "Alabama", "value": percentage_borrowers_per_state["Alabama"]},
+                    {"name": "Alaska", "value": percentage_borrowers_per_state["Alaska"]},
+                    {"name": "Arizona", "value": percentage_borrowers_per_state["Arizona"]},
+                    {"name": "Arkansas", "value": percentage_borrowers_per_state["Arkansas"]},
+                    {"name": "California", "value": percentage_borrowers_per_state["California"]},
+                    {"name": "Colorado", "value": percentage_borrowers_per_state["Colorado"]},
+                    {"name": "Connecticut", "value": percentage_borrowers_per_state["Connecticut"]},
+                    {"name": "Delaware", "value": percentage_borrowers_per_state["Delaware"]},
+                    {"name": "District of Columbia", "value": percentage_borrowers_per_state["District of Columbia"]},
+                    {"name": "Florida", "value": percentage_borrowers_per_state["Florida"]},
+                    {"name": "Georgia", "value": percentage_borrowers_per_state["Georgia"]},
+                    {"name": "Hawaii", "value": percentage_borrowers_per_state["Hawaii"]},
+                    {"name": "Idaho", "value": percentage_borrowers_per_state["Idaho"]},
+                    {"name": "Illinois", "value": percentage_borrowers_per_state["Illinois"]},
+                    {"name": "Indiana", "value": percentage_borrowers_per_state["Indiana"]},
+                    {"name": "Iowa", "value": percentage_borrowers_per_state["Iowa"]},
+                    {"name": "Kansas", "value": percentage_borrowers_per_state["Kansas"]},
+                    {"name": "Kentucky", "value": percentage_borrowers_per_state["Kentucky"]},
+                    {"name": "Louisiana", "value": percentage_borrowers_per_state["Louisiana"]},
+                    {"name": "Maine", "value": percentage_borrowers_per_state["Maine"]},
+                    {"name": "Maryland", "value": percentage_borrowers_per_state["Maryland"]},
+                    {"name": "Massachusetts", "value": percentage_borrowers_per_state["Massachusetts"]},
+                    {"name": "Michigan", "value": percentage_borrowers_per_state["Michigan"]},
+                    {"name": "Minnesota", "value": percentage_borrowers_per_state["Minnesota"]},
+                    {"name": "Mississippi", "value": percentage_borrowers_per_state["Mississippi"]},
+                    {"name": "Missouri", "value": percentage_borrowers_per_state["Missouri"]},
+                    {"name": "Montana", "value": percentage_borrowers_per_state["Montana"]},
+                    {"name": "Nebraska", "value": percentage_borrowers_per_state["Nebraska"]},
+                    {"name": "Nevada", "value": percentage_borrowers_per_state["Nevada"]},
+                    {"name": "New Hampshire", "value": percentage_borrowers_per_state["New Hampshire"]},
+                    {"name": "New Jersey", "value": percentage_borrowers_per_state["New Jersey"]},
+                    {"name": "New Mexico", "value": percentage_borrowers_per_state["New Mexico"]},
+                    {"name": "New York", "value": percentage_borrowers_per_state["New York"]},
+                    {"name": "North Carolina", "value": percentage_borrowers_per_state["North Carolina"]},
+                    {"name": "North Dakota", "value": percentage_borrowers_per_state["North Dakota"]},
+                    {"name": "Ohio", "value": percentage_borrowers_per_state["Ohio"]},
+                    {"name": "Oklahoma", "value": percentage_borrowers_per_state["Oklahoma"]},
+                    {"name": "Oregon", "value": percentage_borrowers_per_state["Oregon"]},
+                    {"name": "Pennsylvania", "value": percentage_borrowers_per_state["Pennsylvania"]},
+                    {"name": "Rhode Island", "value": percentage_borrowers_per_state["Rhode Island"]},
+                    {"name": "South Carolina", "value": percentage_borrowers_per_state["South Carolina"]},
+                    {"name": "South Dakota", "value": percentage_borrowers_per_state["South Dakota"]},
+                    {"name": "Tennessee", "value": percentage_borrowers_per_state["Tennessee"]},
+                    {"name": "Texas", "value": percentage_borrowers_per_state["Texas"]},
+                    {"name": "Utah", "value": percentage_borrowers_per_state["Utah"]},
+                    {"name": "Vermont", "value": percentage_borrowers_per_state["Vermont"]},
+                    {"name": "Virginia", "value": percentage_borrowers_per_state["Virginia"]},
+                    {"name": "Washington", "value": percentage_borrowers_per_state["Washington"]},
+                    {"name": "West Virginia", "value": percentage_borrowers_per_state["West Virginia"]},
+                    {"name": "Wisconsin", "value": percentage_borrowers_per_state["Wisconsin"]},
+                    {"name": "Wyoming", "value": percentage_borrowers_per_state["Wyoming"]},
+                    {"name": "Puerto Rico", "value": percentage_borrowers_per_state["Puerto Rico"]},
                 ],
             }
         ],
