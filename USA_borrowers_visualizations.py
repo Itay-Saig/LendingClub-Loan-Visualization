@@ -26,13 +26,13 @@ st.set_page_config(page_title="Streamlit Project",
 
 with st.container():
     col1, col2, col3 = st.columns([0.25, 0.5, 0.25])
-    col2.title('Information Visualization Final Project')
+    col1.title('Information Visualization Final Project')
 with st.container():
     col1, col2, col3 = st.columns([0.30, 0.5, 0.20])
-    col2.subheader('Ido Pascaro - 206589749')
+    col1.subheader('Ido Pascaro - 206589749')
 with st.container():
     col1, col2, col3 = st.columns([0.32, 0.5, 0.20])
-    col2.subheader('Itay Saig - 206961609')
+    col1.subheader('Itay Saig - 206961609')
     
 st.header("Overview")
 st.subheader("""The subject of our simulation is to examine the change in characteristics of borrowers in the United States over the years in various aspects.""")
