@@ -88,7 +88,7 @@ if color_blind == 'Yes':
   graph_3_color_2 = "#CD950C"  # Shade of orange
   graph_4_color_1 = 'rgb(0, 120, 200)'  # Blue
   graph_4_color_2 = 'rgb(255, 153, 18)'  # Orange
-  # color5 = 
+  graph_5_colors = ['#1f77b4', '#ff7f0e', '#2ca02c']
   # color6 =
   
 else:
@@ -96,7 +96,8 @@ else:
   graph_3_color_2 = "#B23AEE"  # darkorchid2 (purple)
   graph_4_color_1 = 'rgb(55, 83, 109)'
   graph_4_color_2 = 'rgb(26, 118, 255)'
-  graph_5_colors = ['#333F44', '#37AA9C', '#94F3E4']
+  graph_5_colors = ['#1f77b4', '#ff7f0e', '#2ca02c']
+
 
   st.markdown("---")  
 
