@@ -292,7 +292,7 @@ with st.container():
       year_df = year_df[year_df['purpose'].isin(top_7_purposes)]  # Filter the DataFrame to get only records with purpose of the top 7
       curr_borrowers_per_year_purpose_df = year_df.groupby(['purpose'])['id'].count().reset_index()  # Group the records by purpose for each year
       curr_borrowers_per_year_purpose_df.rename(columns={'id': 'num_of_borrowers'}, inplace=True)  # Change the 'id' column name to 'num_of_borrowers'
-      curr_borrowers_per_year_purpose_list = curr_borrowers_per_year_purpose_df['num_of_borrowers'].tolist()
+      curr_borrowers_per_year_purpose_list = curr_borrowers_per_year_purpose_df['num_of_borrowers'].tolist()[::-1]
       borrowers_per_year_purpose_dict[year] = curr_borrowers_per_year_purpose_list
       
     
@@ -306,11 +306,8 @@ if option == 'Overall':
               "padding": 20,
               "textStyle": {"fontWeight": "bold"}
           },
-          "tooltip": {
-        "trigger": "axis",
-        "axisPointer": {"type": "shadow"},
-        "showContent": True,
-    },
+          "tooltip": {"trigger": "axis", "axisPointer": {"type": "shadow"},
+          },
           "legend": {
               "data": sorted_unique_years
           },
