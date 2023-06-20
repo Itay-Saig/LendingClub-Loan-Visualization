@@ -40,45 +40,61 @@ st.subheader("""Our visualization theme focuses on the ‘Lending Club Loan’ d
 # st.subheader("""Music, often revered as a universal language, has been used for centuries to convey emotions and thoughts. Music is valued, among other things, for its therapeutic potential, especially in the treatment of mental health problems in situations such as depression, anxiety, post-traumatic stress disorder (PTSD) and more. However, the mechanisms underlying music's apparent positive effects on mental health remain elusive and unclear to this day.""")
 st.subheader("""The main question we would like to investigate is: In what and how the characteristics of borrowers in the US change over the years?""")
 st.markdown("---")  
+# color_blind = st.radio("This Project is Color-blind friendly, Are you color blind?",['No','Yes'],key=51) # Did you know that 9% of men are color blind?
+# if color_blind == 'Yes': 
+#   cmap_graph_4 = "balance" # graph 4
+#   color_map_graphs12 = {
+#         "Classical":  px.colors.qualitative.Dark24[19],  # Blue
+#         "EDM":  px.colors.qualitative.Dark2[4], # Green
+#         "Folk":  px.colors.qualitative.Antique[5], # Purple
+#         "Hip hop": px.colors.qualitative.Dark24[14], # Olive
+#         "Metal": px.colors.qualitative.Set1[5],  # Yellow
+#         "Pop": px.colors.qualitative.Set1[0],  # Red
+#         "R&B": px.colors.qualitative.Dark24[5], # Black
+#         "Rock": px.colors.qualitative.Dark2[0], # Dark Green
+#         "Video game music":  px.colors.qualitative.Plotly[8] # Pink
+#     }
+#   color_map_graph3 = {
+#         "Anxiety": px.colors.qualitative.Dark24[5],  # Black
+#         "Depression": px.colors.qualitative.Set1[0],  # Red
+#         "Insomnia": px.colors.qualitative.Set1[1],  # Blue
+#         "OCD": px.colors.qualitative.Set1[5]  # Yellow
+#     } 
+# else:
+#   cmap_graph_4 = "Tempo" # graph 4
+#   color_map_graphs12 = {
+#         "Classical": px.colors.qualitative.Dark24[19], # Deep Blue
+#         "EDM":  px.colors.qualitative.D3[5], # Brown
+#         "Folk":  px.colors.qualitative.T10[9], # Grey
+#         "Hip hop": px.colors.qualitative.Alphabet[6], # Light Green
+#         "Metal": px.colors.qualitative.Alphabet[24], # Yellow
+#         "Pop": px.colors.qualitative.Light24[0], # Red
+#         "R&B": px.colors.qualitative.Dark24[5], # Black
+#         "Rock": px.colors.qualitative.Dark2[0], # Dark Green
+#         "Video game music":  px.colors.qualitative.Prism[6], # Orange
+#       }
+#   color_map_graph3 = {
+#         "Anxiety": px.colors.qualitative.Bold[2],  # Blue
+#         "Depression": px.colors.qualitative.Bold[3],  # Pink
+#         "Insomnia": px.colors.qualitative.Bold[4],  # Yellow
+#         "OCD": px.colors.qualitative.Bold[5]  # Green
+#     }
 color_blind = st.radio("This Project is Color-blind friendly, Are you color blind?",['No','Yes'],key=51) # Did you know that 9% of men are color blind?
-if color_blind == 'Yes': 
-  cmap_graph_4 = "balance" # graph 4
-  color_map_graphs12 = {
-        "Classical":  px.colors.qualitative.Dark24[19],  # Blue
-        "EDM":  px.colors.qualitative.Dark2[4], # Green
-        "Folk":  px.colors.qualitative.Antique[5], # Purple
-        "Hip hop": px.colors.qualitative.Dark24[14], # Olive
-        "Metal": px.colors.qualitative.Set1[5],  # Yellow
-        "Pop": px.colors.qualitative.Set1[0],  # Red
-        "R&B": px.colors.qualitative.Dark24[5], # Black
-        "Rock": px.colors.qualitative.Dark2[0], # Dark Green
-        "Video game music":  px.colors.qualitative.Plotly[8] # Pink
-    }
-  color_map_graph3 = {
-        "Anxiety": px.colors.qualitative.Dark24[5],  # Black
-        "Depression": px.colors.qualitative.Set1[0],  # Red
-        "Insomnia": px.colors.qualitative.Set1[1],  # Blue
-        "OCD": px.colors.qualitative.Set1[5]  # Yellow
-    } 
+graph_1_colors = ["#E6F5FF", "#B3E6FF", "#80D4FF", "#4DC3FF", "#1AB1FF", "#008FFF", "#0077CC", "#0055AA", "#003377", "#001155", "#000033"]  # Shade of blue
+if color_blind == 'Yes':
+  # graph_2_colors = 
+  # color2 = 
+  graph_3_color_1 = "#0072B2"  # Shade of blue
+  graph_3_color_2 = "#FF7F00"  # Shade of orange
+  graph_4_color_1 = 'rgb(55, 83, 109)'
+  graph_4_color_2 = 'rgb(26, 118, 255)'
+  # color5 = 
+  # color6 =
+  
 else:
-  cmap_graph_4 = "Tempo" # graph 4
-  color_map_graphs12 = {
-        "Classical": px.colors.qualitative.Dark24[19], # Deep Blue
-        "EDM":  px.colors.qualitative.D3[5], # Brown
-        "Folk":  px.colors.qualitative.T10[9], # Grey
-        "Hip hop": px.colors.qualitative.Alphabet[6], # Light Green
-        "Metal": px.colors.qualitative.Alphabet[24], # Yellow
-        "Pop": px.colors.qualitative.Light24[0], # Red
-        "R&B": px.colors.qualitative.Dark24[5], # Black
-        "Rock": px.colors.qualitative.Dark2[0], # Dark Green
-        "Video game music":  px.colors.qualitative.Prism[6], # Orange
-      }
-  color_map_graph3 = {
-        "Anxiety": px.colors.qualitative.Bold[2],  # Blue
-        "Depression": px.colors.qualitative.Bold[3],  # Pink
-        "Insomnia": px.colors.qualitative.Bold[4],  # Yellow
-        "OCD": px.colors.qualitative.Bold[5]  # Green
-    }
+  graph_4_color_1 = 'rgb(0, 120, 200)'  # Blue
+  graph_4_color_2 = 'rgb(230, 90, 0)'  # Orange
+
   st.markdown("---")  
 
   
@@ -154,7 +170,7 @@ for state in states_pop_dict:
 
 ################################### Visualization ###################################
 
-def render_usa():
+def render_usa(graph_1_colors):
     formatter = JsCode(
         "function (params) {"
         + "var value = (params.value + '').split('.');"
@@ -189,7 +205,7 @@ def render_usa():
             "min": min(list(percentage_borrowers_per_state.values())),
             "max": np.ceil(max(list(percentage_borrowers_per_state.values()))) + 2,
             "inRange": {
-                "color": ["#E6F5FF", "#B3E6FF", "#80D4FF", "#4DC3FF", "#1AB1FF", "#008FFF", "#0077CC", "#0055AA", "#003377", "#001155", "#000033",] },
+                "color": graph_1_colors },
             "text": ["High", "Low"],
             "calculable": True,
         },
@@ -214,7 +230,7 @@ def render_usa():
                 "emphasis": {"label": {"show": True}},
                 "textFixed": {"Alaska": [20, -20]},
                 "data": [
-                    {"name": "Alabama", "value": str(percentage_borrowers_per_state["Alabama"])},
+                    {"name": "Alabama", "value": percentage_borrowers_per_state["Alabama"]},
                     {"name": "Alaska", "value": percentage_borrowers_per_state["Alaska"]},
                     {"name": "Arizona", "value": percentage_borrowers_per_state["Arizona"]},
                     {"name": "Arkansas", "value": percentage_borrowers_per_state["Arkansas"]},
@@ -272,7 +288,7 @@ def render_usa():
     }
     st_echarts(options, map=map)
 
-render_usa()
+render_usa(graph_1_colors)
 st.markdown("---")  
 
 
@@ -591,12 +607,12 @@ with st.container():
             fig.add_trace(go.Bar(x=emp_length_years,
                                  y=fully_paid_title_list,
                                  name='Fully Paid',
-                                 marker_color='rgb(55, 83, 109)'
+                                 marker_color=graph_4_color_1
                                  ))
             fig.add_trace(go.Bar(x=emp_length_years,
                                  y=charged_off_title_list,
                                  name='Charged Off',
-                                 marker_color='rgb(26, 118, 255)'
+                                 marker_color=graph_4_color_2
                                  ))
 
             fig.update_layout(
