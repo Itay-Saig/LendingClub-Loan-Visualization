@@ -150,7 +150,6 @@ for state in states_pop_dict:
     percentage_borrowers_per_state[state] = num_of_borrowers / states_pop_dict[state]
   except:
     percentage_borrowers_per_state[state] = 0
-percentage_borrowers_per_state
 
 
 ################################### Visualization ###################################
