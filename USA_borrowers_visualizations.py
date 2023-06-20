@@ -285,9 +285,27 @@ with st.container():
     sorted_top_7_purposes = sorted(top_7_purposes, reverse=True)  # Sorted in descending alphabetical order
     sorted_top_7_purposes = [s.replace('_', ' ').title() for s in sorted_top_7_purposes]  # Corrected list, replacing underscore with a space and putting a capital letter at the beginning of each word
     
+    # Create a dictionary of the number of borrowers from each purpose by each year
+    borrowers_per_year_purpose_dict = {}
+    for year_df in year_dataframes.values():
+      year = year_df['issue_year'].iloc[0, ]  # Extract the current year
+      year_df = year_df[year_df['purpose'].isin(top_7_purposes)]  # Filter the DataFrame to get only records with purpose of the top 7
+      curr_borrowers_per_year_purpose_df = year_df.groupby(['purpose'])['id'].count().reset_index()  # Group the records by purpose for each year
+      curr_borrowers_per_year_purpose_df.rename(columns={'id': 'num_of_borrowers'}, inplace=True)  # Change the 'id' column name to 'num_of_borrowers'
+      curr_borrowers_per_year_purpose_list = curr_borrowers_per_year_purpose_df['num_of_borrowers'].tolist()
+      borrowers_per_year_purpose_dict[year] = curr_borrowers_per_year_purpose_list
+      
+    
 if option == 'Overall':
     with col2:
       options = {
+          "title": {
+              "text": "Loan Distribution by Purpose: Top 7 Requested Loan Purposes",
+              "left": "center",
+              "top": "-3%",
+              "padding": 20,
+              "textStyle": {"fontWeight": "bold"}
+          },
           "tooltip": {"trigger": "axis", "axisPointer": {"type": "shadow"}},
           "legend": {
               "data": sorted_unique_years
@@ -305,7 +323,7 @@ if option == 'Overall':
                   "stack": "total",
                   "label": {"show": True},
                   "emphasis": {"focus": "series"},
-                  "data": [320, 302, 301, 334, 390, 330, 320],
+                  "data": borrowers_per_year_purpose_dict["2012"],
               },
               {
                   "name": "2013",
@@ -313,7 +331,7 @@ if option == 'Overall':
                   "stack": "total",
                   "label": {"show": True},
                   "emphasis": {"focus": "series"},
-                  "data": [120, 132, 101, 134, 90, 230, 210],
+                  "data": borrowers_per_year_purpose_dict["2013"],
               },
               {
                   "name": "2014",
@@ -321,7 +339,7 @@ if option == 'Overall':
                   "stack": "total",
                   "label": {"show": True},
                   "emphasis": {"focus": "series"},
-                  "data": [220, 182, 191, 234, 290, 330, 310],
+                  "data": borrowers_per_year_purpose_dict["2014"],
               },
               {
                   "name": "2015",
@@ -329,7 +347,7 @@ if option == 'Overall':
                   "stack": "total",
                   "label": {"show": True},
                   "emphasis": {"focus": "series"},
-                  "data": [150, 212, 201, 154, 190, 330, 410],
+                  "data": borrowers_per_year_purpose_dict["2015"],
               },
               {
                   "name": "2016",
@@ -337,18 +355,14 @@ if option == 'Overall':
                   "stack": "total",
                   "label": {"show": True},
                   "emphasis": {"focus": "series"},
-                  "data": [820, 832, 901, 934, 1290, 1330, 1320],
+                  "data": borrowers_per_year_purpose_dict["2016"],
               },
           ],
       }
       st_echarts(options=options, height="500px")
 
 
-
 else:
-    
-    
-    
     # Calculate num of borrowers per each year and loan purpose
     user_purpose_choice_df = year_dataframes[option]  # The DataFrame with records of the year selected by the user
     user_purpose_choice_df = user_purpose_choice_df[user_purpose_choice_df['purpose'].isin(top_7_purposes)]  # Filter the DataFrame to get only records with purpose of the top 7
@@ -365,24 +379,32 @@ else:
         def render_horizontal_bar_by_purpose(sorted_top_7_purposes, borrowers_per_year_purpose_list):
           options = {
               "title": {
-                  "text": "Loan Distribution by Purpose: Number of Borrowers by Loan Purpose",
+                  "text": "Loan Distribution by Purpose: Top 7 Requested Loan Purposes",
                   "left": "center",
                   "top": "-3%",
                   "padding": 20,
                   "textStyle": {"fontWeight": "bold"}
                 },
               "tooltip": {"trigger": "axis", "axisPointer": {"type": "shadow"}},
-              "legend": {
-                  "top": "7%",
-                  "data": ["Number of Borrowers"]
-              },
               "grid": {"left": "3%", "right": "4%", "bottom": "10%", "top": "20%", "containLabel": True},
               "xAxis": {
                   "type": "value",
+                "axisLabel": {
+                    "show": True,
+                    "formatter": "{value}",
+                    "textStyle": {
+                        "fontSize": 12
+                    }
+                },
+                "name": "Number of Borrowers",
+                "nameLocation": "middle",
+                "nameGap": 30
+                },
               },
               "yAxis": {
                   "type": "category",
                   "data": sorted_top_7_purposes,
+                  "name": "Loan Purpose"
               },
               "series": [
                   {
