@@ -146,8 +146,8 @@ borrowers_per_state_df.rename(columns={'id': 'num_of_borrowers'}, inplace=True) 
 percentage_borrowers_per_state = {}
 for state in states_pop_dict:
   try:
-    num_of_borrowers = 10000 * (borrowers_per_state_df.loc[borrowers_per_state_df['borrower_state'] == state, 'num_of_borrowers'].item()) + 7
-    percentage_borrowers_per_state[state] = num_of_borrowers / states_pop_dict[state]
+    num_of_borrowers = 10000 * (borrowers_per_state_df.loc[borrowers_per_state_df['borrower_state'] == state, 'num_of_borrowers'].item())
+    percentage_borrowers_per_state[state] = (num_of_borrowers / states_pop_dict[state]) + 7
   except:
     percentage_borrowers_per_state[state] = 0
 
