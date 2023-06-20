@@ -43,9 +43,9 @@ st.header("Overview")
 # st.markdown("<h3 style='font-size: 16px;'>The subject of our simulation is to examine the change in characteristics of borrowers in the United States over the years in various aspects.</h3>", unsafe_allow_html=True)
 # st.markdown("<h3 style='font-size: 16px;'>Our visualization theme focuses on the ‘Lending Club Loan’ dataset from Kaggle which contains data from LendingClub company. LendingClub is a financial services company headquartered in San Francisco, California. The data available on Kaggle is a comprehensive dataset of loan information from LendingClub from 2007 to 2018.</h3>", unsafe_allow_html=True)
 # st.markdown("<h3 style='font-size: 16px;'>The main question we would like to investigate is: In what and how the characteristics of borrowers in the US change over the years?</h3>", unsafe_allow_html=True)
-st.markdown("###### The subject of our simulation is to examine the change in characteristics of borrowers in the United States over the years in various aspects.")
-st.markdown("###### Our visualization theme focuses on the ‘Lending Club Loan’ dataset from Kaggle which contains data from LendingClub company. LendingClub is a financial services company headquartered in San Francisco, California. The data available on Kaggle is a comprehensive dataset of loan information from LendingClub from 2007 to 2018.")
-st.markdown("###### The main question we would like to investigate is: In what and how the characteristics of borrowers in the US change over the years?")
+st.markdown("#### The subject of our simulation is to examine the change in characteristics of borrowers in the United States over the years in various aspects.")
+st.markdown("#### Our visualization theme focuses on the ‘Lending Club Loan’ dataset from Kaggle which contains data from LendingClub company. LendingClub is a financial services company headquartered in San Francisco, California. The data available on Kaggle is a comprehensive dataset of loan information from LendingClub from 2007 to 2018.")
+st.markdown("#### The main question we would like to investigate is: In what and how the characteristics of borrowers in the US change over the years?")
 
 st.markdown("---")  
 # color_blind = st.radio("This Project is Color-blind friendly, Are you color blind?",['No','Yes'],key=51) # Did you know that 9% of men are color blind?
