@@ -25,7 +25,7 @@ st.set_page_config(page_title="Streamlit Project",
                   layout="wide")
 
 with st.container():
-    col1, col2, col3 = st.columns([0.25, 0.5, 0.25])
+    col1, col2, col3 = st.columns([0.7, 0.2, 0.1])
     col1.title('Information Visualization Final Project')
 with st.container():
     col1, col2, col3 = st.columns([0.30, 0.5, 0.20])
