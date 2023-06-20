@@ -43,7 +43,7 @@ st.header("Overview")
 # st.markdown("<h3 style='font-size: 16px;'>The subject of our simulation is to examine the change in characteristics of borrowers in the United States over the years in various aspects.</h3>", unsafe_allow_html=True)
 # st.markdown("<h3 style='font-size: 16px;'>Our visualization theme focuses on the ‘Lending Club Loan’ dataset from Kaggle which contains data from LendingClub company. LendingClub is a financial services company headquartered in San Francisco, California. The data available on Kaggle is a comprehensive dataset of loan information from LendingClub from 2007 to 2018.</h3>", unsafe_allow_html=True)
 # st.markdown("<h3 style='font-size: 16px;'>The main question we would like to investigate is: In what and how the characteristics of borrowers in the US change over the years?</h3>", unsafe_allow_html=True)
-with a comprehensive analysis of taking loans, through a non-banking company
+# with a comprehensive analysis of taking loans, through a non-banking company
 st.markdown("##### The subject of our simulation is to examine the change in characteristics of borrowers in the United States over the years in various aspects.")
 st.markdown("##### Our visualization theme focuses on the ‘Lending Club Loan’ dataset from Kaggle which contains data from LendingClub company. LendingClub is a financial services company headquartered in San Francisco, California. The data available on Kaggle is a comprehensive dataset of loan information from LendingClub from 2007 to 2018.")
 st.markdown("##### The main question we would like to investigate is: In what and how the characteristics of borrowers in the US change over the years?")
