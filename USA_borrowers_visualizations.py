@@ -26,14 +26,15 @@ st.set_page_config(page_title="Streamlit Project",
 
 with st.container():
     col1, col2, col3 = st.columns([0.7, 0.2, 0.1])
-    col1.title('Information Visualization Final Project')
+    col1.title('Information Visualization - Final Project')
 with st.container():
     col1, col2, col3 = st.columns([0.30, 0.5, 0.20])
     col1.subheader('Ido Pascaro - 206589749')
 with st.container():
     col1, col2, col3 = st.columns([0.32, 0.5, 0.20])
     col1.subheader('Itay Saig - 206961609')
-    
+    st.write("\n")
+
 st.header("Overview")
 st.subheader("""The subject of our simulation is to examine the change in characteristics of borrowers in the United States over the years in various aspects.""")
 st.subheader("""Our visualization theme focuses on the ‘Lending Club Loan’ dataset from Kaggle which contains data from LendingClub company. LendingClub is a financial services company headquartered in San Francisco, California. The data available on Kaggle is a comprehensive dataset of loan information from LendingClub from 2007 to 2018.""")
