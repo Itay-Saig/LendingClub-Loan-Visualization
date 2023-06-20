@@ -187,7 +187,7 @@ def render_usa():
         "visualMap": {
             "left": "right",
             "min": min(list(percentage_borrowers_per_state.values())),
-            "max": np.ceil(max(list(percentage_borrowers_per_state.values()))) + 6,
+            "max": np.ceil(max(list(percentage_borrowers_per_state.values()))) + 7,
             "inRange": {
                 "color": ["#E6F5FF", "#B3E6FF", "#80D4FF", "#4DC3FF", "#1AB1FF", "#008FFF", "#0077CC", "#0055AA", "#003377", "#001155", "#000033",] },
             "text": ["High", "Low"],
@@ -214,7 +214,7 @@ def render_usa():
                 "emphasis": {"label": {"show": True}},
                 "textFixed": {"Alaska": [20, -20]},
                 "data": [
-                    {"name": "Alabama", "value": 10.74},
+                    {"name": "Alabama", "value": percentage_borrowers_per_state["Alabama]},
                     {"name": "Alaska", "value": percentage_borrowers_per_state["Alaska"]},
                     {"name": "Arizona", "value": percentage_borrowers_per_state["Arizona"]},
                     {"name": "Arkansas", "value": percentage_borrowers_per_state["Arkansas"]},
