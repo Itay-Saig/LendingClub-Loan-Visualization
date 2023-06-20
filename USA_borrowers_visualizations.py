@@ -43,6 +43,7 @@ st.header("Overview")
 # st.markdown("<h3 style='font-size: 16px;'>The subject of our simulation is to examine the change in characteristics of borrowers in the United States over the years in various aspects.</h3>", unsafe_allow_html=True)
 # st.markdown("<h3 style='font-size: 16px;'>Our visualization theme focuses on the ‘Lending Club Loan’ dataset from Kaggle which contains data from LendingClub company. LendingClub is a financial services company headquartered in San Francisco, California. The data available on Kaggle is a comprehensive dataset of loan information from LendingClub from 2007 to 2018.</h3>", unsafe_allow_html=True)
 # st.markdown("<h3 style='font-size: 16px;'>The main question we would like to investigate is: In what and how the characteristics of borrowers in the US change over the years?</h3>", unsafe_allow_html=True)
+with a comprehensive analysis of taking loans, through a non-banking company
 st.markdown("##### The subject of our simulation is to examine the change in characteristics of borrowers in the United States over the years in various aspects.")
 st.markdown("##### Our visualization theme focuses on the ‘Lending Club Loan’ dataset from Kaggle which contains data from LendingClub company. LendingClub is a financial services company headquartered in San Francisco, California. The data available on Kaggle is a comprehensive dataset of loan information from LendingClub from 2007 to 2018.")
 st.markdown("##### The main question we would like to investigate is: In what and how the characteristics of borrowers in the US change over the years?")
@@ -88,7 +89,9 @@ st.markdown("---")
 #         "OCD": px.colors.qualitative.Bold[5]  # Green
 #     }
 color_blind = st.radio("The visualizations are color blind friendly. Are you color blind?",['No','Yes'],key=51) # Did you know that 9% of men are color blind?
-graph_1_colors = ["#E6F5FF", "#B3E6FF", "#80D4FF", "#4DC3FF", "#1AB1FF", "#008FFF", "#0077CC", "#0055AA", "#003377", "#001155", "#000033"]  # Shade of blue
+# graph_1_colors = ["#E6F5FF", "#B3E6FF", "#80D4FF", "#4DC3FF", "#1AB1FF", "#008FFF", "#0077CC", "#0055AA", "#003377", "#001155", "#000033"]  # Shade of blue
+graph_1_colors = ["hsl(207, 100%, 95%)", "hsl(207, 100%, 85%)", "hsl(207, 100%, 75%)", "hsl(207, 100%, 65%)", "hsl(207, 100%, 55%)", "hsl(207, 100%, 45%)", "hsl(207, 100%, 35%)", "hsl(207, 100%, 25%)", "hsl(207, 100%, 15%)", "hsl(207, 100%, 5%)", "hsl(207, 100%, 0%)"]
+
 if color_blind == 'Yes':
   graph_3_color_1 = "#0072B2"  # Shade of blue
   graph_3_color_2 = "#CD950C"  # Shade of orange
