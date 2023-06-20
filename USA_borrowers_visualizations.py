@@ -214,7 +214,7 @@ def render_usa():
                 "emphasis": {"label": {"show": True}},
                 "textFixed": {"Alaska": [20, -20]},
                 "data": [
-                    {"name": "Alabama", "value": "{:.2f}".format(percentage_borrowers_per_state["Alabama"])},
+                    {"name": "Alabama", "value": 10.74},
                     {"name": "Alaska", "value": percentage_borrowers_per_state["Alaska"]},
                     {"name": "Arizona", "value": percentage_borrowers_per_state["Arizona"]},
                     {"name": "Arkansas", "value": percentage_borrowers_per_state["Arkansas"]},
