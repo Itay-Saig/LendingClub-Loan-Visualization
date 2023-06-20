@@ -90,7 +90,7 @@ st.markdown("---")
 #     }
 color_blind = st.radio("The visualizations are color blind friendly. Are you color blind?",['No','Yes'],key=51) # Did you know that 9% of men are color blind?
 # graph_1_colors = ["#E6F5FF", "#B3E6FF", "#80D4FF", "#4DC3FF", "#1AB1FF", "#008FFF", "#0077CC", "#0055AA", "#003377", "#001155", "#000033"]  # Shade of blue
-graph_1_colors = ["hsl(207, 100%, 95%)", "hsl(207, 100%, 85%)", "hsl(207, 100%, 75%)", "hsl(207, 100%, 65%)", "hsl(207, 100%, 55%)", "hsl(207, 100%, 45%)", "hsl(207, 100%, 35%)", "hsl(207, 100%, 25%)", "hsl(207, 100%, 15%)", "hsl(207, 100%, 5%)", "hsl(207, 100%, 0%)"]
+graph_1_colors = ["hsl(207, 100%, 95%)", "hsl(207, 90%, 85%)", "hsl(207, 80%, 75%)", "hsl(207, 70%, 65%)", "hsl(207, 60%, 55%)", "hsl(207, 50%, 45%)", "hsl(207, 40%, 35%)", "hsl(207, 30%, 25%)", "hsl(207, 20%, 15%)", "hsl(207, 10%, 5%)", "hsl(207, 0%, 0%)"]
 
 if color_blind == 'Yes':
   graph_3_color_1 = "#0072B2"  # Shade of blue
@@ -315,7 +315,7 @@ with st.container():
     with col1:
         option = st.selectbox(
             "Which year would you like to examine?",
-            ('2012', '2013', '2014', '2015', '2016', 'Overall')
+            ('Overall', '2012', '2013', '2014', '2015', '2016')
         )
     
     # Extract the 7 most frequent loan purposes in the data
