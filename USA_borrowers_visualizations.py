@@ -187,7 +187,7 @@ def render_usa():
         "visualMap": {
             "left": "right",
             "min": min(list(percentage_borrowers_per_state.values())),
-            "max": np.ceil(max(list(percentage_borrowers_per_state.values()))) + 3,
+            "max": np.ceil(max(list(percentage_borrowers_per_state.values()))) + 6,
             "inRange": {
                 "color": ["#E6F5FF", "#B3E6FF", "#80D4FF", "#4DC3FF", "#1AB1FF", "#008FFF", "#0077CC", "#0055AA", "#003377", "#001155", "#000033",] },
             "text": ["High", "Low"],
