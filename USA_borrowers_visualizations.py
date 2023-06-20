@@ -92,8 +92,8 @@ if color_blind == 'Yes':
   # color6 =
   
 else:
-  graph_3_color_1 = '#6495ED'
-  graph_3_color_2 = "BF3EFF"
+  graph_3_color_1 = "#6495ED"
+  graph_3_color_2 = "#BF3EFF"
   graph_4_color_1 = 'rgb(55, 83, 109)'
   graph_4_color_2 = 'rgb(26, 118, 255)'
   graph_5_colors = ['#333F44', '#37AA9C', '#94F3E4']
