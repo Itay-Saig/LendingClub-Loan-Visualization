@@ -86,16 +86,16 @@ if color_blind == 'Yes':
   # color2 = 
   graph_3_color_1 = "#0072B2"  # Shade of blue
   graph_3_color_2 = "#FF7F00"  # Shade of orange
-  graph_4_color_1 = 'rgb(55, 83, 109)'
-  graph_4_color_2 = 'rgb(26, 118, 255)'
+  graph_4_color_1 = 'rgb(0, 120, 200)'  # Blue
+  graph_4_color_2 = 'rgb(230, 90, 0)'  # Orange
   # color5 = 
   # color6 =
   
 else:
-  graph_3_color_1 = 'blue'
-  graph_3_color_2 = 'green'
-  graph_4_color_1 = 'rgb(0, 120, 200)'  # Blue
-  graph_4_color_2 = 'rgb(230, 90, 0)'  # Orange
+  graph_3_color_1 = 'lightblue'
+  graph_3_color_2 = 'lightgreen'
+  graph_4_color_1 = 'rgb(55, 83, 109)'
+  graph_4_color_2 = 'rgb(26, 118, 255)'
 
   st.markdown("---")  
 
