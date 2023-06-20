@@ -79,24 +79,22 @@ st.markdown("---")
 #         "Insomnia": px.colors.qualitative.Bold[4],  # Yellow
 #         "OCD": px.colors.qualitative.Bold[5]  # Green
 #     }
-color_blind = st.radio("This Project is Color-blind friendly, Are you color blind?",['No','Yes'],key=51) # Did you know that 9% of men are color blind?
+color_blind = st.radio("The visualizations are color blind friendly. Are you color blind?",['No','Yes'],key=51) # Did you know that 9% of men are color blind?
 graph_1_colors = ["#E6F5FF", "#B3E6FF", "#80D4FF", "#4DC3FF", "#1AB1FF", "#008FFF", "#0077CC", "#0055AA", "#003377", "#001155", "#000033"]  # Shade of blue
 if color_blind == 'Yes':
-  # graph_2_colors = 
-  # color2 = 
   graph_3_color_1 = "#0072B2"  # Shade of blue
   graph_3_color_2 = "#CD950C"  # Shade of orange
   graph_4_color_1 = 'rgb(0, 120, 200)'  # Blue
   graph_4_color_2 = 'rgb(255, 153, 18)'  # Orange
-  graph_5_colors = ['#1f77b4', '#ff7f0e', '#2ca02c']
-  # color6 =
+  graph_5_colors = ['#1f77b4', '#ff7f0e', '#2ca02c']  # Blue, orange, green
+  # graph_6_colors =
   
 else:
   graph_3_color_1 = "#BFEFFF"
   graph_3_color_2 = "#B23AEE"  # darkorchid2 (purple)
   graph_4_color_1 = 'rgb(55, 83, 109)'
   graph_4_color_2 = 'rgb(26, 118, 255)'
-  graph_5_colors = ['#1f77b4', '#ff7f0e', '#2ca02c']
+  graph_5_colors = ['#e6194B', '#3cb44b', '#4363d8']  # Red, green, blue
 
 
   st.markdown("---")  
@@ -772,13 +770,13 @@ option = {
              "bottom": "30%",
     },
     "series": [
-        {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
-        {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
-        {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
-        {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
-        {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
-        {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
-        {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}},
+        {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}, "colors": ['#1f77b4']},
+        {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}, "colors": ['#ff7f0e']},
+        {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}, "colors": ['#2ca02c']},
+        {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}, "colors": ['#d62728']},
+        {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}, "colors": ['#9467bd']},
+        {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}, "colors": ['#8c564b']},
+        {"type": "line", "smooth": True, "seriesLayoutBy": "row", "emphasis": {"focus": "series"}, "colors": ['#e377c2']},
     ],
 }
 
