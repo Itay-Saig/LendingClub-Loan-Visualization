@@ -92,7 +92,7 @@ if color_blind == 'Yes':
   # color6 =
   
 else:
-  graph_3_color_1 = "#BFEFFF"
+  graph_3_color_1 = "#B2DFEE"
   graph_3_color_2 = "#B23AEE"  # darkorchid2 (purple)
   graph_4_color_1 = 'rgb(55, 83, 109)'
   graph_4_color_2 = 'rgb(26, 118, 255)'
