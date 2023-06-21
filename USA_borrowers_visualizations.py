@@ -338,7 +338,7 @@ if option == 'Overall':
     with col2:
       options = {
           "title": {
-              "text": "Loan Distribution by Purpose: Top 7 Requested Loan Purposes",
+              "text": "Loan Distribution by Purpose: The most Requested Loan Purposes",
               "left": "center",
               "top": "-3%",
               "padding": 20,
@@ -432,7 +432,7 @@ else:
         def render_horizontal_bar_by_purpose(sorted_top_7_purposes, borrowers_per_year_purpose_list):
           options = {
               "title": {
-                  "text": "Loan Distribution by Purpose: Top 7 Requested Loan Purposes",
+                  "text": "Loan Distribution by Purpose: The most Requested Loan Purposes",
                   "left": "center",
                   "top": "-3%",
                   "padding": 20,
@@ -631,7 +631,7 @@ with st.container():
                                  ))
 
             fig.update_layout(
-                title='Loan Repayment by Job Titles: Top 10 Loan Requested Job Titles',
+                title='Loan Repayment by Job Titles: The Job Titles that Request the most Loans',
                 xaxis=dict(
                     title='Employment Length',
                     tickfont_size=14
