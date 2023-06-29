@@ -5,8 +5,9 @@ Our visualization theme focuses on the ‘Lending Club Loan’ dataset from Kagg
 
 Through diverse and rich visualizations, we examine the characteristics of taking loans under different categories, such as: different job titles, different purposes for the loan, economic starting conditions (annual salary, owned properties) and more, and map them according to location in the world or filter by years.
 
-The main question we would like to investigate is: In what and how the characteristics of borrowers in the US change over the years?
+The main question we would like to investigate is:
+
+In what and how the characteristics of borrowers in the US change over the years?
 
 To view the interactive dashboard, enter this link:
-
 https://itay-saig-lendingclub-loan--usa-borrowers-visualizations-d543hb.streamlit.app/
