@@ -10,4 +10,5 @@ The main question we would like to investigate is:
 In what and how the characteristics of borrowers in the US change over the years?
 
 To view the interactive dashboard, enter this link:
+
 https://itay-saig-lendingclub-loan--usa-borrowers-visualizations-d543hb.streamlit.app/
