@@ -26,13 +26,13 @@ st.set_page_config(page_title="Streamlit Project",
 
 with st.container():
     col1, col2, col3 = st.columns([0.7, 0.2, 0.1])
-    col1.title('Information Visualization - Final Project')
+    col1.title('LendingClub Loan - Visualization')
 with st.container():
     col1, col2, col3 = st.columns([0.30, 0.5, 0.20])
-    col1.subheader('Ido Pascaro - 206589749')
+    col1.subheader('Ido Pascaro')
 with st.container():
     col1, col2, col3 = st.columns([0.32, 0.5, 0.20])
-    col1.subheader('Itay Saig - 206961609')
+    col1.subheader('Itay Saig')
     st.write("\n")
 
 st.header("Overview")
