@@ -26,7 +26,7 @@ st.set_page_config(page_title="Streamlit Project",
 
 with st.container():
     col1, col2, col3 = st.columns([0.7, 0.2, 0.1])
-    col1.title('LendingClub Loan - Visualization')
+    col1.title('Lending Club Loan - Visualization')
 with st.container():
     col1, col2, col3 = st.columns([0.30, 0.5, 0.20])
     col1.subheader('Ido Pascaro')
