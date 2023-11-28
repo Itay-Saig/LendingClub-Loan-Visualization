@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Visualization Final Project.ipynb
 """
-####################################### Imports #######################################
+####################################### Imports ######################################
 
 import streamlit as st
 import pandas as pd
@@ -18,7 +18,7 @@ from streamlit_echarts import JsCode
 from streamlit_echarts import st_echarts
 import plotly.figure_factory as ff
 
-####################################### Intro #######################################
+####################################### Intro ######################################
 
 st.set_page_config(page_title="Streamlit Project",
                    page_icon=":bar_chart:",
