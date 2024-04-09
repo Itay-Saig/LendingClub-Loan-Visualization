@@ -26,7 +26,7 @@ st.set_page_config(page_title="Streamlit Project",
 
 with st.container():
     col1, col2, col3 = st.columns([0.7, 0.2, 0.1])
-    col1.title('LendingClub Loan - Visualization')
+    col1.title('Lending Club Loan - Visualization')
 with st.container():
     col1, col2, col3 = st.columns([0.30, 0.5, 0.20])
     col1.subheader('Ido Pascaro')
@@ -36,9 +36,9 @@ with st.container():
     st.write("\n")
 
 st.header("Overview")
-st.markdown("##### The subject of our visualization is to examine the change in the characteristics of borrowers in the United States over the years in various aspects.")
-st.markdown("##### Our visualization theme focuses on the ‘Lending Club Loan’ dataset from Kaggle which contains data from LendingClub company. The data available on Kaggle is a comprehensive dataset of loan information from LendingClub from 2012 to 2016.")
-st.markdown("##### The main question we would like to investigate is: In what and how the characteristics of borrowers in the US change over the years?")
+st.markdown("##### The subject of the visualization involves examining the evolution of borrower characteristics in the United States across various dimensions over the years.")
+st.markdown("##### The visualization theme focuses on the 'Lending Club Loan' dataset sourced from Kaggle, which comprises loan data from the LendingClub company spanning from 2012 to 2016.")
+st.markdown("##### The primary research question is: What are the trends and patterns in the changing characteristics of borrowers in the US over the years?")
 st.markdown("---")
 
 
@@ -66,7 +66,7 @@ else:
 ################################### Preprocessing ###################################
 ############################### General Preprocessing ###############################
 
-data = pd.read_csv('lending_club_loan_two.csv') # read csv
+data = pd.read_csv('../data/lending_club_loan_two.csv') # read csv
 
 # Replace 'RN' with 'Registered Nurse' in 'emp_title' column
 data['emp_title'] = data['emp_title'].replace('RN', 'Registered Nurse')
@@ -143,7 +143,7 @@ def render_usa(graph_1_colors):
         + "return params.seriesName + '<br/>' + params.name + ': ' + value;}"
     ).js_code
 
-    with open("./USA.json", "r") as f:
+    with open("../data/USA.json", "r") as f:
         map = Map(
             "USA",
             json.loads(f.read()),
