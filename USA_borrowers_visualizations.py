@@ -27,12 +27,6 @@ st.set_page_config(page_title="Streamlit Project",
 with st.container():
     col1, col2, col3 = st.columns([0.7, 0.2, 0.1])
     col1.title('Lending Club Loan - Visualization')
-with st.container():
-    col1, col2, col3 = st.columns([0.30, 0.5, 0.20])
-    col1.subheader('Ido Pascaro')
-with st.container():
-    col1, col2, col3 = st.columns([0.32, 0.5, 0.20])
-    col1.subheader('Itay Saig')
     st.write("\n")
 
 st.header("Overview")
@@ -66,7 +60,7 @@ else:
 ################################### Preprocessing ###################################
 ############################### General Preprocessing ###############################
 
-data = pd.read_csv('../data/lending_club_loan_two.csv') # read csv
+data = pd.read_csv('./data/lending_club_loan_two.csv') # read csv
 
 # Replace 'RN' with 'Registered Nurse' in 'emp_title' column
 data['emp_title'] = data['emp_title'].replace('RN', 'Registered Nurse')
@@ -143,7 +137,7 @@ def render_usa(graph_1_colors):
         + "return params.seriesName + '<br/>' + params.name + ': ' + value;}"
     ).js_code
 
-    with open("../data/USA.json", "r") as f:
+    with open("./data/USA.json", "r") as f:
         map = Map(
             "USA",
             json.loads(f.read()),
