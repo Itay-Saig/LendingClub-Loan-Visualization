@@ -1,16 +1,23 @@
 # LendingClub-Loan-Visualization
+View the interactive dashboard now! (which is also color blind friendly)
 
-To view the interactive dashboard, enter this link:
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://itay-saig-lendingclub-loan--usa-borrowers-visualizations-d543hb.streamlit.app/)
 
-https://itay-saig-lendingclub-loan--usa-borrowers-visualizations-d543hb.streamlit.app/
+## Table of Contents :clipboard:
+  * [Introduction](#Introduction-bookmark_tabs)
+  * [Goals](#goals-dart)
+  * [Data Description](#data-description-bar_chart)
 
+![](docs/LendingClub_dashboard.gif)
 
-The subject of our visualization is to examine the change in the characteristics of borrowers in the United States over the years in various aspects.
-Our visualization theme focuses on the ‘Lending Club Loan’ dataset from Kaggle which contains data from LendingClub company. The data available on Kaggle is a comprehensive dataset of loan information from LendingClub from 2012 to 2016.
+## Introduction :bookmark_tabs:
+The subject of the visualization involves examining the evolution of borrower characteristics in the United States across various dimensions over the years. 
+Through a variety of diverse visualizations, borrower characteristics are analyzed across different categories, including job titles, loan purposes, economic indicators and more. These visualizations enable geographical mapping of trends and allow for data filtering by year.
 
-Through diverse and rich visualizations, we examine the characteristics of taking loans under different categories, such as: different job titles, different purposes for the loan, economic starting conditions (annual salary, owned properties) and more, and map them according to location in the world or filter by years.
+## Goals :dart:
+The primary research question is:
 
-The main question we would like to investigate is:
+What are the trends and patterns in the changing characteristics of borrowers in the US over the years?
 
-In what and how the characteristics of borrowers in the US change over the years?
-
+## Data Description :bar_chart:
+The visualization theme focuses on the 'Lending Club Loan' dataset sourced from Kaggle, which comprises loan data from the LendingClub company spanning from 2012 to 2016. The dataset comprises 74,971 observations and 27 features, each representing a customer loan along with its associated details.
